@@ -1,0 +1,23 @@
+.moviePageTitle{
+    color: tomato;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    display: flex;
+}
+.movie {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);    
+    grid-row-gap: 0px;
+  }
+  
+  .poster{
+    display: block;
+    width: 75%;
+    height:75%;
+    margin-left: 5%;
+  }
+  .moive__des{
+    color: tomato;
+    margin-left: 5%;
+  }

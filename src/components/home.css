@@ -1,0 +1,12 @@
+.movieParagarph{
+    min-height: 375px;
+    margin-left: 5%;
+    padding: 10px;
+}
+.heading4{
+    color: tomato;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    display: flex;
+}
