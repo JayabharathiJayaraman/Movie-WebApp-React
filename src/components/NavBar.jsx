@@ -13,7 +13,7 @@ function NavBar(){
         <nav className = "navbar">
             <div className= "navbar-container">
             <Link to = "/" className = "navbarLogo" onClick = {closeMobileMenu}>
-            PopCorn Flix <i class="fas fa-tv"></i>
+            Movies WebbShop<i class="fas fa-tv"></i>
             </Link>
             <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

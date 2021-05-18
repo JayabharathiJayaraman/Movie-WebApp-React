@@ -22,10 +22,10 @@ function Footer() {
           <div class='social-media-wrap'>
             <div class='footer-logo'>
               <Link to='/' className='social-logo'>
-              PopCorn Flix 
+              Movies WebbShop
               </Link>
             </div>
-            <small class='website-rights'>Film © 2020</small>
+            <small class='website-rights'>Movie © 2020</small>
             <div class='social-icons'>
               <Link
                 class='social-icon-link facebook'
