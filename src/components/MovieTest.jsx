@@ -3,29 +3,29 @@ import { useDispatch, useSelector } from "react-redux"
 import { actions, STATUS } from "../feutures/movietest"
 
 const MovieTest = () => {
-    const status = useSelector(state => state.fact.status)
-    const img = useSelector(state => state.fact.img)
+    const status = useSelector(state => state.movie.status)
+    const movieList = useSelector(state => state.movie.movie)
     const [searchMovie, setSearchMovie] = useState('minions')
-
+    console.log('movieList', movieList)
     const dispatch = useDispatch()
     let content = null
-    let blatext = 'blaText'
+    let blatext = 'blaText2'
     if (status === STATUS.NORMAL) {
-        content = 'redo för lite fakta'
+        content = movieList[0].Poster
         blatext = 'normal'
     } else if ( status === STATUS.FETCHING) {
         content = 'Väntar på fakta...'
         blatext = 'fetching'
     } else if ( status === STATUS.SUCCESS) {
-        content = img
-        blatext = 'success'
+        content = movieList[0].Poster
+        blatext = movieList[0].key
     } else { 
-        content = 'Kunde inte hämta fakta'
-        blatext = 'blaText'
+        content = movieList[0].Poster
+        blatext = 'blaText3'
     }
  
     useEffect(() => {
-        fetchFact(dispatch)
+        fetchMovie(dispatch)
     }, [dispatch])
 
     const handleChange = event => setSearchMovie(event.target.value);
@@ -34,27 +34,28 @@ const MovieTest = () => {
             <p>
                 <input type="text" value={searchMovie} onChange={handleChange}></input>
                 <button onClick={() => 
-                fetchFact(dispatch, searchMovie)}>Get movie!</button>                
+                fetchMovie(dispatch, searchMovie)}>Get movie!</button>                
             </p>
             <h2>{blatext}</h2>
-            <img src={content}/>
+            <img src={content} alt='movie'/>
         </div>
     )
 }
 
-async function fetchFact(dispatch, movie) {
+async function fetchMovie(dispatch, movie) {
     dispatch(actions.isFetching())
     //const movies = ['smallfoot', 'minions', 'coco', 'soul', 'Ralph Breaks the Internet']
-
+console.log('???', movie)
+  
     const url = 'http://omdbapi.com/?apikey=72d7fe9&t=' + movie
    
     try {
         let response = await fetch(url)
         let json = await response.json()
         console.log('Got data: ', json )
-        let img = json.Poster
-        let title = json.Title
-        dispatch(actions.success(img, title))
+        //let img = json.Poster
+        //let title = json.Title
+        dispatch(actions.success(json))
     } catch {
         dispatch(actions.failure())
     }

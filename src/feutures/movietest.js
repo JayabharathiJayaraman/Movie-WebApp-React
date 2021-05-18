@@ -12,11 +12,17 @@ const STATUS = {
     SUCCESS: 'success',
     FAILURE: 'failure'
 }
-
+const startList = [{key:'minions', Poster:'https://m.media-amazon.com/images/M/MV5BMTg2MTMyMzU0M15BMl5BanBnXkFtZTgwOTU3ODk4NTE@._V1_SX300.jpg'},
+{key:'smallfoot', Poster:'https://m.media-amazon.com/images/M/MV5BNTVkYTZlZWItZTc0ZS00MTIzLThlNjItNmNkNDA5YzIwZGZjXkEyXkFqcGdeQXVyODQzNTE3ODc@._V1_SX300.jpg'},
+{key:'conan the barbarian', Poster:'https://m.media-amazon.com/images/M/MV5BMWIxMzQxZjAtMGFkNC00NzYwLWFiMGEtNzZhZjE5MmFiMmMyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg'},
+{key:'first blood', Poster:'https://m.media-amazon.com/images/M/MV5BODBmOWU2YWMtZGUzZi00YzRhLWJjNDAtYTUwNWVkNDcyZmU5XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg'}
+    
+]
 const initialState = {
     status: STATUS.NORMAL,
-    img: null,
-    title: null
+    //img: null,
+    //title: null,
+    movie: startList
 }
 
 const reducer = createReducer(initialState, {
@@ -26,14 +32,14 @@ const reducer = createReducer(initialState, {
     }),
     [success]: (state, action) => ({
         status: STATUS.SUCCESS,
-        img: action.payload,
-        title: action.payload
+        //img: action.payload ,
+        //title: action.payload,
+        movie: [action.payload, ...state.movie]
     }),
     [failure]: (state, action) => ({
         ...state,
         status: STATUS.FAILURE
     })
-
 })
 
 export { actions, reducer, STATUS}

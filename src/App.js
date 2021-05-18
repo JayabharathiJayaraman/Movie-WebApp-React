@@ -1,7 +1,7 @@
-import logo from './logo.svg';
+
 import './App.css';
-import Fact from './components/MovieTest'
-import MovieTest from './components/MovieTest';
+import MovieTest from './components/MovieTest'
+import MovieHistory from './components/MovieHistory';
 
 function App() {
   return (
@@ -10,8 +10,9 @@ function App() {
        <h1> Fetch demo med Redux</h1>
       </header>
       <main>
-        <h2> Some facts!</h2>
+        <h2> Search Movie!</h2>
         <MovieTest />
+        <MovieHistory />
        
       </main>
     </div>
