@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Movie from './components/Movie';
+import Footer from './components/Footer';
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          
-          Learn React
-        </a>
       </header>
-      <h1>this is test for git branch first push</h1>
+      <main>
+        <Router>
+      <NavBar></NavBar> 
+      <Switch>
+        <Route exact path = '/'>
+          <Home></Home>
+          </Route>
+          <Route exact path = '/movie'>
+          <Movie></Movie>
+          </Route>
+      </Switch>
+      <Footer></Footer>
+      </Router>
+        </main>
     </div>
   );
 }
