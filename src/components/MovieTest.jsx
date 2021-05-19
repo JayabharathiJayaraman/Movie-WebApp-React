@@ -24,9 +24,9 @@ const MovieTest = () => {
         blatext = 'blaText3'
     }
  
-    useEffect(() => {
-        fetchMovie(dispatch)
-    }, [dispatch])
+    // useEffect(() => {
+    //     fetchMovie(dispatch)
+    // }, [dispatch])
 
     const handleChange = event => setSearchMovie(event.target.value);
     return (
@@ -55,7 +55,10 @@ console.log('???', movie)
         console.log('Got data: ', json )
         //let img = json.Poster
         //let title = json.Title
-        dispatch(actions.success(json))
+        if(json.Response !== "False"){
+            dispatch(actions.success(json))
+        }
+        
     } catch {
         dispatch(actions.failure())
     }
