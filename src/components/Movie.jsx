@@ -26,39 +26,47 @@ const Movie = () => {
     } else {
         content = "Kunde inte hämta fakta";
     }
-
-    useEffect(() => {
+    async function fetchFact() {
+        console.log("InfiniteScroll");
         if (page <= 5) {
-            fetchFact(dispatch);
-            setPage(page + 1);
-            console.log('Page: ', page);
+            dispatch(actions.isFetching());
+            const url = `http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=${page}`
+            try {
+                let response = await fetch(url);
+                let json = await response.json();
+                console.log('Got data: ', json);
+                setPage(page+1);
+                console.log('Page ', page);
+                let movies = json.Search;
+                dispatch(actions.success([...movies]))
+            } catch {
+                dispatch(actions.failure());
+            }
         }
+    }
+    useEffect(() => {
+        fetchFact();
     }, []);
+   
     return (
         <>
             <div className='moviePageTitle'>
                 <p>Our Exciting Movies</p>
             </div>
             <Search placeholder="SearchMovies" ></Search>
+            <InfiniteScroll dataLength = {30}
+            next = {fetchFact}
+            hasMore = {true}
+            >
             <div className='four-columns'>
                 {content}
             </div>
+            </InfiniteScroll>
+            <button onClick={fetchFact}>ShowMore</button>
         </>
     )
 
-    async function fetchFact() {
-        dispatch(actions.isFetching());
-        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=1'
-        try {
-            let response = await fetch(url);
-            let json = await response.json();
-            console.log('Got data: ', json);
-            let movies = json.Search;
-            dispatch(actions.success(movies))
-        } catch {
-            dispatch(actions.failure());
-        }
-    }
+    
 }
 
 export default Movie;
