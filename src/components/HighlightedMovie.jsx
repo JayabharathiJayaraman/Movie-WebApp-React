@@ -1,7 +1,7 @@
 import './movie.css';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actionsshopcart } from '../features/movie';
+import { actionsshopcart } from '../features/shoppingcart';
 import { actionsh, STATUSh } from "../features/highlightmovie";
 
 
@@ -9,9 +9,9 @@ import { actionsh, STATUSh } from "../features/highlightmovie";
 
 const HighlightedMovie = (props) => {
     
-    
+    const dispatch =useDispatch();
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
-    const buy = () => {dispatch(actionsshopcart.addToCart());}
+    const buy = () => {dispatch(actionsshopcart.addToCart(selectedmovie));}
 
     const statush = useSelector(state => state.highlightmovie.statush);
     console.log('statush: ', statush);

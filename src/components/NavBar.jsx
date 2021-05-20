@@ -1,8 +1,16 @@
 import './navBar.css';
 import React , {useState} from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function NavBar(){
+  //const value = useSelector(state => state.shopc[1].count);
+  let initialshoppingcartitemcount=0
+  const value = useSelector(state => state.shopc.map(cartItem=>{
+    initialshoppingcartitemcount += parseInt(cartItem.count)
+    console.log('initialshoppingcartitemcount: ', initialshoppingcartitemcount);
+    return initialshoppingcartitemcount
+  }));
     const [click, setClick] = useState(false);
   
     const handleClick = () => setClick(!click);
@@ -47,7 +55,7 @@ function NavBar(){
                 to='/checkoutIcon'
                 className='nav-links'
                 onClick={closeMobileMenu}> 
-              <i class="fas fa-shopping-cart"></i>
+              <i class="fas fa-shopping-cart">{initialshoppingcartitemcount-1}</i>
               </Link>
             </li>
             </ul>

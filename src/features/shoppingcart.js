@@ -1,4 +1,4 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "@reduxjs/toolkit";
 
 
 const addToCart = createAction('add to cart');
@@ -12,18 +12,21 @@ const actionsshopcart = {addToCart, removeFromCart, increaseAmount, decreaseAmon
 const initialState = [
  
     {
-        movie: {imdbid: 'tt0936501',Title: 'Taken', Year: '2020'},
+        movie: {imdbID: 'tt0936501',Title: 'Taken', Year: '2020'},
         count: 1
     }
 ]
 
 const reducershopcart = createReducer(initialState, {
     [addToCart]: (state, action) => {
-        let found = state.find(cartItem => cartItem.movie.imdbid === action.payload.imdbid);
+        console.log('payload: ', action.payload.imdbID);
+        let found = state.find(cartItem => cartItem.movie.imdbID === action.payload.imdbID);
         if( found ) {
             const newState =state.map(cartItem => {
-                if (cartItem.movie.imdbid === action.payload.imdbid) {
+                if (cartItem.movie.imdbID === action.payload.imdbID) {
+                    console.log('count: ', cartItem.count);
                     return { ...cartItem, count: cartItem.count + 1 }
+                    
                 } else {
                     return cartItem;
                 }
@@ -36,6 +39,7 @@ const reducershopcart = createReducer(initialState, {
                 {movie: action.payload, count: 1}
             ];
         }
+        
 
     },
 
