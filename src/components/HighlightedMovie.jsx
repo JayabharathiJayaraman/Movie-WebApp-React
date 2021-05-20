@@ -1,20 +1,21 @@
 import './movie.css';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { actionsshopcart } from '../features/movie';
 import { actionsh, STATUSh } from "../features/highlightmovie";
 
 
 
-const HighlightedMovie = () => {
+
+const HighlightedMovie = (props) => {
     
     
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
-    
+    const buy = () => {dispatch(actionsshopcart.addToCart());}
 
     const statush = useSelector(state => state.highlightmovie.statush);
     console.log('statush: ', statush);
-    
+    const dispatchh = useDispatch();
     
     let content = null;
     if (statush === STATUSh.NORMAL) {
@@ -33,10 +34,33 @@ const HighlightedMovie = () => {
             <p className='moive__des'>Country:{selectedmovie.Country}</p>
             <p className='moive__des'>Awards:{selectedmovie.Awards}</p>
             <p className='moive__des'>Type:{selectedmovie.Type}</p>
+            <button onClick={buy}>Add to shopcart</button>
         </div>
         
     } else {
         content = "Kunde inte hämta fakta";
+    }
+
+    useEffect(() => {
+        fetchSpecificMovie(props.imdbID)
+    }, []);
+
+
+
+    async function fetchSpecificMovie(imdbID) {
+        dispatchh(actionsh.isFetching());
+        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&i='  + imdbID
+        try {
+            let response = await fetch(url);
+            let json = await response.json();
+            console.log('Got data: ', json);
+            let movie = json;
+            dispatchh(actionsh.success(movie))
+            
+            //setcontent(<HighlightedMovie/>)
+        } catch {
+            dispatchh(actionsh.failure());
+        }
     }
 
     

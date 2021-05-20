@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
 import { actionsh, STATUSh } from "../features/highlightmovie";
+
 import Search from './Search';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import HighlightedMovie from './components/HighlightedMovie';
+import HighlightedMovie from './HighlightedMovie';
 
 const Movie = () => {
     const status = useSelector(state => state.movie.status);
@@ -13,31 +14,63 @@ const Movie = () => {
     const movies = useSelector(state => state.movie.movies);
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
     const [page, setPage] = useState(1)
-    const [showpopup, setShowpopup] = useState(false)
+    
+    const [selectedmoviee, setSelectedmovie] = useState(null)
 
-    const statush = useSelector(state => state.highlightmovie.statush);
-    console.log('statush: ', statush);
+
+    const MOVIE = 'movie', HIGHLIGHTEDMOVIE = 'highlightedmovie';
+ 
+  const [currentScreen, setCurrentScreen] = useState(MOVIE);
+
+    const [selectedmovieid, setSelectedmovieid]=useState(null)
+    
     const dispatch = useDispatch();
-    const dispatchh = useDispatch();
+    
+    //const [content, setcontent] = useState(STATUS.NORMAL);
     let content = null;
-    if (status === STATUS.NORMAL) {
-        content = 'Redo för lite fakta!';
-    } else if (status === STATUS.FETCHING) {
-        content = 'Väntar på fakta...';
-    } else if (status === STATUS.SUCCESS) {
-        content = movies.map(movie =>
-            <div>
-                <img className='poster' src={movie.Poster} onClick={() => {
-                    openLightbox(movie)
-                    HighlightedMovie()
-                }
-                } alt='abc'></img>
-                <p className='moive__des'>Title:{movie.Title}</p>
-            </div>
-        );
-    } else {
-        content = "Kunde inte hämta fakta";
+    switch(currentScreen) {
+        case MOVIE:
+            if (status === STATUS.NORMAL) {
+                content = 'Redo för lite fakta!';
+            } else if (status === STATUS.FETCHING) {
+                content = 'Väntar på fakta...';
+                
+            } else if (status === STATUS.SUCCESS) {
+                
+                content=movies.map(movie =>
+                    <div>
+                        {/*<img className='poster' src={movie.Poster} onClick={() => openLightbox(movie)} alt='abc'></img>*/}
+                        <img className='poster' src={movie.Poster} onClick={() => {
+                            {/*content=<HighlightedMovie imdbID={movie.imdbID}/>
+                            setSelectedmovie(
+                                <HighlightedMovie imdbID={movie.imdbID}/>
+                            )*/}
+                            setSelectedmovieid(movie.imdbID)
+                            
+                            console.log('movie imdbID: ', movie.imdbID);
+                            {/*setCurrentScreen(HIGHLIGHTEDMOVIE)*/}
+                            //setCurrentScreen('hhhh')
+                            //fetchSpecificMovie(movie.imdbID)
+                            //openLightbox(movie)
+                            setCurrentScreen(HIGHLIGHTEDMOVIE)
+                            
+                            }
+                            } alt='abc'></img>
+                        <p className='moive__des'>Title:{movie.Title}</p>
+                    </div>
+                );
+            } else {
+                content = "Kunde inte hämta fakta";
+                
+            }
+            break;
+            case HIGHLIGHTEDMOVIE:
+                content = <HighlightedMovie imdbID={selectedmovieid}/>
+                break;
+            default:
+                content = "this is the default";
     }
+    
 
     
 
@@ -60,11 +93,12 @@ const Movie = () => {
     }*/
 
     useEffect(() => {
-        if (page <= 5) {
+        /*if (page <= 5) {
             fetchFact(dispatch);
             setPage(page + 1);
             console.log('Page: ', page);
-        }
+        }*/
+        fetchFact(dispatch);
     }, []);
     return (
         <>
@@ -79,7 +113,9 @@ const Movie = () => {
                   </figure>
             </section>
             <div className='four-columns'>
+                {/*{selectedmoviee}*/}
                 {content}
+                
             </div>
         </>
     )
@@ -102,28 +138,29 @@ const Movie = () => {
             dispatch(actions.failure());
         }
     }
-
-    async function fetchSpecificMovie(movie) {
-        dispatchh(actionsh.isFetching());
-        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&i='  + movie.imdbID
+    async function fetchSpecificMovie(movieid) {
+        console.log('fetchSpecificMovie selectedmovieid: ', movieid);
+        dispatch(actions.isFetching());
+        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&i='  + movieid
         try {
             let response = await fetch(url);
             let json = await response.json();
             console.log('Got data: ', json);
             let movie = json;
-            dispatchh(actionsh.success(movie))
-            setShowpopup(true)
+            dispatch(actionsh.success(movie))
+            
+            //setcontent(<HighlightedMovie/>)
         } catch {
-            dispatchh(actionsh.failure());
+            dispatch(actionsh.failure());
         }
     }
 
 
 
 
-
     function openLightbox(movie) {
         //fetchSpecificMovie(movie)
+       
         /*setCurrentmovieTitle(movie.Title)
         console.log('current movie title comes to function: ', movie.Title);
         console.log('current movie title: ', currentmovietitle);
