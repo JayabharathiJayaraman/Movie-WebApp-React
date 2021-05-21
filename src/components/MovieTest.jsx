@@ -1,63 +1,94 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { actions, STATUS } from "../feutures/movietest"
+import MovieImg from "./MovieImg";
 
 const MovieTest = () => {
     const status = useSelector(state => state.movie.status)
     const movieList = useSelector(state => state.movie.movie)
+    const search_status = useSelector(state => state.search.status)
+    const searchList = useSelector(state => state.search.search)
     const [searchMovie, setSearchMovie] = useState('minions')
     console.log('movieList', movieList)
     const dispatch = useDispatch()
     let content = null
     let blatext = 'blaText2'
     if (status === STATUS.NORMAL) {
-        content = movieList[0].Poster
+        content = movieList[0] //[0][0].Poster
         blatext = 'normal'
     } else if ( status === STATUS.FETCHING) {
         content = 'Väntar på fakta...'
         blatext = 'fetching'
     } else if ( status === STATUS.SUCCESS) {
-        content = movieList[0].Poster
-        blatext = movieList[0].key
+        content = movieList[0] //[0][0].Poster
+        blatext = movieList[0][0].Title
     } else { 
-        content = movieList[0].Poster
+        content = movieList[0]   //[0][0].Poster
         blatext = 'blaText3'
     }
  
-    // useEffect(() => {
-    //     fetchMovie(dispatch)
-    // }, [dispatch])
 
     const handleChange = event => setSearchMovie(event.target.value);
     return (
         <div>
+        <h2>{blatext}</h2>
             <p>
                 <input type="text" value={searchMovie} onChange={handleChange}></input>
                 <button onClick={() => 
                 fetchMovie(dispatch, searchMovie)}>Get movie!</button>                
             </p>
-            <h2>{blatext}</h2>
-            <img src={content} alt='movie'/>
+            {movieList[0].map(info => <MovieImg  
+      img= {info.Poster}  alt='movie'/>)}
+            {/* <img src={content} alt='movie'/> */}
         </div>
     )
 }
+
+async function fetchRestOfMovies(dispatch, movie, page){
+    console.log('fetching page', page)
+    const url = 'http://omdbapi.com/?apikey=72d7fe9&s=' + movie + '&Page=' + page
+    try {
+        let response = await fetch(url)
+        let json = await response.json()
+        if(json.Response !== "False"){
+            dispatch(actions.success_search(json.Search))
+            console.log('searchList', json.Search)
+        }
+    }catch {
+        dispatch(actions.failure_search())
+    }
+    
+} 
 
 async function fetchMovie(dispatch, movie) {
     dispatch(actions.isFetching())
     //const movies = ['smallfoot', 'minions', 'coco', 'soul', 'Ralph Breaks the Internet']
 console.log('???', movie)
-  
-    const url = 'http://omdbapi.com/?apikey=72d7fe9&t=' + movie
+ 
+   
+    const url = 'http://omdbapi.com/?apikey=72d7fe9&s=' + movie
    
     try {
         let response = await fetch(url)
         let json = await response.json()
-        console.log('Got data: ', json )
+        console.log('Got data: ', json.Search )
         //let img = json.Poster
         //let title = json.Title
-        if(json.Response !== "False"){
-            dispatch(actions.success(json))
-        }
+        //if(json.Response !== "False"){
+            console.log('log fetch 1 success')
+            console.log('total', json.totalResults)
+            const pages = (Math.floor(json.totalResults.parseInt()) / 10) + 1
+            console.log('pages to fetch', pages)
+            dispatch(actions.success(json.Search))
+            dispatch(actions.success_search(json.Search))
+            //const pages = Math.floor(json.totalResults.parseInt() / 10) + 1
+            //console.log('pages to fetch', pages)
+            for (let index = 2; index < pages + 1; index++){
+                fetchRestOfMovies(dispatch, movie, index)
+               
+            }
+        
+        //}
         
     } catch {
         dispatch(actions.failure())

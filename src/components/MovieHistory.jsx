@@ -7,7 +7,7 @@ function MovieHistory() {
     return <div className='movieHist'>
       
         {movieList.slice(0,4).map( info => <MovieImg  
-      img= {info.Poster} 
+      img= {info[0].Poster} alt='movie'
       
         />)}   
         

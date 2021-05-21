@@ -12,10 +12,10 @@ const STATUS = {
     SUCCESS: 'success',
     FAILURE: 'failure'
 }
-const startList = [{key:'minions', Poster:'https://m.media-amazon.com/images/M/MV5BMTg2MTMyMzU0M15BMl5BanBnXkFtZTgwOTU3ODk4NTE@._V1_SX300.jpg'},
-{key:'smallfoot', Poster:'https://m.media-amazon.com/images/M/MV5BNTVkYTZlZWItZTc0ZS00MTIzLThlNjItNmNkNDA5YzIwZGZjXkEyXkFqcGdeQXVyODQzNTE3ODc@._V1_SX300.jpg'},
-{key:'conan the barbarian', Poster:'https://m.media-amazon.com/images/M/MV5BMWIxMzQxZjAtMGFkNC00NzYwLWFiMGEtNzZhZjE5MmFiMmMyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg'},
-{key:'first blood', Poster:'https://m.media-amazon.com/images/M/MV5BODBmOWU2YWMtZGUzZi00YzRhLWJjNDAtYTUwNWVkNDcyZmU5XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg'}
+const startList = [[{Title:'minions', Poster:'https://m.media-amazon.com/images/M/MV5BMTg2MTMyMzU0M15BMl5BanBnXkFtZTgwOTU3ODk4NTE@._V1_SX300.jpg'}],
+[{Title:'smallfoot', Poster:'https://m.media-amazon.com/images/M/MV5BNTVkYTZlZWItZTc0ZS00MTIzLThlNjItNmNkNDA5YzIwZGZjXkEyXkFqcGdeQXVyODQzNTE3ODc@._V1_SX300.jpg'}],
+[{Title:'conan the barbarian', Poster:'https://m.media-amazon.com/images/M/MV5BMWIxMzQxZjAtMGFkNC00NzYwLWFiMGEtNzZhZjE5MmFiMmMyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg'}],
+[{Title:'first blood', Poster:'https://m.media-amazon.com/images/M/MV5BODBmOWU2YWMtZGUzZi00YzRhLWJjNDAtYTUwNWVkNDcyZmU5XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg'}]
     
 ]
 const initialState = {
@@ -34,7 +34,9 @@ const reducer = createReducer(initialState, {
         status: STATUS.SUCCESS,
         //img: action.payload ,
         //title: action.payload,
-        movie: [action.payload, ...state.movie]
+        
+        movie: //action.payload.push(state.movie)
+        [action.payload, ...state.movie.slice(0, 10)]
     }),
     [failure]: (state, action) => ({
         ...state,
