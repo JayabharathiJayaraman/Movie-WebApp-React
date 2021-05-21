@@ -74,7 +74,7 @@ console.log('???', movie)
         console.log('Got data: ', json.Search )
         //let img = json.Poster
         //let title = json.Title
-        //if(json.Response !== "False"){
+        if(json.Response !== "False"){
             console.log('log fetch 1 success')
             console.log('total', json.totalResults)
             const pages = (Math.floor(json.totalResults.parseInt()) / 10) + 1
@@ -88,7 +88,7 @@ console.log('???', movie)
                
             }
         
-        //}
+        }
         
     } catch {
         dispatch(actions.failure())
