@@ -24,3 +24,9 @@
     margin-left: 5%;
     font-size: 1.2rem;
   }
+  .loadMore{
+    color:white;
+    margin-left: 45%;
+    margin-bottom: 2%;
+    background-color: tomato;
+  }

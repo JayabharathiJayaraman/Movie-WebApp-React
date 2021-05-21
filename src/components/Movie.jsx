@@ -9,6 +9,7 @@ const Movie = () => {
     const status = useSelector(state => state.movie.status);
     const fact = useSelector(state => state.movie.fact);
     const movies = useSelector(state => state.movie.movies);
+    
     const [page, setPage] = useState(1)
     const dispatch = useDispatch();
     let content = null;
@@ -26,24 +27,7 @@ const Movie = () => {
     } else {
         content = "Kunde inte hämta fakta";
     }
-    async function fetchFact() {
-        console.log("InfiniteScroll");
-        if (page <= 5) {
-            dispatch(actions.isFetching());
-            const url = `http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=${page}`
-            try {
-                let response = await fetch(url);
-                let json = await response.json();
-                console.log('Got data: ', json);
-                setPage(page+1);
-                console.log('Page ', page);
-                let movies = json.Search;
-                dispatch(actions.success([...movies]))
-            } catch {
-                dispatch(actions.failure());
-            }
-        }
-    }
+
     useEffect(() => {
         fetchFact();
     }, []);
@@ -54,19 +38,29 @@ const Movie = () => {
                 <p>Our Exciting Movies</p>
             </div>
             <Search placeholder="SearchMovies" ></Search>
-            <InfiniteScroll dataLength = {30}
-            next = {fetchFact}
-            hasMore = {true}
-            >
             <div className='four-columns'>
                 {content}
             </div>
-            </InfiniteScroll>
-            <button onClick={fetchFact}>ShowMore</button>
+            <button className = 'loadMore' onClick={fetchFact}>LoadMore</button>
         </>
     )
-
-    
+    async function fetchFact() {
+        if (page <= 10) {
+            dispatch(actions.isFetching());
+            const url = `http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=${page}`
+            try {
+                let response = await fetch(url);
+                let json = await response.json();
+                console.log('Got data: ', json);
+                console.log('Page ', page);
+                let movies = json.Search;
+                dispatch(actions.success(movies))
+                setPage(page+1);
+            } catch {
+                dispatch(actions.failure());
+            }
+        }
+    }
 }
 
 export default Movie;
