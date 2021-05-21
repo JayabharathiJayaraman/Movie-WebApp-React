@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
 import { actionsh, STATUSh } from "../features/highlightmovie";
 import Search from './Search';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import HighlightedMovie from './components/HighlightedMovie';
 
 const Movie = () => {
@@ -59,7 +58,7 @@ const Movie = () => {
     }*/
 
     useEffect(() => {
-        fetchFact();
+        fetchMovies();
     }, []);
    
     return (
@@ -77,11 +76,11 @@ const Movie = () => {
             <div className='four-columns'>
                 {content}
             </div>
-            <button className = 'loadMore' onClick={fetchFact}>LoadMore</button>
+            <button className = 'loadMore' onClick={fetchMovies}>LoadMore</button>
         </>
     )
 
-    async function fetchFact() {
+    async function fetchMovies() {
         if (page <= 10) {
             dispatch(actions.isFetching());
             const url = `http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=${page}`
