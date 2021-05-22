@@ -50,3 +50,10 @@
 #overlay figure figcaption {
     color: white;
 }
+
+.loadMore{
+    color:white;
+    margin-left: 45%;
+    margin-bottom: 2%;
+    background-color: tomato;
+  }

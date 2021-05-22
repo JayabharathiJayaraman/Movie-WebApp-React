@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
 import { actionsh, STATUSh } from "../features/highlightmovie";
 import Search from './Search';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import HighlightedMovie from './components/HighlightedMovie';
 
 const Movie = () => {
@@ -14,7 +13,6 @@ const Movie = () => {
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
     const [page, setPage] = useState(1)
     const [showpopup, setShowpopup] = useState(false)
-
     const statush = useSelector(state => state.highlightmovie.statush);
     console.log('statush: ', statush);
     const dispatch = useDispatch();
@@ -60,12 +58,9 @@ const Movie = () => {
     }*/
 
     useEffect(() => {
-        if (page <= 5) {
-            fetchFact(dispatch);
-            setPage(page + 1);
-            console.log('Page: ', page);
-        }
+        fetchMovies();
     }, []);
+   
     return (
         <>
             <div className='moviePageTitle'>
@@ -81,25 +76,25 @@ const Movie = () => {
             <div className='four-columns'>
                 {content}
             </div>
+            <button className = 'loadMore' onClick={fetchMovies}>LoadMore</button>
         </>
     )
 
-
-
-    
-
-
-    async function fetchFact() {
-        dispatch(actions.isFetching());
-        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=1'
-        try {
-            let response = await fetch(url);
-            let json = await response.json();
-            console.log('Got data: ', json);
-            let movies = json.Search;
-            dispatch(actions.success(movies))
-        } catch {
-            dispatch(actions.failure());
+    async function fetchMovies() {
+        if (page <= 10) {
+            dispatch(actions.isFetching());
+            const url = `http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=${page}`
+            try {
+                let response = await fetch(url);
+                let json = await response.json();
+                console.log('Got data: ', json);
+                console.log('Page ', page);
+                let movies = json.Search;
+                dispatch(actions.success(movies))
+                setPage(page+1);
+            } catch {
+                dispatch(actions.failure());
+            }
         }
     }
 
@@ -118,10 +113,6 @@ const Movie = () => {
         }
     }
 
-
-
-
-
     function openLightbox(movie) {
         //fetchSpecificMovie(movie)
         /*setCurrentmovieTitle(movie.Title)
@@ -138,13 +129,8 @@ const Movie = () => {
             let el = document.querySelector('#overlay img');
             el.setAttribute('src', movie.Poster);
             el.setAttribute('alt', movie.Title);
-        
             document.querySelector('#overlay figcaption').innerHTML = movie.Title +' Year: '+ movie.Year;
-        
             document.querySelector('#overlay').classList.toggle('show');
-        
-        
-        
             var elm = document.querySelector('#overlay');
             if(elm){
               elm.addEventListener('click', () => {
@@ -152,29 +138,8 @@ const Movie = () => {
             
             });
             }
-    
-    
-    
         //} 
-    
-    
-    
-        
-        
-    
-    
-    
     }
-
-
-
 }
-
-
-
-
-
-
-
 
 export default Movie;
