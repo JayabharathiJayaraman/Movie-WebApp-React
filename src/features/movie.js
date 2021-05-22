@@ -26,7 +26,9 @@ const reducer = createReducer(initialState, {
     }),  
     [success]: (state, action) => ({
         status: STATUS.SUCCESS,
-        movies: [...state.movies, ...action.payload]
+
+        movies: [...state.movies, action.payload]
+
     }),
     [failure]: (state, action) => ({
         ...state,

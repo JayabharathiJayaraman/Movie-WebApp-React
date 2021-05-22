@@ -3,64 +3,99 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
 import { actionsh, STATUSh } from "../features/highlightmovie";
+import { actionssetCurrentScreen } from "../features/currentscreen";
+
 import Search from './Search';
-import HighlightedMovie from './components/HighlightedMovie';
+
+import InfiniteScroll from 'react-infinite-scroll-component';
+import HighlightedMovie from './HighlightedMovie';
+
 
 const Movie = () => {
+    
     const status = useSelector(state => state.movie.status);
     const fact = useSelector(state => state.movie.fact);
     const movies = useSelector(state => state.movie.movies);
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
     const [page, setPage] = useState(1)
-    const [showpopup, setShowpopup] = useState(false)
-    const statush = useSelector(state => state.highlightmovie.statush);
-    console.log('statush: ', statush);
-    const dispatch = useDispatch();
-    const dispatchh = useDispatch();
-    let content = null;
-    if (status === STATUS.NORMAL) {
-        content = 'Redo för lite fakta!';
-    } else if (status === STATUS.FETCHING) {
-        content = 'Väntar på fakta...';
-    } else if (status === STATUS.SUCCESS) {
-        content = movies.map(movie =>
-            <div>
-                <img className='poster' src={movie.Poster} onClick={() => {
-                    openLightbox(movie)
-                    HighlightedMovie()
-                }
-                } alt='abc'></img>
-                <p className='moive__des'>Title:{movie.Title}</p>
-            </div>
-        );
-    } else {
-        content = "Kunde inte hämta fakta";
-    }
+
+    const [content, setContent] = useState(null)
+    
+    const [selectedmoviee, setSelectedmovie] = useState(null)
 
     
+    //const MOVIE = 'movie', HIGHLIGHTEDMOVIE = 'highlightedmovie';
+ 
+  //const [currentScreen, setCurrentScreen] = useState(statuscurrentscreen);
 
-    /*if (statush === STATUSh.SUCCESS && showpopup===true) {
-        content = 
-            <div>
-                <img className='poster' src={selectedmovie.Poster} alt={selectedmovie.Title}></img>
-                <p className='moive__des'>Title:{selectedmovie.Title}</p>
-                <p className='moive__des'>Year:{selectedmovie.Year}</p>
-                <p className='moive__des'>Runtime:{selectedmovie.Runtime}</p>
-                <p className='moive__des'>Actors:{selectedmovie.Actors}</p>
-                <p className='moive__des'>Country:{selectedmovie.Country}</p>
-                <p className='moive__des'>Awards:{selectedmovie.Awards}</p>
-                <p className='moive__des'>Type:{selectedmovie.Type}</p>
-            </div>
+    const [selectedmovieid, setSelectedmovieid]=useState(null)
+    
 
+    const dispatch = useDispatch();
+    
+    const statuscurrentscreen = useSelector(state => state.currentscrn.currentscreen);
+    //const [content, setcontent] = useState(STATUS.NORMAL);
+    //let content = null;
+    useEffect(() => {
+    switch(statuscurrentscreen) {
+        case 'movie':
+            if (status === STATUS.NORMAL) {
+                setContent('Redo för några Movies!');
+            } else if (status === STATUS.FETCHING) {
+                setContent('Väntar på Movies...');
+                
+            } else if (status === STATUS.SUCCESS) {
+                console.log('the movie length: ', movies.length)
+                console.log('the movies : ', movies)
+                /*if(!movies.length){
+                    console.log('you dont have movies: ')
+                    fetchMovies(dispatch);
+                }*/
+                //setContent(movies.map(moviearray =>
+                    //moviearray.map(movie =>
+                    setContent(movies.map(movie =>
+                    <div>
+                        {/*<img className='poster' src={movie.Poster} onClick={() => openLightbox(movie)} alt='abc'></img>*/}
+                        <img className='poster' src={movie.Poster} onClick={() => {
+                            
+                            setSelectedmovieid(movie.imdbID)
+                            
+                            console.log('movie imdbID: ', movie.imdbID);
+                            console.log('statuscurrentscreen',statuscurrentscreen);
+                           
+                            dispatch(actionssetCurrentScreen.setCurrentScreen('highlightedmovie'))
+                            console.log('statuscurrentscreen',statuscurrentscreen);
+                            }
+                            } alt='abc'></img>
+                        <p className='moive__des'>Title:{movie.Title}</p>
+                    </div>
+                    )
+                )
+            } else {
+                setContent("Kunde inte hämta Movies");
+                
+            }
+            break;
+        case 'highlightedmovie':
+            setContent(<HighlightedMovie imdbID={selectedmovieid}/>)
+            break;
+        default:
+            setContent("this is the default");
+    }
+    
+    
+}, [statuscurrentscreen]);
+    
 
-
-        
-    }*/
+   
 
     useEffect(() => {
-        fetchMovies();
+
+       
+        fetchMovies(dispatch);
     }, []);
-   
+ 
+
     return (
         <>
             <div className='moviePageTitle'>
@@ -74,72 +109,63 @@ const Movie = () => {
                   </figure>
             </section>
             <div className='four-columns'>
+                {/*{selectedmoviee}*/}
                 {content}
+                
             </div>
             <button className = 'loadMore' onClick={fetchMovies}>LoadMore</button>
         </>
     )
 
-    async function fetchMovies() {
-        if (page <= 10) {
-            dispatch(actions.isFetching());
-            const url = `http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=${page}`
-            try {
-                let response = await fetch(url);
-                let json = await response.json();
-                console.log('Got data: ', json);
-                console.log('Page ', page);
-                let movies = json.Search;
-                dispatch(actions.success(movies))
-                setPage(page+1);
-            } catch {
-                dispatch(actions.failure());
-            }
-        }
-    }
 
-    async function fetchSpecificMovie(movie) {
-        dispatchh(actionsh.isFetching());
-        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&i='  + movie.imdbID
+
+
+    
+
+
+    async function fetchMovies() {
+        dispatch(actions.isFetching());
+        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=1'
         try {
             let response = await fetch(url);
             let json = await response.json();
             console.log('Got data: ', json);
-            let movie = json;
-            dispatchh(actionsh.success(movie))
-            setShowpopup(true)
+            let movies = json.Search;
+            movies.map(movie=>{
+                dispatch(actions.success(movie))
+            })
+            //dispatch(actions.success(movies))
+            /*let numberofpages = (Math.floor(parseInt(json.totalResults) / 10)) + 1
+            for (var i = 2; i < numberofpages; i++) {
+                fetchMoreMovies(i)
+            }*/
+            dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
+            console.log('the moviessss : ', movies)
         } catch {
-            dispatchh(actionsh.failure());
+            dispatch(actions.failure());
+
         }
     }
 
-    function openLightbox(movie) {
-        //fetchSpecificMovie(movie)
-        /*setCurrentmovieTitle(movie.Title)
-        console.log('current movie title comes to function: ', movie.Title);
-        console.log('current movie title: ', currentmovietitle);
-        fetchSpecificMovie(dispatch)
-        for (var i=0; i < 100; i++) {
-            console.log('current status: '+ i.toString(), status);
-        } */
-        
-        //if (status === STATUS.VERIFYING) {
-            
-    
-            let el = document.querySelector('#overlay img');
-            el.setAttribute('src', movie.Poster);
-            el.setAttribute('alt', movie.Title);
-            document.querySelector('#overlay figcaption').innerHTML = movie.Title +' Year: '+ movie.Year;
-            document.querySelector('#overlay').classList.toggle('show');
-            var elm = document.querySelector('#overlay');
-            if(elm){
-              elm.addEventListener('click', () => {
-                document.querySelector('#overlay').classList.toggle('show');
-            
-            });
-            }
-        //} 
+    async function fetchMoreMovies(i) {
+        dispatch(actions.isFetching());
+        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=' + i
+        try {
+            let response = await fetch(url);
+            let json = await response.json();
+            console.log('Got data: ', json);
+            let movies = json.Search;
+            movies.map(movie=>{
+                dispatch(actions.success(movie))
+            })
+            //dispatch(actions.success(movies))
+        } catch {
+            dispatch(actions.failure());
+        }
     }
+    
+
+
 }
 
 export default Movie;

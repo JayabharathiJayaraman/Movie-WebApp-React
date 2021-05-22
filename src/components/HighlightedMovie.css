@@ -1,0 +1,9 @@
+.movieinfo{
+    padding: 1em;
+    display: grid;
+    grid-gap: 0.5em;
+    grid-template-rows: 50em repeat(100, 35em);
+
+    background-color: var(--gallery-background);
+    grid-template-columns: repeat(2, 1fr);
+}
