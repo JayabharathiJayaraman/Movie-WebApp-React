@@ -3,21 +3,28 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionsshopcart } from '../features/shoppingcart';
 import { actionsh, STATUSh } from "../features/highlightmovie";
+import './HighlightedMovie.css'
+import { actionssetCurrentScreen } from "../features/currentscreen";
 
 
 
 
 const HighlightedMovie = (props) => {
-    
+    const statuscurrentscreen = useSelector(state => state.currentscrn.currentscreen);
     const dispatch =useDispatch();
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
-    const buy = () => {dispatch(actionsshopcart.addToCart(selectedmovie));}
+    const buy = () => {dispatch(actionsshopcart.addToCart(selectedmovie))};
+    const gohome = () =>{
+        dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
+        console.log('statuscurrentscreen',statuscurrentscreen);
+    }
 
     const statush = useSelector(state => state.highlightmovie.statush);
     console.log('statush: ', statush);
     const dispatchh = useDispatch();
     
     let content = null;
+    let movietitle=''
     if (statush === STATUSh.NORMAL) {
         content = 'Redo för lite fakta!';
     } else if (statush === STATUSh.FETCHING) {
@@ -25,8 +32,11 @@ const HighlightedMovie = (props) => {
     } else if (statush === STATUSh.SUCCESS) {
         
         content = 
-        <div>
-            <img className='poster' src={selectedmovie.Poster} alt={selectedmovie.Title}></img>
+        <div className='movieinfo'>
+            <div className='movieinfoimg'>
+            <img className='HighlightedMovieposter' src={selectedmovie.Poster} alt={selectedmovie.Title}></img>
+            </div>
+            <div className='movieinfomoreinfo'>
             <p className='moive__des'>Title:{selectedmovie.Title}</p>
             <p className='moive__des'>Year:{selectedmovie.Year}</p>
             <p className='moive__des'>Runtime:{selectedmovie.Runtime}</p>
@@ -34,9 +44,16 @@ const HighlightedMovie = (props) => {
             <p className='moive__des'>Country:{selectedmovie.Country}</p>
             <p className='moive__des'>Awards:{selectedmovie.Awards}</p>
             <p className='moive__des'>Type:{selectedmovie.Type}</p>
-            <button onClick={buy}>Add to shopcart</button>
+            
+            <button onClick={()=>{
+                buy()
+                gohome()
+                
+            }
+                }>Add to shopcart</button>
+            </div>
         </div>
-        
+        movietitle=selectedmovie.Title
     } else {
         content = "Kunde inte hämta fakta";
     }
@@ -71,7 +88,7 @@ const HighlightedMovie = (props) => {
     return (
         <>
             <div className='moviePageTitle'>
-                <p>your Movie</p>
+                <p>{movietitle}</p>
             </div>
             
             

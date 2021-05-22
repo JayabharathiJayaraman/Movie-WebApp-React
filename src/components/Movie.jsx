@@ -3,103 +3,104 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
 import { actionsh, STATUSh } from "../features/highlightmovie";
+import { actionssetCurrentScreen } from "../features/currentscreen";
 
 import Search from './Search';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import HighlightedMovie from './HighlightedMovie';
 
 const Movie = () => {
+    
     const status = useSelector(state => state.movie.status);
     const fact = useSelector(state => state.movie.fact);
     const movies = useSelector(state => state.movie.movies);
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
     const [page, setPage] = useState(1)
+    const [content, setContent] = useState(null)
     
     const [selectedmoviee, setSelectedmovie] = useState(null)
 
-
-    const MOVIE = 'movie', HIGHLIGHTEDMOVIE = 'highlightedmovie';
+    
+    //const MOVIE = 'movie', HIGHLIGHTEDMOVIE = 'highlightedmovie';
  
-  const [currentScreen, setCurrentScreen] = useState(MOVIE);
+  //const [currentScreen, setCurrentScreen] = useState(statuscurrentscreen);
 
     const [selectedmovieid, setSelectedmovieid]=useState(null)
     
     const dispatch = useDispatch();
     
+    const statuscurrentscreen = useSelector(state => state.currentscrn.currentscreen);
     //const [content, setcontent] = useState(STATUS.NORMAL);
-    let content = null;
-    switch(currentScreen) {
-        case MOVIE:
+    //let content = null;
+    useEffect(() => {
+    switch(statuscurrentscreen) {
+        case 'movie':
             if (status === STATUS.NORMAL) {
-                content = 'Redo för lite fakta!';
+                setContent('Redo för några Movies!');
             } else if (status === STATUS.FETCHING) {
-                content = 'Väntar på fakta...';
+                setContent('Väntar på Movies...');
                 
             } else if (status === STATUS.SUCCESS) {
-                
-                content=movies.map(movie =>
+                console.log('the movie length: ', movies.length)
+                console.log('the movies : ', movies)
+                /*if(!movies.length){
+                    console.log('you dont have movies: ')
+                    fetchMovies(dispatch);
+                }*/
+                //setContent(movies.map(moviearray =>
+                    //moviearray.map(movie =>
+                    setContent(movies.map(movie =>
                     <div>
                         {/*<img className='poster' src={movie.Poster} onClick={() => openLightbox(movie)} alt='abc'></img>*/}
                         <img className='poster' src={movie.Poster} onClick={() => {
-                            {/*content=<HighlightedMovie imdbID={movie.imdbID}/>
-                            setSelectedmovie(
-                                <HighlightedMovie imdbID={movie.imdbID}/>
-                            )*/}
+                            
                             setSelectedmovieid(movie.imdbID)
                             
                             console.log('movie imdbID: ', movie.imdbID);
-                            {/*setCurrentScreen(HIGHLIGHTEDMOVIE)*/}
-                            //setCurrentScreen('hhhh')
-                            //fetchSpecificMovie(movie.imdbID)
-                            //openLightbox(movie)
-                            setCurrentScreen(HIGHLIGHTEDMOVIE)
-                            
+                            console.log('statuscurrentscreen',statuscurrentscreen);
+                           
+                            dispatch(actionssetCurrentScreen.setCurrentScreen('highlightedmovie'))
+                            console.log('statuscurrentscreen',statuscurrentscreen);
                             }
                             } alt='abc'></img>
                         <p className='moive__des'>Title:{movie.Title}</p>
                     </div>
-                );
+                    )
+                )
             } else {
-                content = "Kunde inte hämta fakta";
+                setContent("Kunde inte hämta Movies");
                 
             }
             break;
-            case HIGHLIGHTEDMOVIE:
-                content = <HighlightedMovie imdbID={selectedmovieid}/>
-                break;
-            default:
-                content = "this is the default";
+        case 'highlightedmovie':
+            setContent(<HighlightedMovie imdbID={selectedmovieid}/>)
+            break;
+        default:
+            setContent("this is the default");
     }
     
-
+    
+}, [statuscurrentscreen]);
     
 
-    /*if (statush === STATUSh.SUCCESS && showpopup===true) {
-        content = 
-            <div>
-                <img className='poster' src={selectedmovie.Poster} alt={selectedmovie.Title}></img>
-                <p className='moive__des'>Title:{selectedmovie.Title}</p>
-                <p className='moive__des'>Year:{selectedmovie.Year}</p>
-                <p className='moive__des'>Runtime:{selectedmovie.Runtime}</p>
-                <p className='moive__des'>Actors:{selectedmovie.Actors}</p>
-                <p className='moive__des'>Country:{selectedmovie.Country}</p>
-                <p className='moive__des'>Awards:{selectedmovie.Awards}</p>
-                <p className='moive__des'>Type:{selectedmovie.Type}</p>
-            </div>
-
-
-
-        
-    }*/
+   
 
     useEffect(() => {
-        /*if (page <= 5) {
-            fetchFact(dispatch);
-            setPage(page + 1);
-            console.log('Page: ', page);
-        }*/
-        fetchFact(dispatch);
+       
+        fetchMovies(dispatch);
     }, []);
+ /*
+    useEffect(() => {
+       
+        console.log(' useEffects körs - hasData har ändrats', statuscurrentscreen);
+        
+        if(statuscurrentscreen==='movie'){
+            console.log(' useEffects körs - hasData har ändrats run');
+            fetchFact(dispatch);
+        }
+        
+    }, [statuscurrentscreen]);
+    */
     return (
         <>
             <div className='moviePageTitle'>
@@ -125,7 +126,7 @@ const Movie = () => {
     
 
 
-    async function fetchFact() {
+    async function fetchMovies() {
         dispatch(actions.isFetching());
         const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=1'
         try {
@@ -133,75 +134,43 @@ const Movie = () => {
             let json = await response.json();
             console.log('Got data: ', json);
             let movies = json.Search;
-            dispatch(actions.success(movies))
+            movies.map(movie=>{
+                dispatch(actions.success(movie))
+            })
+            //dispatch(actions.success(movies))
+            /*let numberofpages = (Math.floor(parseInt(json.totalResults) / 10)) + 1
+            for (var i = 2; i < numberofpages; i++) {
+                fetchMoreMovies(i)
+            }*/
+            dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
+            console.log('the moviessss : ', movies)
         } catch {
             dispatch(actions.failure());
         }
     }
-    async function fetchSpecificMovie(movieid) {
-        console.log('fetchSpecificMovie selectedmovieid: ', movieid);
+
+    async function fetchMoreMovies(i) {
         dispatch(actions.isFetching());
-        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&i='  + movieid
+        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=' + i
         try {
             let response = await fetch(url);
             let json = await response.json();
             console.log('Got data: ', json);
-            let movie = json;
-            dispatch(actionsh.success(movie))
-            
-            //setcontent(<HighlightedMovie/>)
+            let movies = json.Search;
+            movies.map(movie=>{
+                dispatch(actions.success(movie))
+            })
+            //dispatch(actions.success(movies))
         } catch {
-            dispatch(actionsh.failure());
+            dispatch(actions.failure());
         }
     }
+    
 
 
 
 
-    function openLightbox(movie) {
-        //fetchSpecificMovie(movie)
-       
-        /*setCurrentmovieTitle(movie.Title)
-        console.log('current movie title comes to function: ', movie.Title);
-        console.log('current movie title: ', currentmovietitle);
-        fetchSpecificMovie(dispatch)
-        for (var i=0; i < 100; i++) {
-            console.log('current status: '+ i.toString(), status);
-        } */
-        
-        //if (status === STATUS.VERIFYING) {
-            
     
-            let el = document.querySelector('#overlay img');
-            el.setAttribute('src', movie.Poster);
-            el.setAttribute('alt', movie.Title);
-        
-            document.querySelector('#overlay figcaption').innerHTML = movie.Title +' Year: '+ movie.Year;
-        
-            document.querySelector('#overlay').classList.toggle('show');
-        
-        
-        
-            var elm = document.querySelector('#overlay');
-            if(elm){
-              elm.addEventListener('click', () => {
-                document.querySelector('#overlay').classList.toggle('show');
-            
-            });
-            }
-    
-    
-    
-        //} 
-    
-    
-    
-        
-        
-    
-    
-    
-    }
 
 
 
