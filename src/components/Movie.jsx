@@ -6,8 +6,10 @@ import { actionsh, STATUSh } from "../features/highlightmovie";
 import { actionssetCurrentScreen } from "../features/currentscreen";
 
 import Search from './Search';
+
 import InfiniteScroll from 'react-infinite-scroll-component';
 import HighlightedMovie from './HighlightedMovie';
+
 
 const Movie = () => {
     
@@ -16,6 +18,7 @@ const Movie = () => {
     const movies = useSelector(state => state.movie.movies);
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
     const [page, setPage] = useState(1)
+
     const [content, setContent] = useState(null)
     
     const [selectedmoviee, setSelectedmovie] = useState(null)
@@ -27,6 +30,7 @@ const Movie = () => {
 
     const [selectedmovieid, setSelectedmovieid]=useState(null)
     
+
     const dispatch = useDispatch();
     
     const statuscurrentscreen = useSelector(state => state.currentscrn.currentscreen);
@@ -86,21 +90,12 @@ const Movie = () => {
    
 
     useEffect(() => {
+
        
         fetchMovies(dispatch);
     }, []);
- /*
-    useEffect(() => {
-       
-        console.log(' useEffects körs - hasData har ändrats', statuscurrentscreen);
-        
-        if(statuscurrentscreen==='movie'){
-            console.log(' useEffects körs - hasData har ändrats run');
-            fetchFact(dispatch);
-        }
-        
-    }, [statuscurrentscreen]);
-    */
+ 
+
     return (
         <>
             <div className='moviePageTitle'>
@@ -118,8 +113,10 @@ const Movie = () => {
                 {content}
                 
             </div>
+            <button className = 'loadMore' onClick={fetchMovies}>LoadMore</button>
         </>
     )
+
 
 
 
@@ -146,6 +143,7 @@ const Movie = () => {
             console.log('the moviessss : ', movies)
         } catch {
             dispatch(actions.failure());
+
         }
     }
 
@@ -168,19 +166,6 @@ const Movie = () => {
     
 
 
-
-
-    
-
-
-
 }
-
-
-
-
-
-
-
 
 export default Movie;
