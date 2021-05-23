@@ -84,7 +84,7 @@ const Movie = () => {
     }
     
     
-}, [statuscurrentscreen]);
+}, [statuscurrentscreen, movies]);
     
 
    
@@ -113,7 +113,7 @@ const Movie = () => {
                 {content}
                 
             </div>
-            <button className = 'loadMore' onClick={fetchMovies}>LoadMore</button>
+            <button className = 'loadMore' onClick={fetchOnePageMore}>LoadMore</button>
         </>
     )
 
@@ -162,6 +162,27 @@ const Movie = () => {
         } catch {
             dispatch(actions.failure());
         }
+    }
+
+    async function fetchOnePageMore() {
+        setPage(page+1)
+        if(page<5){
+            dispatch(actions.isFetching());
+            const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=' + page
+            try {
+                let response = await fetch(url);
+                let json = await response.json();
+                console.log('Got data: ', json);
+                let movies = json.Search;
+                movies.map(movie=>{
+                    dispatch(actions.success(movie))
+                })
+                dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
+            } catch {
+                dispatch(actions.failure());
+            }
+        }
+        
     }
     
 
