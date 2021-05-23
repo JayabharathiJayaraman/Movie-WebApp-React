@@ -43,5 +43,4 @@ const reducer = createReducer(initialState, {
         status: STATUS.FAILURE
     })
 })
-
 export { actions, reducer, STATUS}

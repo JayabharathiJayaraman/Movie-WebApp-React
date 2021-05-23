@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { actions, STATUS } from "../feutures/movietest"
+import { actions_search, STATUS_SEARCH } from "../feutures/search"
 import MovieImg from "./MovieImg";
 
 const MovieTest = () => {
@@ -46,16 +47,18 @@ const MovieTest = () => {
 
 async function fetchRestOfMovies(dispatch, movie, page){
     console.log('fetching page', page)
-    const url = 'http://omdbapi.com/?apikey=72d7fe9&s=' + movie + '&Page=' + page
+    const url = 'http://omdbapi.com/?apikey=72d7fe9&s=' + movie + '&page=' + page
     try {
         let response = await fetch(url)
         let json = await response.json()
+        console.log('in try')
         if(json.Response !== "False"){
-            dispatch(actions.success_search(json.Search))
+            console.log('in success')
+            dispatch(actions_search.success_search(json.Search))
             console.log('searchList', json.Search)
         }
     }catch {
-        dispatch(actions.failure_search())
+        dispatch(actions_search.failure_search())
     }
     
 } 
@@ -72,18 +75,19 @@ console.log('???', movie)
         let response = await fetch(url)
         let json = await response.json()
         console.log('Got data: ', json.Search )
+        console.log('search results: ', parseInt(json.totalResults) )
         //let img = json.Poster
         //let title = json.Title
         if(json.Response !== "False"){
             console.log('log fetch 1 success')
             console.log('total', json.totalResults)
-            const pages = (Math.floor(json.totalResults.parseInt()) / 10) + 1
+            const pages = (Math.floor(parseInt(json.totalResults) / 10)) + 1
             console.log('pages to fetch', pages)
             dispatch(actions.success(json.Search))
-            dispatch(actions.success_search(json.Search))
-            //const pages = Math.floor(json.totalResults.parseInt() / 10) + 1
-            //console.log('pages to fetch', pages)
+            dispatch(actions_search.new_search(json.Search))
+            console.log('pages to fetch', pages)
             for (let index = 2; index < pages + 1; index++){
+                console.log('for loop', index)
                 fetchRestOfMovies(dispatch, movie, index)
                
             }
