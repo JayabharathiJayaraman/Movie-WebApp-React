@@ -1,7 +1,11 @@
 import React from 'react';
 import './search.css'
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { actions, STATUS } from "../features/movie";
 
 const Search = ({ placeholder, handleChange }) => {
+    
     return (
         <>
         <div className='ui search'>
@@ -12,6 +16,7 @@ const Search = ({ placeholder, handleChange }) => {
                     placeholder={placeholder}
                     onChange={handleChange}
                 />
+                <button></button>
             </div>
         </div>
         </>
