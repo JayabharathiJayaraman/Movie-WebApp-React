@@ -58,7 +58,8 @@ async function fetchMovies(dispatch, searchWord) {
         })
   //      dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
         console.log('the moviessss : ', movies)
-        for (let index = 2; index < pages + 1; index++){
+        const maxPages = Math.min(5, pages)
+        for (let index = 2; index < maxPages + 1; index++){
             console.log('for loop', index)
             fetchRestOfMovies(dispatch, searchWord, index)
            
