@@ -55,6 +55,7 @@ const Movie = () => {
                     //moviearray.map(movie =>
                     setContent(movies.map(movie =>
                     <div>
+                    
                         {/*<img className='poster' src={movie.Poster} onClick={() => openLightbox(movie)} alt='abc'></img>*/}
                         <img className='poster' src={movie.Poster} onClick={() => {
                             
