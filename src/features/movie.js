@@ -3,14 +3,16 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 
 const isFetching = createAction('is fetching');
 const success = createAction('success');
+const clearMovies = createAction('more movies');
 const failure = createAction('failure');
 
-const actions = {isFetching, success, failure};
+const actions = {isFetching, success, clearMovies ,failure};
 
 const STATUS = {
     NORMAL: 'normal',
     FETCHING: 'is fetching',
     SUCCESS: 'success',
+    CLEARMOVIES: 'clearMovies',
     FAILURE: 'failure'
 }
 
@@ -24,6 +26,13 @@ const reducer = createReducer(initialState, {
         ...state,
         status: STATUS.FETCHING
     }),  
+    [clearMovies]: (state, action) => ({
+        status: STATUS.CLEARMOVIES,
+
+        movies: []
+        
+
+    }),
     [success]: (state, action) => ({
         status: STATUS.SUCCESS,
 
