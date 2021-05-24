@@ -28,7 +28,7 @@
   #overlay {
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    height: 92vh;
     background: rgba(0, 0, 0, .8);
     display: none;
     justify-content: center;
@@ -41,6 +41,7 @@
 
 #overlay figure {
     max-width: 50rem;
+    display: inline-flex;
 }
 
 #overlay figure img {
@@ -57,3 +58,20 @@
     margin-bottom: 2%;
     background-color: tomato;
   }
+
+  .buybutton{
+    color:white;
+    margin-left: 42%;
+    margin-bottom: 2%;
+    background-color: rgb(3, 80, 48);
+  }
+  .moreinfobutton{
+    color:white;
+    margin-left: 42%;
+    margin-bottom: 2%;
+    background-color: rgb(119 6 6);
+  }
+  .moviecardbuttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

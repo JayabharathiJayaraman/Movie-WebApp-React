@@ -12,7 +12,7 @@ const actionsshopcart = {addToCart, removeFromCart, increaseAmount, decreaseAmon
 const initialState = [
  
     {
-        movie: {imdbID: 'tt0936501',Title: 'Taken', Year: '2020'},
+        movie: {imdbID: 'tt0936501',Title: 'Taken', Year: '2020', Poster: ''},
         count: 1
     }
 ]
