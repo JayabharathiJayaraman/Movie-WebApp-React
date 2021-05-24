@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
 
+const APIKEY='72d7fe9'
+
 const Search = ({ placeholder}) => {
     const movies = useSelector(state => state.movie.movies);
     const dispatch = useDispatch()
@@ -30,7 +32,8 @@ const Search = ({ placeholder}) => {
 async function fetchMovies(dispatch, searchWord) {
     dispatch(actions.isFetching());
     console.log('Got search word: ', searchWord);
-    const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=' + searchWord
+    const url = 'http://www.omdbapi.com/?apikey=' +
+     APIKEY +'&s=' + searchWord
     try {
         let response = await fetch(url);
         let json = await response.json();
@@ -56,7 +59,8 @@ async function fetchMovies(dispatch, searchWord) {
 
 async function fetchRestOfMovies(dispatch, searchWord, page){
     console.log('fetching page', page)
-    const url = 'http://omdbapi.com/?apikey=72d7fe9&s=' + searchWord + '&page=' + page
+    const url = 'http://omdbapi.com/?apikey=' +
+     APIKEY + '&s=' + searchWord + '&page=' + page
     try {
         let response = await fetch(url)
         let json = await response.json()
