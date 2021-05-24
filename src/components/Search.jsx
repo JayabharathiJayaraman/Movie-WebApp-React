@@ -1,6 +1,6 @@
 import React from 'react';
 import './search.css'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
 
@@ -9,7 +9,16 @@ const APIKEY='72d7fe9'
 const Search = ({ placeholder}) => {
     const movies = useSelector(state => state.movie.movies);
     const dispatch = useDispatch()
-    const handleChange = event => setSearchMovie(event.target.value);
+    const handleChange = event => {
+        console.log('event', event)
+        if (event.code === "Enter"){
+            event.preventDefault();
+            fetchMovies(dispatch, searchMovie)
+        }else{
+            setSearchMovie(event.target.value);
+        }
+    }
+
     const [searchMovie, setSearchMovie] = useState('')
     return (
         <>
@@ -42,7 +51,10 @@ async function fetchMovies(dispatch, searchWord) {
         let movies = json.Search;
         dispatch(actions.clearMovies())
         movies.map(movie=>{
-            dispatch(actions.success(movie))
+            if(movie.Poster !== "N/A"){
+                dispatch(actions.success(movie))
+            }
+            //dispatch(actions.success(movie))
         })
   //      dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
         console.log('the moviessss : ', movies)
@@ -66,7 +78,10 @@ async function fetchRestOfMovies(dispatch, searchWord, page){
         let json = await response.json()
         let movies = json.Search;
         movies.map(movie=>{
-            dispatch(actions.success(movie))
+            if(movie.Poster !== "N/A"){
+                dispatch(actions.success(movie))
+            }
+            //dispatch(actions.success(movie))
         })
   
   //      console.log('the moviessss : ', movies)
