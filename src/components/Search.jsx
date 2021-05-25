@@ -29,6 +29,7 @@ const Search = ({ placeholder}) => {
                     className='search'
                     placeholder={placeholder}
                     onChange={handleChange}
+                    onKeyDown={handleKeyDown}
                 />
                 <button onClick={() => 
                 fetchMovies(dispatch, searchMovie)}>test</button>
@@ -36,7 +37,16 @@ const Search = ({ placeholder}) => {
         </div>
         </>
     );
+
+
+    function handleKeyDown(e) {
+        if (e.key === 'Enter') {
+            fetchMovies(dispatch, searchMovie)
+        }
+      }
+
 }
+
  
 async function fetchMovies(dispatch, searchWord) {
     dispatch(actions.isFetching());
