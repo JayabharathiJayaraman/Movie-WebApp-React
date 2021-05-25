@@ -31,7 +31,7 @@ const Search = ({ placeholder}) => {
                     onChange={handleChange}
                 />
                 <button onClick={() => 
-                fetchMovies(dispatch, searchMovie)}>test</button>
+                fetchMovies(dispatch, searchMovie)}>Search</button>
             </div>
         </div>
         </>
