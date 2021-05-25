@@ -83,15 +83,9 @@ const Movie = () => {
             setContent("this is the default");
     }
     
-    
 }, [statuscurrentscreen, movies]);
     
-
-   
-
-    useEffect(() => {
-
-       
+    useEffect(() => { 
         fetchMovies(dispatch);
     }, []);
  
@@ -110,18 +104,11 @@ const Movie = () => {
             </section>
             <div className='four-columns'>
                 {/*{selectedmoviee}*/}
-                {content}
-                
+                {content}            
             </div>
-            <button className = 'loadMore' onClick={fetchOnePageMore}>LoadMore</button>
+            {/*<button className = 'loadMore' onClick={fetchOnePageMore}>LoadMore</button>*/}
         </>
     )
-
-
-
-
-    
-
 
     async function fetchMovies() {
         dispatch(actions.isFetching());
@@ -135,10 +122,10 @@ const Movie = () => {
                 dispatch(actions.success(movie))
             })
             //dispatch(actions.success(movies))
-            /*let numberofpages = (Math.floor(parseInt(json.totalResults) / 10)) + 1
-            for (var i = 2; i < numberofpages; i++) {
+            //let numberofpages = (Math.floor(parseInt(json.totalResults) / 10)) + 1
+            for (var i = 2; i < 6; i++) {
                 fetchMoreMovies(i)
-            }*/
+            }
             dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
             console.log('the moviessss : ', movies)
         } catch {
@@ -164,7 +151,7 @@ const Movie = () => {
         }
     }
 
-    async function fetchOnePageMore() {
+    /*async function fetchOnePageMore() {
         setPage(page+1)
         if(page<5){
             dispatch(actions.isFetching());
@@ -183,7 +170,7 @@ const Movie = () => {
             }
         }
         
-    }
+    }*/
     
 
 
