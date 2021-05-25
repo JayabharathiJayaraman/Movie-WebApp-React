@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
 import { actionsh } from "../features/highlightmovie";
 import { actionssetCurrentScreen } from "../features/currentscreen";
+import { actionsshopcart } from '../features/shoppingcart';
 
 import Search from './Search';
 
@@ -25,7 +26,8 @@ const Movie = () => {
 
 
     const dispatch = useDispatch();
-
+    const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
+    const buy = () => {dispatch(actionsshopcart.addToCart(selectedmovie))};
 
     useEffect(() => {
 
@@ -49,6 +51,11 @@ const Movie = () => {
 
 
                         }}>More Info</button>
+                        <button className = 'buybutton' onClick={()=>{
+                buy()
+                
+            }
+                }>Buy</button>
                     </div>
                 </div>
             ))

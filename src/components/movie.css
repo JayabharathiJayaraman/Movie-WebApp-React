@@ -63,13 +63,13 @@
     color:white;
     margin-left: 42%;
     margin-bottom: 2%;
-    background-color: rgb(3, 80, 48);
+    background-color: tomato;
   }
   .moreinfobutton{
     color:white;
     margin-left: 42%;
     margin-bottom: 2%;
-    background-color: rgb(119 6 6);
+    background-color: tomato;
   }
   .moviecardbuttons {
     display: grid;
