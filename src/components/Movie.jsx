@@ -48,14 +48,9 @@ const Movie = () => {
                         <button className='moreinfobutton' onClick={() => {
                             //setShowmoreinfoforthismovie(movie)
                             fetchSpecificMovie(movie.imdbID);
-
-
                         }}>More Info</button>
-                        <button className = 'buybutton' onClick={()=>{
-                buy()
-                
-            }
-                }>Buy</button>
+                        <button className = 'buybutton' onClick={()=>
+                        { buy() }}>Buy</button>
                     </div>
                 </div>
             ))

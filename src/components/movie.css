@@ -52,26 +52,33 @@
     color: white;
 }
 
-.loadMore{
+/*.loadMore{
     color:white;
     margin-left: 45%;
     margin-bottom: 2%;
     background-color: tomato;
-  }
+  }*/
 
   .buybutton{
     color:white;
-    margin-left: 42%;
-    margin-bottom: 2%;
+    margin-left: -10%;
+    margin-bottom: 15%;
+    margin-top: 3%;
     background-color: tomato;
+    width: 50px;
+    border-radius: 10%;
   }
   .moreinfobutton{
     color:white;
     margin-left: 42%;
-    margin-bottom: 2%;
+    margin-bottom: 15%;
+    margin-top: 3%;
     background-color: tomato;
+    width: 73px;
+    border-radius: 10%;
   }
   .moviecardbuttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    
 }

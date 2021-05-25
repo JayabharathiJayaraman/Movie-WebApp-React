@@ -52,7 +52,7 @@ function NavBar(){
               </li>
               </ul>
               <div className = 'nav-cart'>
-                <span>{initialshoppingcartitemcount}</span>
+                <span>{initialshoppingcartitemcount-1}</span>
                 <Link
                 to='/checkoutIcon'
                 onClick={closeMobileMenu}> 
