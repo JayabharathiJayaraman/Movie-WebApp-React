@@ -146,10 +146,10 @@ try {
                 dispatch(actions.success(movie))
             })
             //dispatch(actions.success(movies))
-            /*let numberofpages = (Math.floor(parseInt(json.totalResults) / 10)) + 1
-            for (var i = 2; i < numberofpages; i++) {
+            /*let numberofpages = (Math.floor(parseInt(json.totalResults) / 10)) + 1*/
+            for (var i = 2; i < 6; i++) {
                 fetchMoreMovies(i)
-            }*/
+            }
             dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
             console.log('the moviessss : ', movies)
         } catch {
