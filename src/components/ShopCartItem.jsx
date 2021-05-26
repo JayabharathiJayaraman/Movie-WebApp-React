@@ -7,24 +7,48 @@ const ShopCartItem = (props) => {
     const shopCart = useSelector(state => state.shopc);
 
     const add =()=>{
+        
         console.log('shopcart', shopCart)
         const movieId ={imdbid: props.imdb}
         console.log('movieId', movieId)
-        dispatch(actionsshopcart.increaseAmountShopCart(shopCart, movieId))
+        dispatch(actionsshopcart.increaseAmountShopCart(dispatch, movieId))
+        
+    }
+
+    const remove = ()=>{
+        console.log('shopcart', shopCart)
+        const movieId ={imdbid: props.imdb}
+        console.log('movieId', movieId)
+        if(props.count > 1){
+            dispatch(actionsshopcart.decreaseAmont(dispatch, movieId))
+        }else{
+            dispatch(actionsshopcart.removeFromCart(dispatch, movieId))
+        }
+        
     }
     return(
 
         <div className='cartItem'>
             {console.log('props', props)}
-            <div>{props.title}</div> 
-            <div>count: {props.count}</div> 
-            <div>pris: {49.99 * props.count} kr!</div> 
-            <img className='poster' 
-            src={props.img}//'https://m.media-amazon.com/images/M/MV5BNmRjM2MyOTYtZDM2NC00YzA5LWFjZDEtNWQxM2YzODEyMzk3XkEyXkFqcGdeQXVyNjQ5MjQxNjY@._V1_SX300.jpg'
-            alt='poster'
-             ></img>
-            <button className='addButton' onClick={add}>increase</button>
-            <button className='decresButton'>Decres</button>
+            <div className='imageButtonsCartItem'>
+                <img className='posterCartItem' 
+                    src={props.img}//'https://m.media-amazon.com/images/M/MV5BNmRjM2MyOTYtZDM2NC00YzA5LWFjZDEtNWQxM2YzODEyMzk3XkEyXkFqcGdeQXVyNjQ5MjQxNjY@._V1_SX300.jpg'
+                    alt='poster'
+                ></img>
+               
+                
+            </div>
+            <div className='infoCartItem'>
+                <div className='cartItemButtons'>
+                    <button className='cartItemButton' onClick={add}>increase</button>
+                    <button className='cartItemButton' onClick={remove}>{((props.count< 2)?'Remove':'Decres')}</button>
+                </div>
+                 
+                <div className='cartItemCount'>count: {props.count}</div> 
+                <div className='cartItemPrice'>pris: {49.99 * props.count} kr!</div> 
+                <div className='cartItemTitle'>{props.title}</div>
+            </div>
+            
         </div>
     )
 }

@@ -45,8 +45,8 @@ const Movie = () => {
                 setContent('Väntar på Movies...');
                 
             } else if (status === STATUS.SUCCESS) {
-                console.log('the movie length: ', movies.length)
-                console.log('the movies : ', movies)
+                //console.log('the movie length: ', movies.length)
+                //console.log('the movies : ', movies)
                 /*if(!movies.length){
                     console.log('you dont have movies: ')
                     fetchMovies(dispatch);

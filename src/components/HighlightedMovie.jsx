@@ -16,7 +16,7 @@ const HighlightedMovie = (props) => {
     const buy = () => {dispatch(actionsshopcart.addToCart(selectedmovie))};
     const gohome = () =>{
         dispatch(actionssetCurrentScreen.setCurrentScreen('movie'))
-        console.log('statuscurrentscreen',statuscurrentscreen);
+//        console.log('statuscurrentscreen',statuscurrentscreen);
     }
 
     const statush = useSelector(state => state.highlightmovie.statush);

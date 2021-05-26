@@ -21,7 +21,8 @@ const initialState = [
 const reducershopcart = createReducer(initialState, {
     [addToCart]: (state, action) => {
         //console.log('payload: ', action.payload.imdbID);
-        //console.log('state', state)
+        console.log('state', state.length)
+        
         let found = state.find(cartItem => cartItem.movie.imdbID === action.payload.imdbID);
         if( found ) {
             const newState =state.map(cartItem => {
@@ -41,7 +42,7 @@ const reducershopcart = createReducer(initialState, {
                 {movie: action.payload, count: 1}
             ];
         }
-        
+    
 
     },
 
@@ -57,8 +58,8 @@ const reducershopcart = createReducer(initialState, {
     [increaseAmountShopCart]: (state, action) => (
         state.map(cartItem => {
             
-            console.log('!!2', action.payload.imdbid)
-            console.log('!!3', cartItem.movie)
+           // console.log('!!2', action.payload.imdbid)
+           // console.log('!!3', cartItem.movie)
             if (cartItem.movie.imdbid === action.payload.imdbid) {
                 return { ...cartItem, count: cartItem.count + 1 }
             } else {
@@ -68,8 +69,11 @@ const reducershopcart = createReducer(initialState, {
     ),
     [decreaseAmont]: (state, action) => (
         state.map(cartItem => {
+            console.log('333', cartItem.count)
             if (cartItem.movie.imdbid === action.payload.imdbid) {
-                return { ...cartItem, count: cartItem.count - 1 }
+               
+                    return { ...cartItem, count: cartItem.count - 1 }
+                
             } else {
                 return cartItem;
             }

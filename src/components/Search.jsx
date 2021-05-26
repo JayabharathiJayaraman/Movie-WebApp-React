@@ -10,7 +10,7 @@ const Search = ({ placeholder}) => {
     const movies = useSelector(state => state.movie.movies);
     const dispatch = useDispatch()
     const handleChange = event => {
-        console.log('event', event)
+//        console.log('event', event)
         if (event.code === "Enter"){
             event.preventDefault();
             fetchMovies(dispatch, searchMovie)
@@ -46,7 +46,7 @@ async function fetchMovies(dispatch, searchWord) {
     try {
         let response = await fetch(url);
         let json = await response.json();
-        console.log('Got data: ', json);
+       // console.log('Got data: ', json);
         const pages = (Math.floor(parseInt(json.totalResults) / 10)) + 1
         let movies = json.Search;
         dispatch(actions.clearMovies())
