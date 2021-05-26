@@ -10,7 +10,7 @@ const ShopCartItem = (props) => {
         console.log('shopcart', shopCart)
         const movieId ={imdbid: props.imdb}
         console.log('movieId', movieId)
-        dispatch(actionsshopcart.increaseAmountShopCart(dispatch, movieId))
+        dispatch(actionsshopcart.increaseAmountShopCart(movieId))
     }
 
     const remove = ()=>{
@@ -18,9 +18,9 @@ const ShopCartItem = (props) => {
         const movieId ={imdbid: props.imdb}
         console.log('movieId', movieId)
         if(props.count > 1){
-            dispatch(actionsshopcart.decreaseAmont(dispatch, movieId))
+            dispatch(actionsshopcart.decreaseAmont(movieId))
         }else{
-            dispatch(actionsshopcart.removeFromCart(dispatch, movieId))
+            dispatch(actionsshopcart.removeFromCart(movieId))
         }
         
     }

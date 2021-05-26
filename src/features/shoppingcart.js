@@ -46,7 +46,7 @@ const reducershopcart = createReducer(initialState, {
 
     [increaseAmount]: (state, action) => (
         state.map(cartItem => {
-            if (cartItem.movie.imdbid === action.payload.imdbid) {
+            if (cartItem.movie.imdbID === action.payload.imdbid) {
                 return { ...cartItem, count: cartItem.count + 1 }
             } else {
                 return cartItem;
@@ -58,7 +58,7 @@ const reducershopcart = createReducer(initialState, {
             
            // console.log('!!2', action.payload.imdbid)
            // console.log('!!3', cartItem.movie)
-            if (cartItem.movie.imdbid === action.payload.imdbid) {
+            if (cartItem.movie.imdbID === action.payload.imdbid) {
                 return { ...cartItem, count: cartItem.count + 1 }
             } else {
                 return cartItem;
@@ -68,7 +68,7 @@ const reducershopcart = createReducer(initialState, {
     [decreaseAmont]: (state, action) => (
         state.map(cartItem => {
             console.log('333', cartItem.count)
-            if (cartItem.movie.imdbid === action.payload.imdbid) {
+            if (cartItem.movie.imdbID === action.payload.imdbid) {
                
                     return { ...cartItem, count: cartItem.count - 1 }
                 
@@ -79,7 +79,7 @@ const reducershopcart = createReducer(initialState, {
     ),
 
     [removeFromCart]: (state, action) => (
-       state.filter(cartItem => cartItem.movie.imdbid !== action.payload.imdbid)
+       state.filter(cartItem => cartItem.movie.imdbID !== action.payload.imdbid)
     )
 
 })
