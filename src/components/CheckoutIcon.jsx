@@ -11,9 +11,11 @@ const CheckoutIcon = () => {
     const content = shopCart.map(item => <div>
         
         <ShopCartItem count={item.count} title={item.movie.Title}
-            img= {item.movie.Poster}//'https://m.media-amazon.com/images/M/MV5BNmRjM2MyOTYtZDM2NC00YzA5LWFjZDEtNWQxM2YzODEyMzk3XkEyXkFqcGdeQXVyNjQ5MjQxNjY@._V1_SX300.jpg' 
+            img= {item.movie.Poster} imdb={item.movie.imdbID}//'https://m.media-amazon.com/images/M/MV5BNmRjM2MyOTYtZDM2NC00YzA5LWFjZDEtNWQxM2YzODEyMzk3XkEyXkFqcGdeQXVyNjQ5MjQxNjY@._V1_SX300.jpg' 
         />
     </div>)
+
+    //const totalPrice = 
     return(
         <div className='mainPage'>
         {content}
