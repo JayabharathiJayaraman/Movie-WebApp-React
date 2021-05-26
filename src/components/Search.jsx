@@ -32,7 +32,7 @@ const Search = ({ placeholder}) => {
                     onKeyDown={handleKeyDown}
                 />
                 <button onClick={() => 
-                fetchMovies(dispatch, searchMovie)}>test</button>
+                fetchMovies(dispatch, searchMovie)}>Search</button>
             </div>
         </div>
         </>

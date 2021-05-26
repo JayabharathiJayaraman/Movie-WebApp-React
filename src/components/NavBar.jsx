@@ -50,15 +50,17 @@ function NavBar(){
                 Checkout
               </Link>
               </li>
-              <li className='nav-item'>
-              <Link
+              </ul>
+              <div className = 'nav-cart'>
+                <span>{initialshoppingcartitemcount-1}</span>
+                <Link
                 to='/checkoutIcon'
-                className='nav-links'
                 onClick={closeMobileMenu}> 
-              <i class="fas fa-shopping-cart">{initialshoppingcartitemcount-1}</i>
+                <div className='nav-links-cart'>
+                <i class="fas fa-shopping-cart"></i>
+                </div>
               </Link>
-            </li>
-            </ul>
+              </div>
             </div>
         </nav>
         </>
