@@ -42,8 +42,6 @@ const reducershopcart = createReducer(initialState, {
                 {movie: action.payload, count: 1}
             ];
         }
-    
-
     },
 
     [increaseAmount]: (state, action) => (

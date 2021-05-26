@@ -6,13 +6,11 @@ const ShopCartItem = (props) => {
     const dispatch =useDispatch();
     const shopCart = useSelector(state => state.shopc);
 
-    const add =()=>{
-        
+    const add =()=>{      
         console.log('shopcart', shopCart)
         const movieId ={imdbid: props.imdb}
         console.log('movieId', movieId)
         dispatch(actionsshopcart.increaseAmountShopCart(dispatch, movieId))
-        
     }
 
     const remove = ()=>{
