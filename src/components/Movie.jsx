@@ -135,7 +135,10 @@ const Movie = () => {
             console.log('Got data: ', json);
             let movies = json.Search;
             movies.map(movie => {
-                dispatch(actions.success(movie))
+                if(movie.Poster !== 'N/A'){
+                    dispatch(actions.success(movie))
+                }
+                
             })
             //dispatch(actions.success(movies))
             //let numberofpages = (Math.floor(parseInt(json.totalResults) / 10)) + 1
@@ -160,7 +163,9 @@ const Movie = () => {
             console.log('Got data: ', json);
             let movies = json.Search;
             movies.map(movie => {
+                if(movie.Poster !== 'N/A'){
                 dispatch(actions.success(movie))
+                }
             })
             //dispatch(actions.success(movies))
         } catch {
