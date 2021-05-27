@@ -50,7 +50,7 @@ const Movie = () => {
                             fetchSpecificMovie(movie.imdbID);
                         }}>More Info</button>
                         <button className = 'buybutton' onClick={()=>
-                        { buy(movie.imdbID) }}>Buy</button>
+                        { buy(movie) }}>Buy</button>
                     </div>
                 </div>
             ))
