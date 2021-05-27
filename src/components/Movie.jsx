@@ -27,7 +27,7 @@ const Movie = () => {
 
     const dispatch = useDispatch();
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
-    const buy = () => {dispatch(actionsshopcart.addToCart(selectedmovie))};
+    const buy = (film) => {dispatch(actionsshopcart.addToCart(film))};
 
     useEffect(() => {
 
@@ -50,7 +50,7 @@ const Movie = () => {
                             fetchSpecificMovie(movie.imdbID);
                         }}>More Info</button>
                         <button className = 'buybutton' onClick={()=>
-                        { buy() }}>Buy</button>
+                        { buy(movie) }}>Buy</button>
                     </div>
                 </div>
             ))

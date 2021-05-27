@@ -3,6 +3,7 @@ import NavBar from './components/NavBar';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Movie from './components/Movie';
+import CheckoutIcon from './components/CheckoutIcon'
 import Footer from './components/Footer';
 
 
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route exact path = '/movie'>
           <Movie></Movie>
+          </Route>
+          <Route exact path = '/checkoutIcon'>
+          <CheckoutIcon></CheckoutIcon>
           </Route>
       </Switch>
       <Footer></Footer>
