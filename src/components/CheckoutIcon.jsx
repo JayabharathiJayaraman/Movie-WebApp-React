@@ -1,4 +1,4 @@
-import './checkoutIcon.css';
+import './CheckoutIcon.css';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShopCartItem from './ShopCartItem'
@@ -32,4 +32,4 @@ const CheckoutIcon = () => {
     )
 }
 
-export default CheckoutIcon
+export default CheckoutIcon;

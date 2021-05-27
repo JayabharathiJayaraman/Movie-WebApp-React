@@ -53,21 +53,23 @@ function NavBar(){
                 onClick={closeMobileMenu}
               >
                 Checkout
-              </Link>
+                </Link>
               </li>
-              <li className='nav-item'>
-              <Link
+              </ul>
+              <div className = 'nav-cart'>
+                <span>{initialshoppingcartitemcount}</span>
+                <Link
                 to='/checkoutIcon'
-                className='nav-links'
                 onClick={closeMobileMenu}> 
-              <i class="fas fa-shopping-cart">{initialshoppingcartitemcount}</i>
+                <div className='nav-links-cart'>
+                <i class="fas fa-shopping-cart"></i>
+                </div>
               </Link>
-            </li>
-            </ul>
+              </div>
             </div>
         </nav>
         </>
     );
 }
 
-export default NavBar;
+              export default NavBar;
