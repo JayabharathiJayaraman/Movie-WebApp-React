@@ -35,7 +35,8 @@
 .cartItemButtons {
     margin-top: 10%;
     display: flex;
-    flex-direction: row;   
+    flex-direction: row;
+    margin-left: -5%;   
 }
 .posterCartItem {
     height: 100%;
@@ -54,11 +55,10 @@
   color: white;
   background-image: linear-gradient(315deg,  rgb(181, 215, 226), rgb(5, 51, 66));
   border-radius: 5rem;
-  padding: 6%;
   margin-right: 2%;
   margin-left: 2%;
   margin-top: 3%;
   margin-bottom: 2%;
   text-align: center;
-    
+  font-size: 1rem;
 }

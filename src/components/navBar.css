@@ -156,6 +156,22 @@
       transition: 250ms;
     }
   }
+  @media all and (max-width: 414px) {
+  .navbarLogo {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-left: -10%;
+    margin-top: 3%;
+  }
+  nav .nav-cart span{
+    transform: translate(760%, 60%);
+  }
+  .nav-links-cart{
+    transform: translate(180%, 60%);
+    margin-bottom: 20%;
+  }
+  
+}
  .nav-links-cart{
   color: #fff;
   display: flex;

@@ -1,4 +1,4 @@
-import './shopCartItem.css'
+import './ShopCartItem.css'
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { actionsshopcart } from "../features/shoppingcart";
@@ -38,11 +38,11 @@ const ShopCartItem = (props) => {
             </div>
             <div className='infoCartItem'>
                 <div className='cartItemButtons'>
-                    <button className='cartItemButton' onClick={add}>increase</button>
-                    <button className='cartItemButton' onClick={remove}>{((props.count< 2)?'Remove':'Decres')}</button>
+                    <button className='cartItemButton' onClick={add}>Increase</button>
+                    <button className='cartItemButton' onClick={remove}>{((props.count< 2)?'Remove':'Decrease')}</button>
                 </div>           
-                <div className='cartItemCount'>count: {props.count}</div> 
-                <div className='cartItemPrice'>pris: {49.99 * props.count} kr!</div> 
+                <div className='cartItemCount'>Count: {props.count}</div> 
+                <div className='cartItemPrice'>Pris: {49.99 * props.count} kr!</div> 
                 <div className='cartItemTitle'>{props.title}</div>
             </div>
             
