@@ -7,9 +7,14 @@ function NavBar(){
   //const value = useSelector(state => state.shopc[1].count);
   let initialshoppingcartitemcount=0
   const value = useSelector(state => state.shopc.map(cartItem=>{
-    initialshoppingcartitemcount += parseInt(cartItem.count)
-    console.log('initialshoppingcartitemcount: ', initialshoppingcartitemcount);
-    return initialshoppingcartitemcount
+    try{
+      initialshoppingcartitemcount += parseInt(cartItem.count)
+      console.log('initialshoppingcartitemcount: ', initialshoppingcartitemcount);
+      return initialshoppingcartitemcount
+    }catch{
+      return initialshoppingcartitemcount
+    }
+    
   }));
     const [click, setClick] = useState(false);
   
@@ -50,17 +55,15 @@ function NavBar(){
                 Checkout
               </Link>
               </li>
-              </ul>
-              <div className = 'nav-cart'>
-                <span>{initialshoppingcartitemcount-1}</span>
-                <Link
+              <li className='nav-item'>
+              <Link
                 to='/checkoutIcon'
+                className='nav-links'
                 onClick={closeMobileMenu}> 
-                <div className='nav-links-cart'>
-                <i class="fas fa-shopping-cart"></i>
-                </div>
+              <i class="fas fa-shopping-cart">{initialshoppingcartitemcount}</i>
               </Link>
-              </div>
+            </li>
+            </ul>
             </div>
         </nav>
         </>
