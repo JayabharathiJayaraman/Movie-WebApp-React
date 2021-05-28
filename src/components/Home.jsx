@@ -3,7 +3,7 @@ import React from 'react';
 const Home = () => {
 
     return (
-        <div className = 'row'>
+        <div className = 'home'>
             <h2 className = 'heading4'>Welcome to Movies WebbShop</h2>
             <ul className = 'movieParagarph'>
             <li>Movies WebbShop breaks from the usual movie download site mould to offer a different kind of service than we are used to.</li>

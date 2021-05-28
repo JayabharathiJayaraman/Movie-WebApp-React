@@ -38,8 +38,8 @@ const ShopCartItem = (props) => {
             </div>
             <div className='infoCartItem'>
                 <div className='cartItemButtons'>
-                    <button className='cartItemButton' onClick={add}>Increase</button>
-                    <button className='cartItemButton' onClick={remove}>{((props.count< 2)?'Remove':'Decrease')}</button>
+                    <button className='cartItemButton' onClick={add}>increase</button>
+                    <button className='cartItemButton' onClick={remove}>{((props.count< 2)?'Remove':'Decres')}</button>
                 </div>           
                 <div className='cartItemCount'>Count: {props.count}</div> 
                 <div className='cartItemPrice'>Pris: {49.99 * props.count} kr!</div> 
