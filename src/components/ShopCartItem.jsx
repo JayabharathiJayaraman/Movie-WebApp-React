@@ -2,11 +2,12 @@ import './ShopCartItem.css'
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { actionsshopcart } from "../features/shoppingcart";
+import db from '../features/firebase'
 const ShopCartItem = (props) => {
     const dispatch =useDispatch();
     const shopCart = useSelector(state => state.shopc);
 
-    const add =()=>{      
+    const add =()=>{ 
         console.log('shopcart', shopCart)
         const movieId ={imdbid: props.imdb}
         console.log('movieId', movieId)
