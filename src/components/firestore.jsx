@@ -15,7 +15,7 @@ const addComment =(imdbID, comment)=>{
 }
 
 // gets all comments for a specific document
-const getDocuments = (imdbID) => {
+const getComments = (imdbID) => {
     db.collection("comments").doc(imdbID).collection("comments").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             console.log(doc.id, " => ", doc.data());
