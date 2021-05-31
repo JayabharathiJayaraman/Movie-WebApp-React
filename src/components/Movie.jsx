@@ -34,12 +34,13 @@ const Movie = () => {
 
         if (status === STATUS.NORMAL) {
             setContent('Redo för några Movies!');
+            fetchMovies(dispatch);
         } else if (status === STATUS.FETCHING) {
             setContent('Väntar på Movies...');
 
         } else if (status === STATUS.SUCCESS) {
             console.log('the movie length: ', movies.length)
-            console.log('the movies : ', movies)
+            console.log('the movies: ', movies)
 
             setContent(movies.map(movie =>
                 <div>
@@ -50,7 +51,9 @@ const Movie = () => {
                             fetchSpecificMovie(movie.imdbID);
                         }}>More Info</button>
                         <button className = 'buybutton' onClick={()=>
-                        { buy(movie) }}>Buy</button>
+                        
+                        { console.log('test info')
+                            buy(movie) }}>Buy</button>
                     </div>
                 </div>
             ))
@@ -58,9 +61,6 @@ const Movie = () => {
             setContent("Kunde inte hämta Movies");
 
         }
-    }, [movies]);
-
-    useEffect(() => {
     }, [movies]);
 
 
@@ -99,12 +99,6 @@ const Movie = () => {
             dispatch(actionsh.failure());
         }
     }
-
-
-    useEffect(() => {
-        fetchMovies(dispatch);
-    }, []);
-
 
     return (
         <>
