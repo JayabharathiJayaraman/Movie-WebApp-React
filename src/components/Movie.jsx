@@ -34,6 +34,7 @@ const Movie = () => {
 
         if (status === STATUS.NORMAL) {
             setContent('Redo för några Movies!');
+            fetchMovies(dispatch);
         } else if (status === STATUS.FETCHING) {
             setContent('Väntar på Movies...');
 
@@ -60,9 +61,6 @@ const Movie = () => {
             setContent("Kunde inte hämta Movies");
 
         }
-    }, [movies]);
-
-    useEffect(() => {
     }, [movies]);
 
 
@@ -101,12 +99,6 @@ const Movie = () => {
             dispatch(actionsh.failure());
         }
     }
-
-
-    useEffect(() => {
-        fetchMovies(dispatch);
-    }, []);
-
 
     return (
         <>
