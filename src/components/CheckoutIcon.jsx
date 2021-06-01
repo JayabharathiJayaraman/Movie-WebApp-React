@@ -1,114 +1,123 @@
 import './CheckoutIcon.css';
-import { useEffect, useState } from "react";
+import React, {useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ShopCartItem from './ShopCartItem'
-import { actionsshopcart } from "../features/shoppingcart";
+import Modal from 'react-modal';
 
+Modal.setAppElement('#root'); 
 
-const CheckoutIcon = (props) => {
+const CheckoutIcon = () => {
+    
+     const [modalIsOpen, setModalIsOpen] = useState(false);
+     const [orderDetails,setOrderDetails]=useState(null);
+     const [print,setPrint]=useState(false);
 
-    let initialshoppingcartitemcount=0
-    const value = useSelector(state => state.shopc.map(cartItem=>{
-      try{
-        initialshoppingcartitemcount += parseInt(cartItem.count)
-        console.log('initialshoppingcartitemcount: ', initialshoppingcartitemcount);
-        return initialshoppingcartitemcount
-      }catch{
-        return initialshoppingcartitemcount
-      }
-      
+     function getOrderDetails(val)
+     {
+       console.warn(val.target.value);
+       setOrderDetails(val.target.value);
+       setPrint(false);
+     }
+
+    let initialshoppingcartitemcount = 0
+    const value = useSelector(state => state.shopc.map(cartItem => {
+        try {
+            initialshoppingcartitemcount += parseInt(cartItem.count)
+            console.log('initialshoppingcartitemcount: ', initialshoppingcartitemcount);
+            return initialshoppingcartitemcount
+        } catch {
+            return initialshoppingcartitemcount
+        }
+
     }));
 
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
     const shopCart = useSelector(state => state.shopc);
     console.log('length', shopCart.length)
     const content = shopCart.map(item => {
-        try{
-            return(<div>
+        try {
+            return (<div>
                 <ShopCartItem count={item.count} title={item.movie.Title}
-                    img= {item.movie.Poster} imdb={item.movie.imdbID}
+                    img={item.movie.Poster} imdb={item.movie.imdbID}
                 />
             </div>)
-        }catch{
+        } catch {
             return []
-        }   
+        }
     }
-    
+
     )
-    const emptyCart = ()=>{
-        console.log('shopcart', shopCart)
-        const movieId ={imdbid: props.imdb}
-        console.log('movieId', movieId)
-        if(props.count > 1){
-            dispatch(actionsshopcart.emptyCart)
-        }
-        
-    }
-    function myFunction() {
-        var x = document.getElementById("checkoutDetails");
-        if (x.style.display === "none") {
-          x.style.display = "block";
-        } else {
-          x.style.display = "none";
-        }
-      }
+
     //const totalPrice = 
-    return(
+    return (
         <>
-        <div className = 'row'>
-        <div className = 'left'>
-        <div className='mainPage'>
-        {content}
-        </div>
-        </div>
-        <div className = 'right'>
-        <div className='checkout'>
-        <p className = 'total'>Total({initialshoppingcartitemcount}items):{49.90* initialshoppingcartitemcount}</p>
-        <div className='buttons'>
-        <button className= 'continue'>Continue</button>
-        <button className= 'proceed' onClick={myFunction}>Proceed</button>
-        <button className= 'emptyCart' onClick = {emptyCart}>EmptyCart</button>
-        </div>
-        </div>
-        </div>
-        </div>
-        <div id='checkoutDetails'>
-            <form>
-        <ul className="form-container">
-                        <li>
-                          <label>Email</label>
-                          <input
-                            name="email"
-                            type="email"
-                            required
-                          ></input>
-                        </li>
-                        <li>
-                          <label>Name</label>
-                          <input
-                            name="name"
-                            type="text"
-                            required
-                          ></input>
-                        </li>
-                        <li>
-                          <label>Address</label>
-                          <input
-                            name="address"
-                            type="text"
-                            required
-                          ></input>
-                        </li>
-                        <li>
-                          <button className='checkoutButton' type="submit">
-                            Checkout
-                          </button>
-                        </li>
-                      </ul>
-                      </form>
-        </div>
+            <div className='row'>
+                <div className='left'>
+                    <div className='mainPage'>
+                        {content}
+                    </div>
+                </div>
+                <div className='right'>
+                    <div className='checkout'>
+                        <p className='total'>Total({initialshoppingcartitemcount}items):{49.90 * initialshoppingcartitemcount}</p>
+                        <div id='checkoutDetails'>
+                            <form>
+                                <ul className="form-container">
+                                    <li>
+                                        <label>Email</label>
+                                        <input
+                                            className='emailInput'
+                                            name="email"
+                                            type="email"
+                                            required
+                                            onChange={getOrderDetails}
+                                        ></input>
+                                    </li>
+                                    <li>
+                                        <label>Name</label>
+                                        <input
+                                        className='nameInput'
+                                            name="name"
+                                            type="text"
+                                            required
+                                        ></input>
+                                    </li>
+                                    <li>
+                                        <label>Address</label>
+                                        <input
+                                        className='addressInput'
+                                            name="address"
+                                            type="text"
+                                            required
+                                        ></input>
+                                    </li>
+                                    <li>
+                                    <button onClick= {() => setModalIsOpen(true)}        
+                                    className='checkoutButton' type="submit">Checkout</button>
+                                    </li>
+                                    <Modal isOpen={modalIsOpen} className = 'overlayOrder'
+                                      onClick={()=>setPrint(true)}>
+                                        <div className='orderDetails'>
+
+                                           
+                                                 {orderDetails}
+                                            
+                                             </div>
+                                        <h1>Order confirmation</h1>
+                                        <div>
+                                            <button className = 'close' onClick= {() => setModalIsOpen(false)} >Close</button>
+                                        </div>
+                                    </Modal>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </>
     )
+
 };
 
 export default CheckoutIcon;

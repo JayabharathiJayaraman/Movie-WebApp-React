@@ -5,7 +5,7 @@ import Home from './components/Home';
 import Movie from './components/Movie';
 import CheckoutIcon from './components/CheckoutIcon'
 import Footer from './components/Footer';
-import Checkout from './components/Checkout';
+
 
 
 function App() {
@@ -22,9 +22,6 @@ function App() {
           </Route>
           <Route exact path = '/movie'>
           <Movie></Movie>
-          </Route>
-          <Route exact path = '/checkout'>
-          <Checkout></Checkout>
           </Route>
           <Route exact path = '/checkoutIcon'>
           <CheckoutIcon></CheckoutIcon>

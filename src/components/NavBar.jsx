@@ -46,15 +46,6 @@ function NavBar(){
                 Movie
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/checkout'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Checkout
-                </Link>
-              </li>
               </ul>
               <div className = 'nav-cart'>
                 <span>{initialshoppingcartitemcount}</span>
