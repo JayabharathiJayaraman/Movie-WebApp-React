@@ -5,12 +5,11 @@ import { actions, STATUS } from "../features/movie";
 import { actionsh } from "../features/highlightmovie";
 import { actionssetCurrentScreen } from "../features/currentscreen";
 import { actionsshopcart } from '../features/shoppingcart';
-
 import Search from './Search';
-
-
-
 import MovieCard from './MovieCard'
+import StarRating from 'react-star-rating'
+
+<link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css"></link>
 
 
 const Movie = () => {
@@ -71,16 +70,21 @@ const Movie = () => {
         let el = document.querySelector('#overlay img');
         el.setAttribute('src', movie.Poster);
         el.setAttribute('alt', movie.Title);
-        document.querySelector('#overlay figcaption').innerHTML = 'Title: ' + movie.Title + "<br>" + ' Year: ' + movie.Year + "<br>" + ' Time: ' + movie.Runtime + "<br>" + ' Language: ' + movie.Language + "<br>" + ' Ratings: ' + movie.imdbRating;
-        document.querySelector('#overlay').classList.toggle('show');
-        var elm = document.querySelector('#overlay');
+        document.querySelector('#overlay figcaption').innerHTML = 'Title: ' + movie.Title + "<br>" + ' Year: ' + movie.Year + "<br>" + ' Time: ' + movie.Runtime + "<br>" + ' Language: ' + movie.Language + "<br>" +' Ratings: ' + movie.imdbRating;
+        document.querySelector('#overlay').classList.add('show');
+        
+        
+
+    }
+
+    function closelightbox(){
+        var elm = document.querySelector('#overlay #closebutton');
         if (elm) {
             elm.addEventListener('click', () => {
                 document.querySelector('#overlay').classList.remove('show');
 
             });
         }
-
     }
 
     async function fetchSpecificMovie(imdbID) {
@@ -108,8 +112,11 @@ const Movie = () => {
             <Search placeholder="SearchMovies" ></Search>
             <section id="overlay">
                 <figure>
+                    <button id='closebutton' onClick={closelightbox()}>X</button>
                     <img src="" alt="" />
-                    <figcaption></figcaption>
+                    <figcaption>
+                    {/*<StarRating name="disabled" caption="Disabled." totalStars={5} rating={3} disabled={true} />*/}
+                    </figcaption>
                 </figure>
             </section>
             <div className='four-columns'>

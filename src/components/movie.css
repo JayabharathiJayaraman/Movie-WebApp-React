@@ -38,6 +38,11 @@
     display: flex;
 }
 
+#overlay figure button {
+  position: absolute;
+  
+}
+
 #overlay figure {
     max-width: 50rem;
     display: inline-flex;
