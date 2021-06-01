@@ -6,8 +6,10 @@ import { actionsh } from "../features/highlightmovie";
 import { actionssetCurrentScreen } from "../features/currentscreen";
 import { actionsshopcart } from '../features/shoppingcart';
 import Search from './Search';
-import MovieCard from './MovieCard'
-import StarRating from 'react-star-rating'
+import MovieCard from './MovieCard';
+
+import HighlightedMovie from './HighlightedMovie';
+
 
 <link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css"></link>
 
@@ -18,14 +20,18 @@ const Movie = () => {
 
     const movies = useSelector(state => state.movie.movies);
 
-    const [page, setPage] = useState(1)
+     
 
+   
+
+    
+    const [openlightboxsection, setOpenlightboxsection] = useState(null)
 
     const [content, setContent] = useState(null)
 
 
     const dispatch = useDispatch();
-    const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
+    
     const buy = (film) => {dispatch(actionsshopcart.addToCart(film))};
 
     useEffect(() => {
@@ -64,30 +70,10 @@ const Movie = () => {
 
 
 
-    function openLightbox(movie) {
-
-
-        let el = document.querySelector('#overlay img');
-        el.setAttribute('src', movie.Poster);
-        el.setAttribute('alt', movie.Title);
-        document.querySelector('#overlay figcaption').innerHTML = 'Title: ' + movie.Title + "<br>" + ' Year: ' + movie.Year + "<br>" + ' Time: ' + movie.Runtime + "<br>" + ' Language: ' + movie.Language + "<br>" +' Ratings: ' + movie.imdbRating;
-        document.querySelector('#overlay').classList.add('show');
-        
-        
-
-    }
-
-    function closelightbox(){
-        var elm = document.querySelector('#overlay #closebutton');
-        if (elm) {
-            elm.addEventListener('click', () => {
-                document.querySelector('#overlay').classList.remove('show');
-
-            });
-        }
-    }
+   
 
     async function fetchSpecificMovie(imdbID) {
+        //setContent(<HighlightedMovie imdbID={imdbID}/>)
         dispatch(actionsh.isFetching());
         const url = 'http://www.omdbapi.com/?apikey=72d7fe9&i=' + imdbID
         try {
@@ -96,9 +82,12 @@ const Movie = () => {
             console.log('Got data: ', json);
             let movie = json;
             dispatch(actionsh.success(movie))
-            openLightbox(movie);
+            //openLightbox(movie);
             console.log('open this movie : ', movie);
-            //setcontent(<HighlightedMovie/>)
+            //setContent(<HighlightedMovie imdbID={imdbID}/>)
+            
+            setOpenlightboxsection(<HighlightedMovie/>)
+            
         } catch {
             dispatch(actionsh.failure());
         }
@@ -110,17 +99,10 @@ const Movie = () => {
                 <p>Our Exciting Movies</p>
             </div>
             <Search placeholder="SearchMovies" ></Search>
-            <section id="overlay">
-                <figure>
-                    <button id='closebutton' onClick={closelightbox()}>X</button>
-                    <img src="" alt="" />
-                    <figcaption>
-                    {/*<StarRating name="disabled" caption="Disabled." totalStars={5} rating={3} disabled={true} />*/}
-                    </figcaption>
-                </figure>
-            </section>
+            
+            {openlightboxsection}
             <div className='four-columns'>
-                {/*{selectedmoviee}*/}
+                
                 {content}
             </div>
             {/*<button className = 'loadMore' onClick={fetchOnePageMore}>LoadMore</button>*/}
