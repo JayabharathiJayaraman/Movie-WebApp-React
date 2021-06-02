@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ShopCartItem from './ShopCartItem'
 import Modal from 'react-modal';
 import Fade from "react-reveal/Fade";
+import Zoom from "react-reveal/Zoom";
 
 Modal.setAppElement('#root');
 const CheckoutIcon = () => {
@@ -83,9 +84,7 @@ const CheckoutIcon = () => {
                                         <label>Email</label>
                                         <input
                                             className='emailInput'
-                                            name="email"
-                                            type="email"
-                                            required
+                                            type="text"
                                             onChange={getEmail}
                                         ></input>
                                     </li>
@@ -93,9 +92,7 @@ const CheckoutIcon = () => {
                                         <label>Name</label>
                                         <input
                                             className='nameInput'
-                                            name="name"
                                             type="text"
-                                            required
                                             onChange={getName}
                                         ></input>
                                     </li>
@@ -103,9 +100,7 @@ const CheckoutIcon = () => {
                                         <label>Address</label>
                                         <input
                                             className='addressInput'
-                                            name="address"
                                             type="text"
-                                            required
                                             onChange={getAddress}
                                         ></input>
                                     </li>
@@ -114,7 +109,9 @@ const CheckoutIcon = () => {
 
                                             className='checkoutButton' type="submit">Checkout</button>
                                     </li>
+                                    
                                     <Modal isOpen={modalIsOpen} className='modal-wrapper'>
+                                    <Zoom>
                                     <div className="modal-header">
                                             <h2>Order Confirmation</h2>
                                             <div>
@@ -131,7 +128,9 @@ const CheckoutIcon = () => {
                                             <p>Thankyou for ordering!</p>
                                         <button onClick={() => setModalIsOpen(false)} className="btn-close">Close</button>
                                         </div>
+                                        </Zoom>
                                     </Modal>
+                                    
                                 </ul>
                             </form>
                         </div>

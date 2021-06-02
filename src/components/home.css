@@ -10,3 +10,9 @@
     font-style: italic;
     display: flex;
 }
+@media all and (max-width: 414px) {
+    .heading4   {
+        margin-left: 5%;
+        font-size: 1.6rem;
+    }
+}

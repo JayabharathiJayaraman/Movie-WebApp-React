@@ -102,12 +102,16 @@ const Movie = () => {
                 </Fade>
             </div>
             <Search placeholder="SearchMovies" ></Search>
-            
+            <Fade bottom>
+                <div>
             {openlightboxsection}
+            
             <div className='four-columns'>
                 
                 {content}
             </div>
+            </div>
+            </Fade>
             {/*<button className = 'loadMore' onClick={fetchOnePageMore}>LoadMore</button>*/}
         </>
     )
