@@ -90,6 +90,9 @@ const CheckoutIcon = () => {
         });
         dispatch(actionsshopcart.clearCart())
         setModalIsOpen(false)
+        setEmailOrderDetails('');
+        setNameOrderDetails('');
+        setAddressOrderDetails('');
     }
     //const totalPrice = 
     return (
