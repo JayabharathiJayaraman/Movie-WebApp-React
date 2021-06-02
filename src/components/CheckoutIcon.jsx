@@ -1,24 +1,37 @@
 import './CheckoutIcon.css';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ShopCartItem from './ShopCartItem'
 import Modal from 'react-modal';
+import Fade from "react-reveal/Fade";
 
-Modal.setAppElement('#root'); 
-
+Modal.setAppElement('#root');
 const CheckoutIcon = () => {
-    
-     const [modalIsOpen, setModalIsOpen] = useState(false);
-     const [orderDetails,setOrderDetails]=useState(null);
-     const [print,setPrint]=useState(false);
 
-     function getOrderDetails(val)
-     {
-       console.warn(val.target.value);
-       setOrderDetails(val.target.value);
-       setPrint(false);
-     }
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [emailOrderDetails, setEmailOrderDetails] = useState(null);
+    const [nameOrderDetails, setNameOrderDetails] = useState(null);
+    const [addressOrderDetails, setAddressOrderDetails] = useState(null);
+    const [disabled, setDisabled] = useState(true);
 
+    function getEmail(val) {
+        console.warn(val.target.value);
+        setEmailOrderDetails(val.target.value);
+        if(val.target.value.length != null){
+            setDisabled(false);
+        } else{
+            setDisabled(true);
+        }
+    }
+
+    function getName(val) {
+        console.warn(val.target.value);
+        setNameOrderDetails(val.target.value);
+    }
+    function getAddress(val) {
+        console.warn(val.target.value);
+        setAddressOrderDetails(val.target.value);
+    }
     let initialshoppingcartitemcount = 0
     const value = useSelector(state => state.shopc.map(cartItem => {
         try {
@@ -53,11 +66,14 @@ const CheckoutIcon = () => {
         <>
             <div className='row'>
                 <div className='left'>
+                    <Fade left cascade>
                     <div className='mainPage'>
                         {content}
                     </div>
+                    </Fade>
                 </div>
                 <div className='right'>
+                    <Fade right cascade>
                     <div className='checkout'>
                         <p className='total'>Total({initialshoppingcartitemcount}items):{49.90 * initialshoppingcartitemcount}</p>
                         <div id='checkoutDetails'>
@@ -70,48 +86,57 @@ const CheckoutIcon = () => {
                                             name="email"
                                             type="email"
                                             required
-                                            onChange={getOrderDetails}
+                                            onChange={getEmail}
                                         ></input>
                                     </li>
                                     <li>
                                         <label>Name</label>
                                         <input
-                                        className='nameInput'
+                                            className='nameInput'
                                             name="name"
                                             type="text"
                                             required
+                                            onChange={getName}
                                         ></input>
                                     </li>
                                     <li>
                                         <label>Address</label>
                                         <input
-                                        className='addressInput'
+                                            className='addressInput'
                                             name="address"
                                             type="text"
                                             required
+                                            onChange={getAddress}
                                         ></input>
                                     </li>
                                     <li>
-                                    <button onClick= {() => setModalIsOpen(true)}        
-                                    className='checkoutButton' type="submit">Checkout</button>
-                                    </li>
-                                    <Modal isOpen={modalIsOpen} className = 'overlayOrder'
-                                      onClick={()=>setPrint(true)}>
-                                        <div className='orderDetails'>
+                                        <button disabled = {disabled} onClick={() => setModalIsOpen(true)}
 
-                                           
-                                                 {orderDetails}
-                                            
-                                             </div>
-                                        <h1>Order confirmation</h1>
-                                        <div>
-                                            <button className = 'close' onClick= {() => setModalIsOpen(false)} >Close</button>
+                                            className='checkoutButton' type="submit">Checkout</button>
+                                    </li>
+                                    <Modal isOpen={modalIsOpen} className='modal-wrapper'>
+                                    <div className="modal-header">
+                                            <h2>Order Confirmation</h2>
+                                            <div>
+                                            <button className='close' onClick={() => setModalIsOpen(false)} >X</button>
+                                            </div>
+                                            </div>
+                                        <div className='orderDetails'>
+                                            <h3>Your order has been placed</h3>
+                                            <p>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{emailOrderDetails}</p>
+                                            <p>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameOrderDetails}</p>
+                                            <p>Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {addressOrderDetails}</p>
+                                        </div>    
+                                        <div className="modal-footer">
+                                            <p>Thankyou for ordering!</p>
+                                        <button onClick={() => setModalIsOpen(false)} className="btn-close">Close</button>
                                         </div>
                                     </Modal>
                                 </ul>
                             </form>
                         </div>
                     </div>
+                    </Fade>
                 </div>
             </div>
 

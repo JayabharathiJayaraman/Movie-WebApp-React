@@ -1,10 +1,14 @@
 import './home.css';
 import React from 'react';
+import Fade from "react-reveal/Fade";
+
 const Home = () => {
 
     return (
         <div className = 'home'>
+            <Fade right cascade>
             <h2 className = 'heading4'>Welcome to Movies WebbShop</h2>
+            </Fade>
             <ul className = 'movieParagarph'>
             <li>Movies WebbShop breaks from the usual movie download site mould to offer a different kind of service than we are used to.</li>
             <li>It has also a huge collection of classic movies that will appeal to film buffs and enthusiasts.</li> 
