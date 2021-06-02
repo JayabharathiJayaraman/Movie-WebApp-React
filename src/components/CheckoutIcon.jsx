@@ -2,6 +2,7 @@ import './CheckoutIcon.css';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ShopCartItem from './ShopCartItem'
+import { actionsshopcart } from "../features/shoppingcart";
 import Modal from 'react-modal';
 import Fade from "react-reveal/Fade";
 
@@ -118,7 +119,10 @@ const CheckoutIcon = () => {
                                     <div className="modal-header">
                                             <h2>Order Confirmation</h2>
                                             <div>
-                                            <button className='close' onClick={() => setModalIsOpen(false)} >X</button>
+                                            <button className='close' onClick={() => {
+                                                dispatch(actionsshopcart.clearCart())
+                                                setModalIsOpen(false)
+                                            }} >X</button>
                                             </div>
                                             </div>
                                         <div className='orderDetails'>
@@ -129,7 +133,10 @@ const CheckoutIcon = () => {
                                         </div>    
                                         <div className="modal-footer">
                                             <p>Thankyou for ordering!</p>
-                                        <button onClick={() => setModalIsOpen(false)} className="btn-close">Close</button>
+                                        <button onClick={() => {
+                                                dispatch(actionsshopcart.clearCart())
+                                                setModalIsOpen(false)
+                                            }} className="btn-close">Close</button>
                                         </div>
                                     </Modal>
                                 </ul>

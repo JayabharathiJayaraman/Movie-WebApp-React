@@ -6,7 +6,9 @@ const removeFromCart = createAction('remove from cart');
 const increaseAmount = createAction('increase amount');
 const increaseAmountShopCart = createAction('increase shopCart amount');
 const decreaseAmont = createAction('decreaseAmount');
-const actionsshopcart = {addToCart, removeFromCart, increaseAmount, increaseAmountShopCart, decreaseAmont};
+const clearCart = createAction('clearCart')
+const actionsshopcart = {addToCart, removeFromCart, increaseAmount, 
+    increaseAmountShopCart, decreaseAmont, clearCart};
 
 
 const initialState = [
@@ -79,7 +81,9 @@ const reducershopcart = createReducer(initialState, {
 
     [removeFromCart]: (state, action) => (
        state.filter(cartItem => cartItem.movie.imdbID !== action.payload.imdbid)
-    )
+    ),
+    
+    [clearCart]: () => []
 
 
 })
