@@ -3,7 +3,7 @@ import './search.css'
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, STATUS } from "../features/movie";
-
+import Fade from "react-reveal/Fade";
 const APIKEY='72d7fe9'
 
 const Search = ({ placeholder}) => {
@@ -22,6 +22,7 @@ const Search = ({ placeholder}) => {
     const [searchMovie, setSearchMovie] = useState('')
     return (
         <>
+        <Fade right cascade>
         <div className='ui search'>
             <div className='box'>
                 <i class="fas fa-search"></i>
@@ -35,6 +36,7 @@ const Search = ({ placeholder}) => {
                 fetchMovies(dispatch, searchMovie)}>Search</button>
             </div>
         </div>
+        </Fade>
         </>
     );
 

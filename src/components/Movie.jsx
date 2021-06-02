@@ -5,6 +5,7 @@ import { actions, STATUS } from "../features/movie";
 import { actionsh } from "../features/highlightmovie";
 import { actionssetCurrentScreen } from "../features/currentscreen";
 import { actionsshopcart } from '../features/shoppingcart';
+import Fade from "react-reveal/Fade";
 import Search from './Search';
 import MovieCard from './MovieCard';
 
@@ -96,7 +97,9 @@ const Movie = () => {
     return (
         <>
             <div className='moviePageTitle'>
+                <Fade left cascade>
                 <p>Our Exciting Movies</p>
+                </Fade>
             </div>
             <Search placeholder="SearchMovies" ></Search>
             
