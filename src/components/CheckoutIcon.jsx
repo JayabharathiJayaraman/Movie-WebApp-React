@@ -5,6 +5,7 @@ import ShopCartItem from './ShopCartItem'
 import { actionsshopcart } from "../features/shoppingcart";
 import Modal from 'react-modal';
 import Fade from "react-reveal/Fade";
+import firebase from '../features/firebase';
 
 Modal.setAppElement('#root');
 const CheckoutIcon = () => {
@@ -48,6 +49,8 @@ const CheckoutIcon = () => {
     const dispatch = useDispatch();
     const shopCart = useSelector(state => state.shopc);
     console.log('length', shopCart.length)
+
+
     const content = shopCart.map(item => {
         try {
             return (<div>
@@ -61,7 +64,33 @@ const CheckoutIcon = () => {
     }
 
     )
+    function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
 
+    function closeCheckout(){
+        console.log('close checkout')
+        firebase.firestore().collection("checkout").doc(uuidv4()).set({
+
+            email: emailOrderDetails,
+            name: nameOrderDetails,
+            adress: addressOrderDetails,
+            orders: shopCart,
+            rated: false,
+            timestamp: Date.now(),
+        })
+        .then(function() {
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+        dispatch(actionsshopcart.clearCart())
+        setModalIsOpen(false)
+    }
     //const totalPrice = 
     return (
         <>
@@ -119,10 +148,7 @@ const CheckoutIcon = () => {
                                     <div className="modal-header">
                                             <h2>Order Confirmation</h2>
                                             <div>
-                                            <button className='close' onClick={() => {
-                                                dispatch(actionsshopcart.clearCart())
-                                                setModalIsOpen(false)
-                                            }} >X</button>
+                                            <button className='close' onClick={closeCheckout} >X</button>
                                             </div>
                                             </div>
                                         <div className='orderDetails'>
@@ -133,10 +159,7 @@ const CheckoutIcon = () => {
                                         </div>    
                                         <div className="modal-footer">
                                             <p>Thankyou for ordering!</p>
-                                        <button onClick={() => {
-                                                dispatch(actionsshopcart.clearCart())
-                                                setModalIsOpen(false)
-                                            }} className="btn-close">Close</button>
+                                        <button onClick={closeCheckout} className="btn-close">Close</button>
                                         </div>
                                     </Modal>
                                 </ul>
