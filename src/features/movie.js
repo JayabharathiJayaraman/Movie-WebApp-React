@@ -33,12 +33,28 @@ const reducer = createReducer(initialState, {
         
 
     }),
-    [success]: (state, action) => ({
-        status: STATUS.SUCCESS,
+    [success]: (state, action) => {
+        console.log('in success')
+        let found = 'false'
+        state.movies.forEach(item => {
+            if(item.imdbID === action.payload.imdbID){
+                found = 'true'
 
-        movies: [...state.movies, action.payload]
+            }
+        });
+        if(found === 'false'){
+            return ({
+                status: STATUS.SUCCESS,
+                movies: [...state.movies, action.payload]    
+            })
+        }else{
+            return ({
+                ...state,
+        status: STATUS.SUCCESS
+            })
+        }
+    },
 
-    }),
     [failure]: (state, action) => ({
         ...state,
         status: STATUS.FAILURE

@@ -7,10 +7,12 @@ import { actionssetCurrentScreen } from "../features/currentscreen";
 import { actionsshopcart } from '../features/shoppingcart';
 import Fade from "react-reveal/Fade";
 import Search from './Search';
+import MovieCard from './MovieCard';
+
+import HighlightedMovie from './HighlightedMovie';
 
 
-
-import MovieCard from './MovieCard'
+<link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css"></link>
 
 
 const Movie = () => {
@@ -19,14 +21,18 @@ const Movie = () => {
 
     const movies = useSelector(state => state.movie.movies);
 
-    const [page, setPage] = useState(1)
+     
 
+   
+
+    
+    const [openlightboxsection, setOpenlightboxsection] = useState(null)
 
     const [content, setContent] = useState(null)
 
 
     const dispatch = useDispatch();
-    const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
+    
     const buy = (film) => {dispatch(actionsshopcart.addToCart(film))};
 
     useEffect(() => {
@@ -34,12 +40,13 @@ const Movie = () => {
 
         if (status === STATUS.NORMAL) {
             setContent('Redo för några Movies!');
+            fetchMovies(dispatch);
         } else if (status === STATUS.FETCHING) {
             setContent('Väntar på Movies...');
 
         } else if (status === STATUS.SUCCESS) {
             console.log('the movie length: ', movies.length)
-            console.log('the movies : ', movies)
+            console.log('the movies: ', movies)
 
             setContent(movies.map(movie =>
                 <div>
@@ -50,7 +57,9 @@ const Movie = () => {
                             fetchSpecificMovie(movie.imdbID);
                         }}>More Info</button>
                         <button className = 'buybutton' onClick={()=>
-                        { buy(movie) }}>Buy</button>
+                        
+                        { console.log('test info')
+                            buy(movie) }}>Buy</button>
                     </div>
                 </div>
             ))
@@ -60,30 +69,12 @@ const Movie = () => {
         }
     }, [movies]);
 
-    useEffect(() => {
-    }, [movies]);
 
 
-
-    function openLightbox(movie) {
-
-
-        let el = document.querySelector('#overlay img');
-        el.setAttribute('src', movie.Poster);
-        el.setAttribute('alt', movie.Title);
-        document.querySelector('#overlay figcaption').innerHTML = 'Title: ' + movie.Title + "<br>" + ' Year: ' + movie.Year + "<br>" + ' Time: ' + movie.Runtime + "<br>" + ' Language: ' + movie.Language + "<br>" + ' Ratings: ' + movie.imdbRating;
-        document.querySelector('#overlay').classList.toggle('show');
-        var elm = document.querySelector('#overlay');
-        if (elm) {
-            elm.addEventListener('click', () => {
-                document.querySelector('#overlay').classList.remove('show');
-
-            });
-        }
-
-    }
+   
 
     async function fetchSpecificMovie(imdbID) {
+        //setContent(<HighlightedMovie imdbID={imdbID}/>)
         dispatch(actionsh.isFetching());
         const url = 'http://www.omdbapi.com/?apikey=72d7fe9&i=' + imdbID
         try {
@@ -92,19 +83,16 @@ const Movie = () => {
             console.log('Got data: ', json);
             let movie = json;
             dispatch(actionsh.success(movie))
-            openLightbox(movie);
+            //openLightbox(movie);
             console.log('open this movie : ', movie);
-            //setcontent(<HighlightedMovie/>)
+            //setContent(<HighlightedMovie imdbID={imdbID}/>)
+            
+            setOpenlightboxsection(<HighlightedMovie/>)
+            
         } catch {
             dispatch(actionsh.failure());
         }
     }
-
-
-    useEffect(() => {
-        fetchMovies(dispatch);
-    }, []);
-
 
     return (
         <>
@@ -114,14 +102,10 @@ const Movie = () => {
                 </Fade>
             </div>
             <Search placeholder="SearchMovies" ></Search>
-            <section id="overlay">
-                <figure>
-                    <img src="" alt="" />
-                    <figcaption></figcaption>
-                </figure>
-            </section>
+            
+            {openlightboxsection}
             <div className='four-columns'>
-                {/*{selectedmoviee}*/}
+                
                 {content}
             </div>
             {/*<button className = 'loadMore' onClick={fetchOnePageMore}>LoadMore</button>*/}
