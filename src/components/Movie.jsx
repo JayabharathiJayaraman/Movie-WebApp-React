@@ -143,6 +143,8 @@ const Movie = () => {
          const titlesRows1 = (<h3 className='styleH3txt'>{movie.Year}</h3>);
          const titlesRows3 = (<h3 className='styleH3txt'>&nbsp;|&nbsp;{movie.Runtime}</h3>);
          const titlesRows4 = (<h3 className='styleH3txt'>&nbsp;|&nbsp;{movie.Language}</h3>);
+         const titlesRows5 = (<h3 className='styleH3txtRate'>{movie.imdbRating}</h3>);
+         const titlesRows6 = (<StarIcons/>);
          //const titlesRows4 = (<h3 className='styleH3txt vl'>{movie.imdbRating}</h3>);
 
          //<div className='vl'></div>{movie.Runtime}<div className='vl'></div>{movie.Language}</h3>);
@@ -152,7 +154,7 @@ const Movie = () => {
 
 
 
-         const DisplayingTitles = ({data}) => (<div>{ titlesRows }{ titlesRows1 }{ titlesRows3 }{ titlesRows4 }</div>);
+         const DisplayingTitles = ({data}) => (<div>{ titlesRows }{ titlesRows1 }{ titlesRows3 }{ titlesRows4 }{ titlesRows5 }{ titlesRows6 }</div>);
 
          ReactDOM.render(<DisplayingTitles data={ titlesRows, titlesRows1 } />, document.querySelector("#overlay .figcaption"))
          //ReactDOM.render(<DisplayingTitles data={ titlesRows1 } />, document.querySelector("#overlay .figcaption"))
