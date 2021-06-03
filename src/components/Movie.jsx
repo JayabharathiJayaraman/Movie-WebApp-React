@@ -73,26 +73,23 @@ const Movie = () => {
       const { fill = 'none' } = props;
       return (
       <svg className= "w-6 h-6" viewBox="150 0 400 400" fill={fill}
-                            xmlns="http://www.w3.org/2000/svg" version="1.1">
-                         <polygon stroke="#ffffff" stroke-width="10"
-                                   points="350,75  379,161 469,161 397,215
-                                           423,301 350,250 277,301 303,215
-                                           231,161 321,161" />
-                       </svg>
+            xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <polygon stroke="#ffffff" stroke-width="10"
+            points="350,75  379,161 469,161 397,215
+            423,301 350,250 277,301 303,215
+            231,161 321,161" />
+       </svg>
       );
     }
 
     function RatingIcon(props) {
-      const convertThis = Math.floor(props/2);
       const {
         index,
         rating,
-        onSaveRating,
-      } = convertThis;
-
+      } = props;
       const fill = React.useMemo(() => {
         if (rating >= index) {
-          return 'red';
+          return '#ffcc33';
         }
         return 'none';
       }, [rating, index]);
@@ -103,19 +100,18 @@ const Movie = () => {
       )
     }
 
-    const DisplayingStars = () => {
-      const [rating, setRating] = React.useState(0);
-      const onSaveRating = (index) => {
-        setRating(index);
-      };
+    const DisplayingStars = (props) => {
+      const ratingFetch = Math.floor(props/2);
+      const [rating, setRating] = React.useState(3);
       return(
         <div className="styleIcons">
           {[1, 2, 3, 4, 5].map((index) => {
             return (
+            console.log(rating),
               <RatingIcon
-                index={index}
-                rating={rating}
-                onSaveRating={onSaveRating} />
+                index= {index}
+                rating= {rating}
+              />
             )
           })}
         </div>
@@ -158,7 +154,7 @@ const Movie = () => {
             let movie = json;
             dispatch(actionsh.success(movie))
             openLightbox(movie);
-            RatingIcon(movie.imdbRating);
+            DisplayingStars(movie.imdbRating);
             console.log('open this movie : ', movie);
             //setcontent(<HighlightedMovie/>)
         } catch {
