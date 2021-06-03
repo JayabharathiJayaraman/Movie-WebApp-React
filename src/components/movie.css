@@ -130,6 +130,15 @@
     margin: 20px;
 }
 
+.styleIcons{
+    width: 200px;
+    height: 5px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-left: 25%;
+}
+
 .rateFilm{
     width: 50px;
 }

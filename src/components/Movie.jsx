@@ -67,59 +67,58 @@ const Movie = () => {
 
         }
     }, [movies]);
+
 // fill="#ffcc33"
     function StarIcons(props) {
-        return(
-                <div className="boxHold flex">
-                  {[1, 2, 3, 4, 5].map((index) => {
-                    return (
-                      <svg className= "w-6 h-6" viewBox="150 0 400 400" fill="none"
-                           xmlns="http://www.w3.org/2000/svg" version="1.1">
-                        <polygon stroke="#ffffff" stroke-width="10"
-                                  points="350,75  379,161 469,161 397,215
-                                          423,301 350,250 277,301 303,215
-                                          231,161 321,161" />
-                      </svg>
-                    )
-                  })}
-                </div>
-            );
-//         return (<svg className= "w-6 h-6" viewBox="150 0 400 400" fill="none"
-//                      xmlns="http://www.w3.org/2000/svg" version="1.1">
-//                   <polygon stroke="#ffffff" stroke-width="10"
-//                             points="350,75  379,161 469,161 397,215
-//                                     423,301 350,250 277,301 303,215
-//                                     231,161 321,161" />
-//                 </svg>);
+      const { fill = 'none' } = props;
+      return (
+      <svg className= "w-6 h-6" viewBox="150 0 400 400" fill={fill}
+                            xmlns="http://www.w3.org/2000/svg" version="1.1">
+                         <polygon stroke="#ffffff" stroke-width="10"
+                                   points="350,75  379,161 469,161 397,215
+                                           423,301 350,250 277,301 303,215
+                                           231,161 321,161" />
+                       </svg>
+      );
     }
 
-    function RatingIcon(props){
-        const{
-            index,
-            rating,
-            hoverRating,
-            onMouseEnter,
-            onMouseLeave,
-            onSaveRating
-        } = props;
+    function RatingIcon(props) {
+      const convertThis = Math.floor(props/2);
+      const {
+        index,
+        rating,
+        onSaveRating,
+      } = convertThis;
 
-        const fill= React.useMemo(()=> {
-                        if(hoverRating >= index){
-                            return '#ffcc33';
-                        }
-                        else if(!hoverRating && rating >= index){
-                            return '#ffcc33';
-                        }
-                        return 'none';
-                    },[rating, hoverRating, index]);
+      const fill = React.useMemo(() => {
+        if (rating >= index) {
+          return 'red';
+        }
+        return 'none';
+      }, [rating, index]);
       return (
-          <div
-            className="cursor-pointer"
-            onMouseEnter={() => onMouseEnter(index)}
-            onMouseLeave={() => onMouseLeave()}
-            onClick={() => onSaveRating(index)}>
+          <div>
             <StarIcons fill={fill} />
           </div>
+      )
+    }
+
+    const DisplayingStars = () => {
+      const [rating, setRating] = React.useState(0);
+      const onSaveRating = (index) => {
+        setRating(index);
+      };
+      return(
+        <div className="styleIcons">
+          {[1, 2, 3, 4, 5].map((index) => {
+            return (
+              <RatingIcon
+                index={index}
+                rating={rating}
+                onSaveRating={onSaveRating} />
+            )
+          })}
+        </div>
       );
     }
 
@@ -129,41 +128,14 @@ const Movie = () => {
         el.setAttribute('src', movie.Poster);
         el.setAttribute('alt', movie.Title);
 
-//         const addRate = document.querySelector('.rateInner').innerHTML;
-//                        console.log('DisplayingThisOne',AddRate);
-
-//                  const h1 = (<h1 className='styleH1txt'>{movie.Title}</h1>);
-//                  console h3 = (<h3 className='styleH3txt'>&nbsp;
-//                                                          {movie.Year});
-//                  const titlesRows = (h1 + h3);<div className='vl'></div>{movie.Runtime}<div className='vl'></div>{movie.Language}</h3>
-//                                   + <br> + 'Ratings:' + {movie.imdbRating});
-
-
-         const titlesRows = (<h1 className='styleH1txt'>{movie.Title}</h1>);
-         const titlesRows1 = (<h3 className='styleH3txt'>{movie.Year}</h3>);
-         const titlesRows3 = (<h3 className='styleH3txt'>&nbsp;|&nbsp;{movie.Runtime}</h3>);
-         const titlesRows4 = (<h3 className='styleH3txt'>&nbsp;|&nbsp;{movie.Language}</h3>);
-         const titlesRows5 = (<h3 className='styleH3txtRate'>{movie.imdbRating}</h3>);
-         const titlesRows6 = (<StarIcons/>);
-         //const titlesRows4 = (<h3 className='styleH3txt vl'>{movie.imdbRating}</h3>);
-
-         //<div className='vl'></div>{movie.Runtime}<div className='vl'></div>{movie.Language}</h3>);
-//         + <h3 className='styleH3txt'>&nbsp;
-//                          {movie.Year}<div className='vl'></div>{movie.Runtime}<div className='vl'></div>{movie.Language}</h3>
-//                          + <br> + 'Ratings:' + {movie.imdbRating});
-
-
-
-         const DisplayingTitles = ({data}) => (<div>{ titlesRows }{ titlesRows1 }{ titlesRows3 }{ titlesRows4 }{ titlesRows5 }{ titlesRows6 }</div>);
-
-         ReactDOM.render(<DisplayingTitles data={ titlesRows, titlesRows1 } />, document.querySelector("#overlay .figcaption"))
-         //ReactDOM.render(<DisplayingTitles data={ titlesRows1 } />, document.querySelector("#overlay .figcaption"))
-
-
-
-
- 
-//         document.querySelector('#overlay .figcaption').innerHTML = titlesRows;
+        const titlesRows = (<h1 className='styleH1txt'>{movie.Title}</h1>);
+        const titlesRows1 = (<h3 className='styleH3txt'>{movie.Year}</h3>);
+        const titlesRows3 = (<h3 className='styleH3txt'>&nbsp;|&nbsp;{movie.Runtime}</h3>);
+        const titlesRows4 = (<h3 className='styleH3txt'>&nbsp;|&nbsp;{movie.Language}</h3>);
+        const titlesRows5 = (<h3 className='styleH3txtRate'>{movie.imdbRating}</h3>);
+        const titlesRows6 = (<DisplayingStars/>);
+        const DisplayingTitles = ({data}) => (<div>{ titlesRows }{ titlesRows1 }{ titlesRows3 }{ titlesRows4 }{ titlesRows5 }{ titlesRows6 }</div>);
+        ReactDOM.render(<DisplayingTitles data={ titlesRows, titlesRows1 } />, document.querySelector("#overlay .figcaption"))
         document.querySelector('#overlay').classList.toggle('show');
         document.body.style.overflow = 'hidden';
         var elm = document.querySelector('#overlay');
@@ -186,7 +158,7 @@ const Movie = () => {
             let movie = json;
             dispatch(actionsh.success(movie))
             openLightbox(movie);
-            StarIcons(movie.imdbRating);
+            RatingIcon(movie.imdbRating);
             console.log('open this movie : ', movie);
             //setcontent(<HighlightedMovie/>)
         } catch {
@@ -210,7 +182,7 @@ const Movie = () => {
                         <div className="sideContainer">
                             <div className="titlesDisp">
                                 <div className="figcaption">
-                                    <div className="rateInner"><StarIcons/></div>
+                                    <div className="rateInner"><DisplayingStars/></div>
                                 </div>
 
                             </div>
