@@ -1,7 +1,10 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/firestore';
 
-const firebaseApp = firebase.initializeApp({
+
+//const firebaseApp = firebase.initializeApp({
   // copy and paste your firebase credential here
+  const firebaseConfig = {
     apiKey: "AIzaSyB5MW-hIcj60cueZhD0KRkQtnK312PMoKE",
     authDomain: "movie-webapp-cef6b.firebaseapp.com",
     projectId: "movie-webapp-cef6b",
@@ -9,8 +12,8 @@ const firebaseApp = firebase.initializeApp({
     messagingSenderId: "1004483582988",
     appId: "1:1004483582988:web:da1aaddec7430f04b32229",
     measurementId: "G-863BQJNRRM"
-});
+};
+firebase.initializeApp(firebaseConfig)
+//const db = firebase.firestore();
 
-const db = firebaseApp.firestore();
-
-export default db;
+export default firebase;
