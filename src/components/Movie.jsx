@@ -132,8 +132,8 @@ const Movie = () => {
 //         const addRate = document.querySelector('.rateInner').innerHTML;
 //                        console.log('DisplayingThisOne',AddRate);
 
-        let titlesRows = <h1 class= 'styleH1txt'> + movie.Title + </h1> + <h3 class= 'styleH3txt'> +  &nbsp;
-                         + movie.Year + " | " + movie.Runtime +" | " + movie.Language + </h3> + <br> + ' Ratings: ' + movie.imdbRating;
+        let titlesRows = "<h1 class= 'styleH1txt'>" + movie.Title + "</h1>" + "<h3 class= 'styleH3txt'>" +  "&nbsp;"
+                         + movie.Year + " | " + movie.Runtime +" | " + movie.Language + "</h3>" + "<br>" + ' Ratings: ' + movie.imdbRating;
 
 
 
