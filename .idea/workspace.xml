@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18818b1-690c-49e3-9e8b-bf645334b126" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Movie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Movie.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/movie.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/movie.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

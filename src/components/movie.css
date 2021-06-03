@@ -116,7 +116,7 @@
     opacity: .75;
     margin-block-start: 0;
     margin-block-end: 0;
-    float: left;
+    display:inline-block;
 }
 
 .rateFilm{
