@@ -42,7 +42,8 @@ const ShopCartItem = (props) => {
                     <button className='cartItemButton' onClick={remove}>{((props.count< 2)?'Remove':'Decres')}</button>
                 </div>           
                 <div className='cartItemCount'>Count: {props.count}</div> 
-                <div className='cartItemPrice'>Pris: {49.99 * props.count} kr!</div> 
+                <div className='cartItemPrice'>Pris: 
+                {(49.99 * props.count).toLocaleString(undefined,{ minimumFractionDigits: 2 })} kr!</div> 
                 <div className='cartItemTitle'>{props.title}</div>
             </div>
             

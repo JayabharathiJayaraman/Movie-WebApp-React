@@ -2,9 +2,11 @@ import './CheckoutIcon.css';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ShopCartItem from './ShopCartItem'
+import { actionsshopcart } from "../features/shoppingcart";
 import Modal from 'react-modal';
 import Fade from "react-reveal/Fade";
 import Zoom from "react-reveal/Zoom";
+import firebase from '../features/firebase';
 
 Modal.setAppElement('#root');
 const CheckoutIcon = () => {
@@ -48,6 +50,9 @@ const CheckoutIcon = () => {
     const dispatch = useDispatch();
     const shopCart = useSelector(state => state.shopc);
     console.log('length', shopCart.length)
+    const DB_KEY = uuidv4()
+    const ORDERNUMBER = uuidv4()
+
     const content = shopCart.map(item => {
         try {
             return (<div>
@@ -61,7 +66,37 @@ const CheckoutIcon = () => {
     }
 
     )
+    function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
 
+    function closeCheckout(){
+        console.log('close checkout')
+        firebase.firestore().collection("checkout").doc(DB_KEY).set({
+            key: DB_KEY,
+            orderNumber: ORDERNUMBER,
+            email: emailOrderDetails,
+            name: nameOrderDetails,
+            adress: addressOrderDetails,
+            orders: shopCart,
+            rated: false,
+            timestamp: Date.now(),
+        })
+        .then(function() {
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+        dispatch(actionsshopcart.clearCart())
+        setModalIsOpen(false)
+        setEmailOrderDetails('');
+        setNameOrderDetails('');
+        setAddressOrderDetails('');
+    }
     //const totalPrice = 
     return (
         <>
@@ -115,18 +150,19 @@ const CheckoutIcon = () => {
                                     <div className="modal-header">
                                             <h2>Order Confirmation</h2>
                                             <div>
-                                            <button className='close' onClick={() => setModalIsOpen(false)} >X</button>
+                                            <button className='close' onClick={closeCheckout} >X</button>
                                             </div>
                                             </div>
                                         <div className='orderDetails'>
                                             <h3>Your order has been placed</h3>
+                                            <p>Ordernumber: {ORDERNUMBER}</p>
                                             <p>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{emailOrderDetails}</p>
                                             <p>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameOrderDetails}</p>
                                             <p>Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {addressOrderDetails}</p>
                                         </div>    
                                         <div className="modal-footer">
                                             <p>Thankyou for ordering!</p>
-                                        <button onClick={() => setModalIsOpen(false)} className="btn-close">Close</button>
+                                        <button onClick={closeCheckout} className="btn-close">Close</button>
                                         </div>
                                         </Zoom>
                                     </Modal>
