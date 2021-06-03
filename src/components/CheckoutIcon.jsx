@@ -49,7 +49,8 @@ const CheckoutIcon = () => {
     const dispatch = useDispatch();
     const shopCart = useSelector(state => state.shopc);
     console.log('length', shopCart.length)
-
+    const DB_KEY = uuidv4()
+    const ORDERNUMBER = uuidv4()
 
     const content = shopCart.map(item => {
         try {
@@ -73,8 +74,9 @@ const CheckoutIcon = () => {
 
     function closeCheckout(){
         console.log('close checkout')
-        firebase.firestore().collection("checkout").doc(uuidv4()).set({
-
+        firebase.firestore().collection("checkout").doc(DB_KEY).set({
+            key: DB_KEY,
+            orderNumber: ORDERNUMBER,
             email: emailOrderDetails,
             name: nameOrderDetails,
             adress: addressOrderDetails,
@@ -156,6 +158,7 @@ const CheckoutIcon = () => {
                                             </div>
                                         <div className='orderDetails'>
                                             <h3>Your order has been placed</h3>
+                                            <p>Ordernumber: {ORDERNUMBER}</p>
                                             <p>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{emailOrderDetails}</p>
                                             <p>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameOrderDetails}</p>
                                             <p>Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {addressOrderDetails}</p>
