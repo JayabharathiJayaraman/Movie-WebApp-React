@@ -108,7 +108,7 @@
     }
   
     .footer-link-wrapper {
-      flex-direction: column;
+      flex-direction: row;
     }
   
     .social-media-wrap {
@@ -121,7 +121,7 @@
     }
   
     .footer-link-wrapper {
-      flex-direction: column;
+      flex-direction: row;
       margin-left: -10%;
     }
   
@@ -131,8 +131,8 @@
   }
   @media (max-width: 550px) {
     .footer-link-wrapper {
-      flex-direction: column;
-      margin-left: -10%;
+      flex-direction: row;
+      margin-left: -70%;
     }
     .social-media-wrap {
       flex-direction: column;
