@@ -132,19 +132,35 @@ const Movie = () => {
 //         const addRate = document.querySelector('.rateInner').innerHTML;
 //                        console.log('DisplayingThisOne',AddRate);
 
-        let titlesRows = "<h1 class= 'styleH1txt'>" + movie.Title + "</h1>" + "<h3 class= 'styleH3txt'>" +  "&nbsp;"
-                         + movie.Year + " | " + movie.Runtime +" | " + movie.Language + "</h3>" + "<br>" + ' Ratings: ' + movie.imdbRating;
+//                  const h1 = (<h1 className='styleH1txt'>{movie.Title}</h1>);
+//                  console h3 = (<h3 className='styleH3txt'>&nbsp;
+//                                                          {movie.Year});
+//                  const titlesRows = (h1 + h3);<div className='vl'></div>{movie.Runtime}<div className='vl'></div>{movie.Language}</h3>
+//                                   + <br> + 'Ratings:' + {movie.imdbRating});
+
+
+         const titlesRows = (<h1 className='styleH1txt'>{movie.Title}</h1>);
+         const titlesRows1 = (<h3 className='styleH3txt'>{movie.Year}</h3>);
+         const titlesRows3 = (<h3 className='styleH3txt'>&nbsp;|&nbsp;{movie.Runtime}</h3>);
+         const titlesRows4 = (<h3 className='styleH3txt'>&nbsp;|&nbsp;{movie.Language}</h3>);
+         //const titlesRows4 = (<h3 className='styleH3txt vl'>{movie.imdbRating}</h3>);
+
+         //<div className='vl'></div>{movie.Runtime}<div className='vl'></div>{movie.Language}</h3>);
+//         + <h3 className='styleH3txt'>&nbsp;
+//                          {movie.Year}<div className='vl'></div>{movie.Runtime}<div className='vl'></div>{movie.Language}</h3>
+//                          + <br> + 'Ratings:' + {movie.imdbRating});
 
 
 
-        const DisplayingTitles = ({data}) => (<div><pre>{ titlesRows }</pre></div>);
+         const DisplayingTitles = ({data}) => (<div>{ titlesRows }{ titlesRows1 }{ titlesRows3 }{ titlesRows4 }</div>);
 
-        ReactDOM.render(<DisplayingTitles data={ titlesRows } />, document.querySelector("#overlay .figcaption"))
-
-
-
+         ReactDOM.render(<DisplayingTitles data={ titlesRows, titlesRows1 } />, document.querySelector("#overlay .figcaption"))
+         //ReactDOM.render(<DisplayingTitles data={ titlesRows1 } />, document.querySelector("#overlay .figcaption"))
 
 
+
+
+ 
 //         document.querySelector('#overlay .figcaption').innerHTML = titlesRows;
         document.querySelector('#overlay').classList.toggle('show');
         document.body.style.overflow = 'hidden';

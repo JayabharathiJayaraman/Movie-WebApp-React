@@ -116,6 +116,7 @@
     opacity: .75;
     margin-block-start: 0;
     margin-block-end: 0;
+    float: left;
 }
 
 .rateFilm{
@@ -126,6 +127,13 @@
 }
 .h-6 {
     height: 2.5em;
+}
+
+.vl {
+    border-left: 3px solid rgb(255, 255, 255);
+    height: 20px;
+    float: left;
+    margin: 0 5px 0 5px;
 }
 
 .boxHold{
