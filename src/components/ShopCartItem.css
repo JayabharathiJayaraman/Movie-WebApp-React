@@ -76,3 +76,37 @@
   text-align: center;
   font-size: 1rem;
 }
+
+@media all and (max-width: 414px) {
+    .cartItem {
+        width: 325px;
+        height: 200px;
+        border-radius: 0rem;
+        border: 0px;
+        background-image: linear-gradient(235deg,  white, white);
+        box-shadow: 0rem 0rem rgb(224, 227, 228);       
+    } 
+    .posterCartItem{
+        height: 80%;
+        width: 80%;
+        margin-top: -15%;
+
+    }
+    .cartItemTitle{
+        margin-left: -10%;
+    
+    }
+    .cartItemPrice{
+        margin-left: -10%;
+    
+    }
+    .cartItemCount{
+        margin-left: -10%;
+    }
+    .cartItemButtons{
+        
+        display: flex;
+        flex-direction: row;
+        margin-left: -10%;
+    }
+}
