@@ -76,3 +76,34 @@
   text-align: center;
   font-size: 1rem;
 }
+@media all and (max-width: 414px) {
+    .cartItem {
+        width: 325px;
+        height: 200px;
+    } 
+    .posterCartItem{
+        height: 80%;
+        width: 50%;
+        margin-top: 15%;
+
+    }
+    .cartItemTitle{
+        margin-left: -75%;
+    }
+    .cartItemPrice{
+        margin-left: -75%;
+    
+    }
+    .cartItemPrice{
+        margin-left: -75%;
+    }
+    .cartItemCount{
+        margin-left: -75%;
+    }
+    .cartItemButtons{
+        
+        display: flex;
+        flex-direction: column;
+        margin-left: -75%;   
+    }
+}
