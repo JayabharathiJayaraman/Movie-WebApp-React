@@ -116,7 +116,7 @@ const CheckoutIcon = () => {
                             <form>
                                 <ul className="form-container">
                                     <li>
-                                        <label>Email</label>
+                                        <label className = 'email'>Email</label>
                                         <input
                                             className='emailInput'
                                             type="text"
@@ -124,7 +124,7 @@ const CheckoutIcon = () => {
                                         ></input>
                                     </li>
                                     <li>
-                                        <label>Name</label>
+                                        <label className='name'>Name</label>
                                         <input
                                             className='nameInput'
                                             type="text"
@@ -132,7 +132,7 @@ const CheckoutIcon = () => {
                                         ></input>
                                     </li>
                                     <li>
-                                        <label>Address</label>
+                                        <label className='address'>Address</label>
                                         <input
                                             className='addressInput'
                                             type="text"
