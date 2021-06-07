@@ -57,6 +57,16 @@ function NavBar(){
                 </div>
               </Link>
               </div>
+              <div className = 'nav-login'>
+                
+                <Link
+                to='/user'
+                onClick={closeMobileMenu}> 
+                <div className='nav-links-cart'>
+                <i class="fas fa-user"></i>
+                </div>
+              </Link>
+              </div>
             </div>
         </nav>
         </>
