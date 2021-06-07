@@ -57,7 +57,8 @@ const CheckoutIcon = () => {
         try {
             return (<div>
                 <ShopCartItem count={item.count} title={item.movie.Title}
-                    img={item.movie.Poster} imdb={item.movie.imdbID}
+                    img={item.movie.Poster} imdb={item.movie.imdbID} 
+                    price={item.movie.Price}
                 />
             </div>)
         } catch {
