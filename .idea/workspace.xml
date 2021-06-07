@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/HighlightedMovie.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HighlightedMovie.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/HighlightedMovie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HighlightedMovie.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/movie.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/movie.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Movie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Movie.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +69,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="comp-movie001" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

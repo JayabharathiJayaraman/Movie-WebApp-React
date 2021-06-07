@@ -25,6 +25,102 @@ const HighlightedMovie = () => {
         }
     }
 
+function Comment({ comment }) {
+      return (
+        <div
+          key={comment.id}
+          className={comment.responseTo ? "comment comment--reply" : "comment"}
+        >
+          <a href={`/user/${comment.writer}`}>{comment.writer}</a>
+          <p>{comment.content}</p>
+          {comment.responses &&
+            comment.responses.map((reply) => (
+              <Comment key={reply.id} comment={reply} />
+            ))}
+        </div>
+      );
+    }
+
+    function getThreadedComments(data) {
+      const comments = [];
+
+      for (let comment of data) {
+        if (comment.responseTo) {
+          const index = comments.findIndex((i) => i.id === comment.responseTo);
+          comments[index].responses.push(comment);
+        } else {
+          comments.push({ ...comment, responses: [] });
+        }
+      }
+      return comments;
+    }
+
+    function DisplayThisList() {
+      const data = [
+        {
+          id: 1,
+          content: "comment 1",
+          responseTo: null,
+          writer: "Max"
+        },
+        {
+          id: 2,
+          content: "comment #2, in response to Max",
+          responseTo: 1,
+          writer: "John"
+        },
+        {
+          id: 3,
+          content: "Max, that's great!",
+          responseTo: 1,
+          writer: "Peter"
+        },
+        {
+          id: 4,
+          content: "Okay, it's really impressive ;)",
+          responseTo: 1,
+          writer: "Vic"
+        },
+        {
+          id: 5,
+          content: "Great content!",
+          responseTo: null,
+          writer: "Lilly"
+        },
+        {
+          id: 6,
+          content: "comment 3",
+          responseTo: null,
+          writer: "Karl"
+        },
+        {
+          id: 7,
+          content: "Oi, Karl! This is comment 7",
+          responseTo: 6,
+          writer: "Tina"
+        },
+        {
+          id: 8,
+          content: "@Karl, just do not...",
+          responseTo: 6,
+          writer: "Chris"
+        }
+      ];
+      const comments = getThreadedComments(data);
+
+      return (
+        <div className="DisplayThisList">
+        {/*           <h2>Comments</h2> */}
+                  {comments.map((comment) => (
+                    <Comment key={comment.id} comment={comment} />
+                  ))}
+                </div>
+              );
+        }
+
+
+
+
     useEffect(() => {
         document.querySelector('#overlay').classList.add('show');
         document.body.style.overflow = 'hidden';
@@ -47,10 +143,15 @@ const HighlightedMovie = () => {
                                 <h3 className='styleH3txt'>{selectedmovie.Year}</h3>
                                 <h3 className='styleH3txt'>&nbsp;|&nbsp;{selectedmovie.Runtime}</h3>
                                 <h3 className='styleH3txt'>&nbsp;|&nbsp;{selectedmovie.Language}</h3><br/>
-                                Ratings:
-                                <StarsRating  count={5}  onChange={ratingChanged}  size={20}
-                                    value={selectedmovie.imdbRating/2}  edit={false}  color2={'#51E706'} color1={'#F8F3F1'}/>
-
+                                <div className='alignRatings'>
+                                    <div>
+                                        <h3 className='styleH3txtRate'>{selectedmovie.imdbRating}</h3>
+                                    </div>
+                                    <div className='levelRating'>
+                                        <StarsRating  count={5}  onChange={ratingChanged}  size={20}
+                                            value={selectedmovie.imdbRating/2}  edit={false}  color2={'#51E706'} color1={'#F8F3F1'}/>
+                                    </div>
+                                </div>
 
 
 {/*                                     <div className="rateInner"><DisplayingStars/></div> */}
@@ -61,7 +162,7 @@ const HighlightedMovie = () => {
                     </div>
                     <div className="bottomContainer clear">
                         <div className="bottomContTitle"><h2>Comments</h2></div>
-{/*                         <div className="commentsBody"><DisplayThisList/></div> */}
+                        <div className="commentsBody"><DisplayThisList/></div>
                         <div className="clear"></div>
                     </div>
                </div>

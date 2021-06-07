@@ -184,3 +184,18 @@
 #overlay figure figcaption {
     color: white;
 }
+
+.alignRatings{
+    display: inline-flex;
+}
+
+.levelRating{
+    margin: auto;
+}
+.simpleFloatL{
+    float: left;
+}
+
+.simpleFloatR{
+    float: Right;
+}

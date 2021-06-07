@@ -98,19 +98,18 @@ const Movie = () => {
         <>
             <div className='moviePageTitle'>
                 <Fade left cascade>
-                <p>Our Exciting Movies</p>
+                    <p>Our Exciting Movies</p>
                 </Fade>
             </div>
             <Search placeholder="SearchMovies" ></Search>
+            {openlightboxsection}
             <Fade bottom>
                 <div>
-            {openlightboxsection}
-            
-            <div className='four-columns'>
+                     <div className='four-columns'>
                 
-                {content}
-            </div>
-            </div>
+                        {content}
+                    </div>
+                 </div>
             </Fade>
             {/*<button className = 'loadMore' onClick={fetchOnePageMore}>LoadMore</button>*/}
         </>
