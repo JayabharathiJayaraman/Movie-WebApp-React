@@ -73,13 +73,14 @@ const CheckoutIcon = () => {
     const shopCart = useSelector(state => state.shopc);
     console.log('length', shopCart.length)
     const DB_KEY = uuidv4()
-    const ORDERNUMBER = uuidv4()
+    const ORDERNUMBER = uuidv5()
 
     const content = shopCart.map(item => {
         try {
             return (<div>
                 <ShopCartItem count={item.count} title={item.movie.Title}
-                    img={item.movie.Poster} imdb={item.movie.imdbID}
+                    img={item.movie.Poster} imdb={item.movie.imdbID} 
+                    price={item.movie.Price}
                 />
             </div>)
         } catch {
@@ -90,6 +91,13 @@ const CheckoutIcon = () => {
     )
     function uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+
+      function uuidv5() {
+        return 'xxxxxxxx-xxxx'.replace(/[xy]/g, function(c) {
           var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
           return v.toString(16);
         });

@@ -49,6 +49,24 @@ const Search = ({ placeholder}) => {
 
 }
 
+function addPrice(film) {
+    let price = {'Price' : 49}
+    try {
+        const YEAR = parseInt(film.Year)
+        const CURRENTYEAR = new Date().getFullYear()
+        if(YEAR > CURRENTYEAR - 2){
+            price = {'Price' : 129}
+        }else if(YEAR > CURRENTYEAR - 5){
+            price = {'Price' : 99}
+        }else{
+            price = {'Price' : 49}
+        }
+    }catch{
+        price = {'Price' : 49}
+    }
+    console.log('price', {...film, ...price})
+    return {...film, ...price}
+}
  
 async function fetchMovies(dispatch, searchWord) {
     dispatch(actions.isFetching());
@@ -64,7 +82,8 @@ async function fetchMovies(dispatch, searchWord) {
         dispatch(actions.clearMovies())
         movies.map(movie=>{
             if(movie.Poster !== "N/A"){
-                dispatch(actions.success(movie))
+                const movieToDispatch = addPrice(movie)
+                dispatch(actions.success(movieToDispatch))
             }
             //dispatch(actions.success(movie))
         })
@@ -92,7 +111,8 @@ async function fetchRestOfMovies(dispatch, searchWord, page){
         let movies = json.Search;
         movies.map(movie=>{
             if(movie.Poster !== "N/A"){
-                dispatch(actions.success(movie))
+                const movieToDispatch = addPrice(movie)
+                dispatch(actions.success(movieToDispatch))
             }
             //dispatch(actions.success(movie))
         })
