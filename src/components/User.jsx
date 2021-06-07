@@ -18,29 +18,32 @@ const User = () => {
 
     
     const [content, setContent] = useState(null)
-    const [movierating, setMovierating] = useState(5)
+    const [movierating, setMovierating] = useState(4.3)
+    
     const [moviecomment, setMoviecomment] = useState('abc')
     const currentloginuser = useSelector(state => state.login.currentuser);
     const currentusershppinghistory = useSelector(state => state.shoppinghistory.currentusershoppinghistory);
     const ratingChanged = (newRating) => {
         console.log(newRating)
         setMovierating(newRating)
+        console.log('movierating: ', movierating)
       }
+    
     useEffect(() => {
-
+        console.log('movierating first: ', movierating)
         console.log('this is my returned data from reducer', currentusershppinghistory)
-        setContent(currentusershppinghistory.map(checkout =>
+        /*setContent(currentusershppinghistory.map(checkout =>
             <div>
                 <MovieCard movie={checkout.movie} />
                 Rating:  
                 <StarsRating  count={5}  onChange={ratingChanged}  size={36}  value={5}  edit={true}  color2={'#51E706'} color1={'#F8F3F1'} />
                 comment:
-                <input    type="text" />
+                <input ref={setMoviecomment}  type="text" onChange={leaveacomment}/>
                 <button onClick={()=>{
                 shoot(checkout.movie.imdbID)
-                }} onChange={leaveacomment}>Send Rating!</button>
+                }} >Send Rating!</button>
             </div>
-        ))
+        ))*/
     }, []);
 
     function leaveacomment(val) {
@@ -50,15 +53,18 @@ const User = () => {
     }
 
 
-    function shoot(imdbID) {
-        saveuserratingtodb(imdbID)
+    function shoot(imdbID,mr) {
+        console.log('movieratingssss: ', mr)
+        console.log('moviecomment: ', moviecomment)
+        console.log('imdbID: ', imdbID)
+        saveuserratingtodb(imdbID,movierating,moviecomment)
         alert("Thank you for your rating !!");
       }
-      const saveuserratingtodb=async(imdbID)=>{
+      const saveuserratingtodb=async(imdbID,mr,mc)=>{
         db.collection("ratings").doc().set({
             imdbID: imdbID,
-            movierating: movierating,
-            usercomment: moviecomment,
+            movierating: mr,
+            usercomment: mc,
             uid: currentloginuser.uid
         })
         .then(function() {
@@ -79,7 +85,21 @@ const User = () => {
            
           <div className='four-columns'>
                 
-                {content}
+                
+                {
+                currentusershppinghistory.map(checkout =>
+            <div>
+                <MovieCard movie={checkout.movie} />
+                Rating:  
+                <StarsRating  count={5}  onChange={ratingChanged}  size={36}  value={movierating}  edit={true}  color2={'#51E706'} color1={'#F8F3F1'} />
+                comment:
+                <input ref={setMoviecomment}  type="text" onChange={leaveacomment}/>
+                <button onClick={()=>{
+                shoot(checkout.movie.imdbID,movierating)
+                }} >Send Rating!</button>
+            </div>
+        )
+        }
             </div>
         </>
     )
