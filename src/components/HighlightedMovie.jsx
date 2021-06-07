@@ -148,8 +148,8 @@ function Comment({ comment }) {
                                         <h3 className='styleH3txtRate'>{selectedmovie.imdbRating}</h3>
                                     </div>
                                     <div className='levelRating'>
-                                        <StarsRating  count={5}  onChange={ratingChanged}  size={20}
-                                            value={selectedmovie.imdbRating/2}  edit={false}  color2={'#51E706'} color1={'#F8F3F1'}/>
+                                        <StarsRating  count={5}  onChange={ratingChanged}  size={25}
+                                            value={selectedmovie.imdbRating/2}  edit={false}  color2={'#ffcc33'} color1={'#F8F3F1'}/>
                                     </div>
                                 </div>
 

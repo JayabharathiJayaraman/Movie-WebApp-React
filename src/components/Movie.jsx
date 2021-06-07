@@ -8,6 +8,7 @@ import { actionsshopcart } from '../features/shoppingcart';
 import Fade from "react-reveal/Fade";
 import Search from './Search';
 import MovieCard from './MovieCard';
+import Button from 'react-bootstrap/Button'
 
 import HighlightedMovie from './HighlightedMovie';
 
@@ -52,14 +53,14 @@ const Movie = () => {
                 <div>
                     <MovieCard movie={movie} />
                     <div className='moviecardbuttons'>
-                        <button className='moreinfobutton' onClick={() => {
+                        <button className='moreinfobutton styleButtonMov' variant="outline-secondary" onClick={() => {
                             //setShowmoreinfoforthismovie(movie)
                             fetchSpecificMovie(movie.imdbID);
                         }}>More Info</button>
-                        <button className = 'buybutton' onClick={()=>
+                        <button className = 'buybutton styleButtonMov' variant="outline-secondary" onClick={()=>
                         
                         { console.log('test info')
-                            buy(movie) }}>Buy</button>
+                            buy(movie) }}>Buy<span class="priceTag"><a href="">4.99</a></span></button>
                     </div>
                 </div>
             ))
