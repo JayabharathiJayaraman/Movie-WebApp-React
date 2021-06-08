@@ -7,7 +7,6 @@ import StarsRating from 'stars-rating';
 
 
 
-
 const HighlightedMovie = () => {
 
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
@@ -132,6 +131,10 @@ function Comment({ comment }) {
         
              <section id="overlay">
                 <div className="figure">
+                    <button id='closebutton' className="styleClose" onClick={()=>{
+                            closelightbox();}}>X
+                    </button>
+
                     <div className="topContainer">
                         <div className="imgDisp">
                             <img src={selectedmovie.Poster} alt={selectedmovie.Title}/>

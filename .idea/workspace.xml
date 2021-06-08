@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18818b1-690c-49e3-9e8b-bf645334b126" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/features/Modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HighlightedMovie.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HighlightedMovie.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HighlightedMovie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HighlightedMovie.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,19 +69,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="comp-movie001" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
