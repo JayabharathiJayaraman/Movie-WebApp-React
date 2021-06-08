@@ -28,23 +28,6 @@ const User = () => {
         setMovierating(newRating)
         console.log('movierating: ', movierating)
       }
-    
-    useEffect(() => {
-        console.log('movierating first: ', movierating)
-        console.log('this is my returned data from reducer', currentusershppinghistory)
-        /*setContent(currentusershppinghistory.map(checkout =>
-            <div>
-                <MovieCard movie={checkout.movie} />
-                Rating:  
-                <StarsRating  count={5}  onChange={ratingChanged}  size={36}  value={5}  edit={true}  color2={'#51E706'} color1={'#F8F3F1'} />
-                comment:
-                <input ref={setMoviecomment}  type="text" onChange={leaveacomment}/>
-                <button onClick={()=>{
-                shoot(checkout.movie.imdbID)
-                }} >Send Rating!</button>
-            </div>
-        ))*/
-    }, []);
 
     function leaveacomment(val) {
         console.warn(val.target.value);
@@ -76,30 +59,33 @@ const User = () => {
         });
     }
    
-
+    useEffect(() => {
+    console.log('currentusershppinghistory: ',currentusershppinghistory)
+}, []);
     
 
     return (
         <>
           
-           
+          
           <div className='four-columns'>
                 
                 
                 {
-                currentusershppinghistory.map(checkout =>
+                   
+                currentusershppinghistory.map(orders=>orders.map(order=>
             <div>
-                <MovieCard movie={checkout.movie} />
+                <MovieCard movie={order.movie} />
                 Rating:  
                 <StarsRating  count={5}  onChange={ratingChanged}  size={36}  value={movierating}  edit={true}  color2={'#51E706'} color1={'#F8F3F1'} />
                 comment:
                 <input ref={setMoviecomment}  type="text" onChange={leaveacomment}/>
                 <button onClick={()=>{
-                shoot(checkout.movie.imdbID,movierating)
+                shoot(order.movie.imdbID,movierating)
                 }} >Send Rating!</button>
             </div>
-        )
-        }
+        ))
+             }
             </div>
         </>
     )
