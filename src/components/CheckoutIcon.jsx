@@ -75,6 +75,14 @@ const CheckoutIcon = () => {
     const DB_KEY = uuidv4()
     const ORDERNUMBER = uuidv5()
 
+    function getTotalPrice(){
+        let totalPrice = 0
+        shopCart.forEach(item => {
+            totalPrice = totalPrice + (item.count * parseFloat(item.movie.Price))
+        })
+        return totalPrice
+    }  
+
     const content = shopCart.map(item => {
         try {
             return (<div>
@@ -156,7 +164,7 @@ const CheckoutIcon = () => {
                 <div className='right'>
                     <Fade right cascade>
                     <div className='checkout'>
-                        <p className='total'>Total({initialshoppingcartitemcount}items):{49.90 * initialshoppingcartitemcount}</p>
+                        <p className='total'>Total({initialshoppingcartitemcount}items):{getTotalPrice()}kr</p>  
                         <div id='checkoutDetails'>
                         <form onSubmit = {(e) => handleSubmit(e)}>
                                 <ul className="form-container">
