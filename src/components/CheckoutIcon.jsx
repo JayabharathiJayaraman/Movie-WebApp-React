@@ -1,5 +1,5 @@
 import './CheckoutIcon.css';
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ShopCartItem from './ShopCartItem'
 import { actionsshopcart } from "../features/shoppingcart";
@@ -10,6 +10,9 @@ import db from '../features/firebase';
 import { auth } from '../features/firebase';
 import { actionsLogin } from "../features/login";
 import { actionsshoppinghistory } from "../features/usershoppinghistory";
+import Login from './Login';
+import { render } from '@testing-library/react';
+import { Link, Route } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 const CheckoutIcon = () => {
@@ -20,6 +23,34 @@ const CheckoutIcon = () => {
     const [addressOrderDetails, setAddressOrderDetails] = useState(null);
     const [disabled, setDisabled] = useState(true);
     const currentloginuser = useSelector(state => state.login.currentuser);
+    const [contentt, setContent] = useState(null)
+    useEffect(() => {
+        if(!currentloginuser){
+                                                
+            setContent(
+                <Link to="/user">login and checkout</Link>
+            )                                  
+                                                
+        }else{
+           
+            setContent(
+                <button  onClick={() => {
+                    if(!currentloginuser){
+                        
+                        
+                        
+                    }else{
+                       
+                        setModalIsOpen(true)
+                    }
+                    
+                }}
+
+                    className='checkoutButton' type="submit">Checkout</button>
+                
+            ) 
+        }
+    }, []);
 
     function getEmail(val) {
         console.warn(val.target.value);
@@ -31,23 +62,7 @@ const CheckoutIcon = () => {
         }
     }
 
-    async function RegisterUser(email, password) {
-        
-        try {
-            console.log('try registering user',email + ' '+password )
-            //await auth.createUserWithEmailAndPassword(email, password)
-            const response = await auth.createUserWithEmailAndPassword(email, password);
-            const login = response.user 
-            console.log('THIS IS THE RESPONSE', login.uid);
-            dispatch(actionsLogin.login(login))
-            console.log('THIS IS THE reducer data', currentloginuser);
-
-            
-            
-        } catch {
-            console.log('error registering user')
-        }
-    }
+    
 
     function getName(val) {
         console.warn(val.target.value);
@@ -116,9 +131,9 @@ const CheckoutIcon = () => {
         db.collection("checkout").doc(DB_KEY).set({
             key: DB_KEY,
             orderNumber: ORDERNUMBER,
-            email: emailOrderDetails,
-            name: nameOrderDetails,
-            adress: addressOrderDetails,
+            email: "email",
+            name: "name",
+            address:"address",
             orders: shopCart,
             rated: false,
             timestamp: Date.now(),
@@ -127,7 +142,7 @@ const CheckoutIcon = () => {
         .then(function() {
             console.log("Document successfully written!");
             console.log('THIS IS THE reducer data', currentloginuser);
-            getUserShoppingHistoryfromDB()
+            
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
@@ -138,21 +153,12 @@ const CheckoutIcon = () => {
         setNameOrderDetails('');
         setAddressOrderDetails('');
     }
-    const getUserShoppingHistoryfromDB=async()=>{
-        const response=db.collection('checkout');
-        const data=await response.get();
-        data.docs.forEach(item=>{
-         //setBlogs([...blogs,item.data()])
-         console.log('this is my returned data from db', item.data())
-         if(item.data().uid===currentloginuser.uid){
-            dispatch(actionsshoppinghistory.addtousershoppinghistory(item.data().orders))
-         }
-        })
-    }
+    
     //const totalPrice = 
     const handleSubmit = (e) => {
         e.preventDefault();
     }
+    
     return (
         <>
             <div className='row'>
@@ -170,37 +176,11 @@ const CheckoutIcon = () => {
                         <div id='checkoutDetails'>
                         <form onSubmit = {(e) => handleSubmit(e)}>
                                 <ul className="form-container">
+                                   
                                     <li>
-                                        <label className = 'email'>Email</label>
-                                        <input
-                                            className='emailInput'
-                                            type="text"
-                                            onChange={getEmail}
-                                        ></input>
-                                    </li>
-                                    <li>
-                                        <label className='name'>Name</label>
-                                        <input
-                                            className='nameInput'
-                                            type="text"
-                                            onChange={getName}
-                                        ></input>
-                                    </li>
-                                    <li>
-                                        <label className='address'>Address</label>
-                                        <input
-                                            className='addressInput'
-                                            type="text"
-                                            onChange={getAddress}
-                                        ></input>
-                                    </li>
-                                    <li>
-                                        <button disabled = {disabled} onClick={() => {
-                                            RegisterUser(emailOrderDetails,'123456')
-                                            setModalIsOpen(true)
-                                        }}
-
-                                            className='checkoutButton' type="submit">Checkout</button>
+                                    
+                                    
+                                        {contentt}
                                     </li>
                                     
                                     <Modal isOpen={modalIsOpen} className='modal-wrapper'>

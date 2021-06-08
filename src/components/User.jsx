@@ -1,6 +1,6 @@
 import './movie.css';
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 
 import StarsRating from 'stars-rating';
 
@@ -9,14 +9,14 @@ import { actionsLogin } from "../features/login";
 
 import HighlightedMovie from './HighlightedMovie';
 import db from '../features/firebase';
-
+import { actionsshoppinghistory } from "../features/usershoppinghistory";
 
 <link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css"></link>
 
 
 const User = () => {
 
-    
+    const dispatch = useDispatch();
     const [content, setContent] = useState(null)
     const [movierating, setMovierating] = useState(4.3)
     
@@ -58,8 +58,25 @@ const User = () => {
             console.error("Error writing document: ", error);
         });
     }
+
+    const getUserShoppingHistoryfromDB=async()=>{
+        dispatch(actionsshoppinghistory.resetusershoppinghistory())
+        const response=db.collection('checkout');
+        const data=await response.get();
+        data.docs.forEach(item=>{
+         //setBlogs([...blogs,item.data()])
+         console.log('this is my returned data from db', item.data())
+         if(item.data().uid===currentloginuser.uid){
+            dispatch(actionsshoppinghistory.addtousershoppinghistory(item.data().orders))
+         }
+        })
+    }
    
     useEffect(() => {
+        getUserShoppingHistoryfromDB()
+    
+    
+
     console.log('currentusershppinghistory: ',currentusershppinghistory)
 }, []);
     

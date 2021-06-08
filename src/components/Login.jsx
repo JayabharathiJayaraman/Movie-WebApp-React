@@ -3,8 +3,14 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Modal from 'react-modal';
 import Zoom from "react-reveal/Zoom";
+import { actionsLogin } from "../features/login";
+
+import { auth } from '../features/firebase';
+
+
 
 const Login = () => {
+    const dispatch = useDispatch();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,17 +32,59 @@ const Login = () => {
         }
     }
 
+    async function RegisterUser(email, password) {
+        
+        try {
+            console.log('try registering user',email + ' '+password )
+            //await auth.createUserWithEmailAndPassword(email, password)
+            const response = await auth.createUserWithEmailAndPassword(email, password);
+            const login = response.user 
+            console.log('THIS IS THE RESPONSE', login.uid);
+            dispatch(actionsLogin.login(login))
+            console.log('THIS IS THE reducer data after register', currentloginuser);
+            if(response){
+                closeModel();
+            }
+            
+            
+        } catch {
+            console.log('error registering user')
+        }
+    }
+
+    async function LoginUser(email, password) {
+        
+        try {
+            console.log('try login user',email + ' '+password )
+            
+            const response = await auth.signInWithEmailAndPassword(email, password);
+            const login = response.user 
+            console.log('THIS IS THE RESPONSE', login.uid);
+            dispatch(actionsLogin.login(login))
+            console.log('THIS IS THE reducer data after login', currentloginuser);
+            if(response){
+                
+                closeModel();
+            }
+            
+            
+        } catch {
+            console.log('error registering user')
+        }
+    }
+
     function getPassword(val) {
         console.warn(val.target.value);
         setPassword(val.target.value);
+        
+        function closeModel(){
+            setModalIsOpen(false)
+            
+        }
+        
+        
+        return(
     }
-
-    function closeModel(){
-        setModalIsOpen(false)
-    }
-
-    
-    return(
         <>
         <div className= 'loginPage'>
         <div className ='login'>
@@ -60,13 +108,17 @@ const Login = () => {
                                     </div>
                                     <div className ='buttons'>
                                     <div>
-                                    <button type="submit">LogIn</button>
+                                    <button type="submit" onClick={() => {
+                                            LoginUser(email,password)
+                                            setModalIsOpen(true)
+                                            
+                                        }}>LogIn</button>
                                     </div>
                                     <div>
                                     <button onClick={() => {
                                             setModalIsOpen(true)
                                         }}
-                                    type="submit">SignIn</button>
+                                    type="submit">Register</button>
                                     </div>
                                     <Modal isOpen={modalIsOpen} className='reg-modal-wrapper'>
                                     <Zoom>
@@ -92,7 +144,7 @@ const Login = () => {
                                             type="text"
                                             onChange={getPassword}
                                         ></input>
-                                    </p>
+                                    </p>                                       
                                         </div>    
                                         <div className="modal-footer">
                                         <button onClick={closeModel} className="registerButton">Register</button>
