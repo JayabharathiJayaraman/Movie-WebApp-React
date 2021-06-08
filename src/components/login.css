@@ -1,0 +1,78 @@
+.emailInput, .passwordInput {
+    width: 150%;
+    padding: 2%;
+  }
+  .email, .password{
+    font-size: 1.3rem;
+    
+  }
+.loginPage{
+    min-height: 450px; 
+}
+  .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter";
+    padding: 20px;
+    width: 400px;
+    height: 200px;
+    padding: 3%;
+    border: 1px solid black;
+    background-image: linear-gradient(315deg,  rgb(181, 215, 226), rgb(5, 51, 66));
+    box-shadow: 0.1rem 0.2rem rgb(70, 69, 69);
+    margin: 3%;
+    margin-left: 30%;
+    margin-top: 10%;
+}
+.login-form{
+    display: flex;
+    flex-direction: column;
+    margin-right: 40%;
+}
+.registerDetails{
+    display: flex;
+    flex-direction: column;
+    margin-right: 40%;
+}
+  input {
+    border: 0.1rem #c0c0c0 solid;
+  }
+
+  button{
+    height: 30px;
+    width: 90px;
+    box-shadow: 0.1rem 0.2rem rgb(70, 69, 69);
+    text-align: center;
+    font-size: 1rem;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    margin-left: 24%;
+  
+}
+.reg-modal-wrapper{
+    color: black;
+    width: 50%;
+    height: 50%;
+    transform: translate(10%, 50%);
+    background: #fff;
+    box-shadow: 0.1rem 0.2rem rgb(70, 69, 69);
+    width: 80%;
+    max-width: 800px;
+    margin: 4rem auto;
+    transition: all .5s ease;
+  }
+  .close{
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-image: linear-gradient(315deg,  rgb(181, 215, 226), rgb(5, 51, 66));
+  }
+  .registerDetails p{
+    font-size: 1rem;
+    background: #eee;
+    color: #333;
+    padding: 1rem;
+  }

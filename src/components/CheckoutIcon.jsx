@@ -140,6 +140,9 @@ const CheckoutIcon = () => {
         })
     }
     //const totalPrice = 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
     return (
         <>
             <div className='row'>
@@ -155,7 +158,7 @@ const CheckoutIcon = () => {
                     <div className='checkout'>
                         <p className='total'>Total({initialshoppingcartitemcount}items):{49.90 * initialshoppingcartitemcount}</p>
                         <div id='checkoutDetails'>
-                            <form>
+                        <form onSubmit = {(e) => handleSubmit(e)}>
                                 <ul className="form-container">
                                     <li>
                                         <label className = 'email'>Email</label>

@@ -45,6 +45,7 @@
   }
   .emailInput, .nameInput, .addressInput{
     width: 150%;
+    padding:2%
   }
   
   .form-container {
