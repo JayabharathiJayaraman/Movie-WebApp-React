@@ -6,7 +6,8 @@ import Zoom from "react-reveal/Zoom";
 import { actionsLogin } from "../features/login";
 
 import { auth } from '../features/firebase';
-import CheckoutIcon from './CheckoutIcon';
+
+
 
 const Login = () => {
     const dispatch = useDispatch();

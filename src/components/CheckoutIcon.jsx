@@ -1,5 +1,5 @@
 import './CheckoutIcon.css';
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import ShopCartItem from './ShopCartItem'
 import { actionsshopcart } from "../features/shoppingcart";
@@ -10,6 +10,9 @@ import db from '../features/firebase';
 import { auth } from '../features/firebase';
 import { actionsLogin } from "../features/login";
 import { actionsshoppinghistory } from "../features/usershoppinghistory";
+import Login from './Login';
+import { render } from '@testing-library/react';
+import { Link, Route } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 const CheckoutIcon = () => {
@@ -20,6 +23,34 @@ const CheckoutIcon = () => {
     const [addressOrderDetails, setAddressOrderDetails] = useState(null);
     const [disabled, setDisabled] = useState(true);
     const currentloginuser = useSelector(state => state.login.currentuser);
+    const [contentt, setContent] = useState(null)
+    useEffect(() => {
+        if(!currentloginuser){
+                                                
+            setContent(
+                <Link to="/user">login and checkout</Link>
+            )                                  
+                                                
+        }else{
+           
+            setContent(
+                <button  onClick={() => {
+                    if(!currentloginuser){
+                        
+                        
+                        
+                    }else{
+                       
+                        setModalIsOpen(true)
+                    }
+                    
+                }}
+
+                    className='checkoutButton' type="submit">Checkout</button>
+                
+            ) 
+        }
+    }, []);
 
     function getEmail(val) {
         console.warn(val.target.value);
@@ -101,7 +132,8 @@ const CheckoutIcon = () => {
             key: DB_KEY,
             orderNumber: ORDERNUMBER,
             email: "email",
-            name: "name",            
+            name: "name",
+            address:"address",
             orders: shopCart,
             rated: false,
             timestamp: Date.now(),
@@ -136,6 +168,7 @@ const CheckoutIcon = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
     }
+    
     return (
         <>
             <div className='row'>
@@ -155,12 +188,9 @@ const CheckoutIcon = () => {
                                 <ul className="form-container">
                                    
                                     <li>
-                                        <button  onClick={() => {
-                                           
-                                            setModalIsOpen(true)
-                                        }}
-
-                                            className='checkoutButton' type="submit">Checkout</button>
+                                    
+                                    
+                                        {contentt}
                                     </li>
                                     
                                     <Modal isOpen={modalIsOpen} className='modal-wrapper'>

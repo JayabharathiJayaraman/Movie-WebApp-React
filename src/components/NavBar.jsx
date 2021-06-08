@@ -47,6 +47,7 @@ function NavBar(){
               </Link>
             </li>
             <li className='nav-item'>
+
                 <Link
                 to='/user'
                 className='nav-links'
@@ -54,6 +55,16 @@ function NavBar(){
                 <button>LogIn
                 <i class="fas fa-user"></i>
                 </button>
+                
+              </Link>
+              </li>
+              <li className='nav-item'>
+              
+                <Link
+                to='/orderhistory'
+                className='nav-links'
+                onClick={closeMobileMenu}> 
+                customer Orders
                 
               </Link>
               </li>
