@@ -7,8 +7,10 @@ import CheckoutIcon from './components/CheckoutIcon'
 import Footer from './components/Footer';
 import User from './components/User';
 import Login from './components/Login'
+import { useSelector } from "react-redux";
 
 function App() {
+  const currentloginuser = useSelector(state => state.login.currentuser);
   return (
     <div className="App">
       <header className="App-header">
@@ -27,7 +29,10 @@ function App() {
           <CheckoutIcon></CheckoutIcon>
           </Route>
           <Route exact path = '/user'>
-          <Login></Login>
+          {currentloginuser ? <CheckoutIcon/> : <Login/>}
+          </Route>
+          <Route exact path = '/orderhistory'>
+          {currentloginuser ? <User/> : <Login/>}
           </Route>
       </Switch>
       <Footer></Footer>
