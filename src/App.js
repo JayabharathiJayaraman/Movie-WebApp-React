@@ -5,9 +5,8 @@ import Home from './components/Home';
 import Movie from './components/Movie';
 import CheckoutIcon from './components/CheckoutIcon'
 import Footer from './components/Footer';
-import User from './components/User'
-
-
+import User from './components/User';
+import Login from './components/Login'
 
 function App() {
   return (
@@ -28,7 +27,7 @@ function App() {
           <CheckoutIcon></CheckoutIcon>
           </Route>
           <Route exact path = '/user'>
-          <User></User>
+          <Login></Login>
           </Route>
       </Switch>
       <Footer></Footer>
