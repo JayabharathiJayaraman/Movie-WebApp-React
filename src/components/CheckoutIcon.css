@@ -37,7 +37,7 @@
     margin-top: -10%;
     font-size: x-large;
     color: rgb(5, 51, 66);
- 
+    text-shadow: 1px 1px honeydew;
 }
 #checkoutDetails {
     margin-top: 30%;
@@ -132,6 +132,10 @@
 .modal-footer p{
   color:green;
   margin-left: 35%;
+}
+.loginCheckout{
+  font-size: 1.2rem;
+  color: rgb(5, 51, 66);
 }
 @media all and (max-width: 414px) {
   .row {  

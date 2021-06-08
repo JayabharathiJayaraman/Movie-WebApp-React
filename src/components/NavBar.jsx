@@ -52,7 +52,7 @@ function NavBar(){
                 to='/orderhistory'
                 className='nav-links'
                 onClick={closeMobileMenu}> 
-                customer Orders
+                Customer Orders
                 
               </Link>
               </li>

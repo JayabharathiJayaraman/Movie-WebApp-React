@@ -19,6 +19,7 @@
   height: 25em;
 }
 
+
 .moive__des{
   color: tomato;
   margin-left: 5%;
@@ -117,6 +118,10 @@ position: absolute;
 .box   {
   margin-left: 15%;
 }
+.moreinfobutton{
+  height: 32px;
+  padding-top: 0px;
+}
 }
 
 @media all and (max-width: 768px) {
@@ -146,10 +151,12 @@ p{
 .buybutton{
   width: 50px;
   border-radius: 10%;
+  padding: 0%;
 }
 .moreinfobutton{
   width: 50px;
   border-radius: 10%;
+  padding: 0%;
 }
 #movierating{
   background-color: rgb(133, 196, 51);
