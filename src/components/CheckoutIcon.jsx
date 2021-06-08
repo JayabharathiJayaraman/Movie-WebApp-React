@@ -31,23 +31,7 @@ const CheckoutIcon = () => {
         }
     }
 
-    async function RegisterUser(email, password) {
-        
-        try {
-            console.log('try registering user',email + ' '+password )
-            //await auth.createUserWithEmailAndPassword(email, password)
-            const response = await auth.createUserWithEmailAndPassword(email, password);
-            const login = response.user 
-            console.log('THIS IS THE RESPONSE', login.uid);
-            dispatch(actionsLogin.login(login))
-            console.log('THIS IS THE reducer data', currentloginuser);
-
-            
-            
-        } catch {
-            console.log('error registering user')
-        }
-    }
+    
 
     function getName(val) {
         console.warn(val.target.value);
@@ -116,9 +100,8 @@ const CheckoutIcon = () => {
         db.collection("checkout").doc(DB_KEY).set({
             key: DB_KEY,
             orderNumber: ORDERNUMBER,
-            email: emailOrderDetails,
-            name: nameOrderDetails,
-            adress: addressOrderDetails,
+            email: "email",
+            name: "name",            
             orders: shopCart,
             rated: false,
             timestamp: Date.now(),
@@ -170,33 +153,10 @@ const CheckoutIcon = () => {
                         <div id='checkoutDetails'>
                         <form onSubmit = {(e) => handleSubmit(e)}>
                                 <ul className="form-container">
+                                   
                                     <li>
-                                        <label className = 'email'>Email</label>
-                                        <input
-                                            className='emailInput'
-                                            type="text"
-                                            onChange={getEmail}
-                                        ></input>
-                                    </li>
-                                    <li>
-                                        <label className='name'>Name</label>
-                                        <input
-                                            className='nameInput'
-                                            type="text"
-                                            onChange={getName}
-                                        ></input>
-                                    </li>
-                                    <li>
-                                        <label className='address'>Address</label>
-                                        <input
-                                            className='addressInput'
-                                            type="text"
-                                            onChange={getAddress}
-                                        ></input>
-                                    </li>
-                                    <li>
-                                        <button disabled = {disabled} onClick={() => {
-                                            RegisterUser(emailOrderDetails,'123456')
+                                        <button  onClick={() => {
+                                           
                                             setModalIsOpen(true)
                                         }}
 
