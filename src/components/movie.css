@@ -1,121 +1,157 @@
 .moviePageTitle{
-    color: tomato;
-    font-size: 2rem;
-    font-weight: bold;
-    font-style: italic;
-    display: flex;
+  color: tomato;
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+  display: flex;
 }
 .four-columns{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);    
-    grid-row-gap: 0px;
-    margin-top: 1%;
-  }
-  
-  .poster{
-    width: 75%;
-    height:75%;
-    margin-left: 5%;
-
-  }
-  .moive__des{
-    color: tomato;
-    margin-left: 5%;
-    font-size: 1.2rem;
-  }
-
-  #overlay {
-    position: fixed;
-    width: 100vw;
-    height: 92vh;
-    background: rgba(0, 0, 0, .8);
-    display: none;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);    
+  grid-row-gap: 0px;
+  margin-top: 1%;
+  text-align: center;
 }
 
+.poster{
+  object-fit: revert;
+  width: 20em;
+  height: 25em;
+}
+
+.moive__des{
+  color: tomato;
+  margin-left: 5%;
+  font-size: 1.2rem;
+}
+
+
+    /*float: left;
+    width:  100px;
+    height: 100px;
+    object-fit: cover;*/
+
+
+
+/* Pausing this style 0706
+#overlay {
+  position: fixed;
+  width: 100vw;
+  height: 92vh;
+  background: rgba(0, 0, 0, .8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
 #overlay.show {
-    display: flex;
+  display: flex;
 }
-
 #overlay figure button {
-  position: absolute;
-  
-}
+position: absolute;
 
+}
 #overlay figure {
-    max-width: 50rem;
-    display: inline-flex;
+  max-width: 50rem;
+  display: inline-flex;
 }
-
 #overlay figure img {
-    width: 100%;
+  width: 100%;
 }
-
 #overlay figure figcaption {
-    color: white;
-}
+  color: white;
+}*/
+
+
+
+
+
+
+
+
+
 
 /*.loadMore{
-    color:white;
-    margin-left: 45%;
-    margin-bottom: 2%;
-    background-color: tomato;
-  }*/
+  color:white;
+  margin-left: 45%;
+  margin-bottom: 2%;
+  background-color: tomato;
+}*/
+/*
+.buybutton{
+  color:white;
+  margin-left: -10%;
+  margin-bottom: 15%;
+  margin-top: 3%;
+  background-color: tomato;
+  width: 50px;
+  border-radius: 10%;
+}*/
+/*  .moreinfobutton{
+  color:white;
+  margin-left: 42%;
+  margin-bottom: 15%;
+  margin-top: 3%;
+  background-color: tomato;
+  width: 73px;
+  border-radius: 10%;
+}*/
 
-  .buybutton{
-    color:white;
-    margin-left: -10%;
-    margin-bottom: 15%;
-    margin-top: 3%;
-    background-color: tomato;
-    width: 50px;
-    border-radius: 10%;
-  }
-  .moreinfobutton{
-    color:white;
-    margin-left: 42%;
-    margin-bottom: 15%;
-    margin-top: 3%;
-    background-color: tomato;
-    width: 73px;
-    border-radius: 10%;
-  }
-  .moviecardbuttons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    
+.styleButtonMov{
+  width: 30%;
+  height: 30px;
+  margin: 20px;
 }
+
+.moviecardbuttons {
+  margin:20px;
+}
+
+/*
+.moviecardbuttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  
+}
+*/
 @media all and (max-width: 960px) {
-  .box   {
-    margin-left: 15%;
+.box   {
+  margin-left: 15%;
 }
 }
+
+@media all and (max-width: 768px) {
+.box   {
+  margin-left: 15%;
+}
+}
+
 @media all and (max-width: 414px) {
-  .box   {
-      margin-left: 5%;
-  }
-  p{
-      margin-left: 5%;    
-  }
-  .poster{
-    margin-top: 15%;
-  }
-  .four-columns{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);    
-    grid-row-gap: 0px;
-    margin-top: 1%;
-  }
-  .buybutton{
-    width: 50px;
-    border-radius: 10%;
-  }
-  .moreinfobutton{
-    width: 50px;
-    border-radius: 10%;
-  }
-  #movierating{
-    background-color: rgb(133, 196, 51);
-  }
- }
+.box   {
+    margin-left: 5%;
+}
+p{
+    margin-left: 5%;    
+}
+.poster{
+  margin-top: 15%;
+  width: 10em;
+  height: 15em;
+}
+.four-columns{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);    
+  grid-row-gap: 0px;
+  margin-top: 1%;
+}
+.buybutton{
+  width: 50px;
+  border-radius: 10%;
+}
+.moreinfobutton{
+  width: 50px;
+  border-radius: 10%;
+}
+#movierating{
+  background-color: rgb(133, 196, 51);
+}
+}
