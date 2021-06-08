@@ -169,9 +169,6 @@ Body{
   margin-left: 0.5rem;
 }
 
-[aria-hidden="true"]  { display: none; }
-[aria-hidden="false"] { display: block; }
-
 #overlay.show {
     display: flex;
 }
