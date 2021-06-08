@@ -60,7 +60,8 @@ const Movie = () => {
                         <button className = 'buybutton styleButtonMov' variant="outline-secondary" onClick={()=>
                         
                         { console.log('test info')
-                            buy(movie) }}>Buy<span class="priceTag"><a href="">4.99</a></span></button>
+
+                            buy(movie) }}>Buy<span class="priceTag"><a href="">{movie.Price}</a></span></button>
                     </div>
                 </div>
             ))
@@ -115,6 +116,24 @@ const Movie = () => {
             {/*<button className = 'loadMore' onClick={fetchOnePageMore}>LoadMore</button>*/}
         </>
     )
+    function addPrice(film) {
+        let price = {'Price' : 49}
+        try {
+            const YEAR = parseInt(film.Year)
+            const CURRENTYEAR = new Date().getFullYear()
+            if(YEAR > CURRENTYEAR - 2){
+                price = {'Price' : 129}
+            }else if(YEAR > CURRENTYEAR - 5){
+                price = {'Price' : 99}
+            }else{
+                price = {'Price' : 49}
+            }
+        }catch{
+            price = {'Price' : 49}
+        }
+        console.log('price', {...film, ...price})
+        return {...film, ...price}
+    }
 
     async function fetchMovies() {
         dispatch(actions.isFetching());
@@ -126,7 +145,8 @@ const Movie = () => {
             let movies = json.Search;
             movies.map(movie => {
                 if(movie.Poster !== 'N/A'){
-                    dispatch(actions.success(movie))
+                    const movieToDispatch = addPrice(movie)
+                    dispatch(actions.success(movieToDispatch))
                 }
                 
             })
@@ -154,7 +174,8 @@ const Movie = () => {
             let movies = json.Search;
             movies.map(movie => {
                 if(movie.Poster !== 'N/A'){
-                dispatch(actions.success(movie))
+                    const movieToDispatch = addPrice(movie)
+                    dispatch(actions.success(movieToDispatch))
                 }
             })
             //dispatch(actions.success(movies))
