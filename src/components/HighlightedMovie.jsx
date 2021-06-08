@@ -152,8 +152,6 @@ function Comment({ comment }) {
                                             value={selectedmovie.imdbRating/2}  edit={false}  color2={'#ffcc33'} color1={'#F8F3F1'}/>
                                     </div>
                                 </div>
-
-
 {/*                                     <div className="rateInner"><DisplayingStars/></div> */}
                                 </div>
 
