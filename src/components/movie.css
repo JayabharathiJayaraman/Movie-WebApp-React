@@ -10,30 +10,20 @@
     grid-template-columns: repeat(4,1fr);    
     grid-row-gap: 0px;
     margin-top: 1%;
-    text-align: center;
   }
   
   .poster{
-    object-fit: revert;
-    width: 20em;
-    height: 25em;
-  }
+    width: 75%;
+    height:75%;
+    margin-left: 5%;
 
+  }
   .moive__des{
     color: tomato;
     margin-left: 5%;
     font-size: 1.2rem;
   }
 
-
-      /*float: left;
-      width:  100px;
-      height: 100px;
-      object-fit: cover;*/
-
-
-
-/* Pausing this style 0706
   #overlay {
     position: fixed;
     width: 100vw;
@@ -64,16 +54,7 @@
 
 #overlay figure figcaption {
     color: white;
-}*/
-
-
-
-
-
-
-
-
-
+}
 
 /*.loadMore{
     color:white;
@@ -81,7 +62,7 @@
     margin-bottom: 2%;
     background-color: tomato;
   }*/
-/*
+
   .buybutton{
     color:white;
     margin-left: -10%;
@@ -90,8 +71,8 @@
     background-color: tomato;
     width: 50px;
     border-radius: 10%;
-  }*/
-/*  .moreinfobutton{
+  }
+  .moreinfobutton{
     color:white;
     margin-left: 42%;
     margin-bottom: 15%;
@@ -99,37 +80,17 @@
     background-color: tomato;
     width: 73px;
     border-radius: 10%;
-  }*/
-
-.styleButtonMov{
-    width: 30%;
-    height: 30px;
-    margin: 20px;
-}
-
-.moviecardbuttons {
-    margin:20px;
-}
-
-/*
-.moviecardbuttons {
+  }
+  .moviecardbuttons {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     
 }
-*/
 @media all and (max-width: 960px) {
   .box   {
     margin-left: 15%;
 }
 }
-
-@media all and (max-width: 768px) {
-  .box   {
-    margin-left: 15%;
-}
-}
-
 @media all and (max-width: 414px) {
   .box   {
       margin-left: 5%;
@@ -139,8 +100,6 @@
   }
   .poster{
     margin-top: 15%;
-    width: 10em;
-    height: 15em;
   }
   .four-columns{
     display: grid;

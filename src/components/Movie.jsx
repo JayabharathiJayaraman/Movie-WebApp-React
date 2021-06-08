@@ -61,7 +61,7 @@ const Movie = () => {
                         
                         { console.log('test info')
 
-                            buy(movie) }}>Buy<span class="priceTag"><a href="">{movie.Price}</a></span></button>
+                            buy(movie) }}>Buy<span class="priceTag">&nbsp;{movie.Price}kr</span></button>
                     </div>
                 </div>
             ))
@@ -108,7 +108,6 @@ const Movie = () => {
             <Fade bottom>
                 <div>
                      <div className='four-columns'>
-                
                         {content}
                     </div>
                  </div>

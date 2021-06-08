@@ -128,7 +128,6 @@
       transform: translate(-100%, 60%);
       font-size: 1.8rem;
       cursor: pointer;
-      margin-top: 3%;
     }
   
     .fa-times {
@@ -155,6 +154,13 @@
       background: #fff;
       color: #242424;
       transition: 250ms;
+    }
+    nav .nav-cart span{
+      transform: translate(2200%, 60%);
+    }
+    .nav-links-cart{
+      transform: translate(525%, 60%);
+      margin-bottom: 20%;
     }
   }
   @media all and (max-width: 414px) {

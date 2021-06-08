@@ -43,17 +43,17 @@ const Login = () => {
             <form className='login-form' onSubmit = {(e) => handleSubmit(e)}>
                                 <ul>
                                     <div>
-                                        <label className = 'email'>Email</label>
+                                        <label className = 'loginEmail'>Email</label>
                                         <input
-                                            className='emailInput'
+                                            className='loginEmailInput'
                                             type="text"
                                             onChange={getEmail}
                                         ></input>
                                     </div>
                                     <div>
-                                        <label className='password'>Password</label>
+                                        <label className='loginPassword'>Password</label>
                                         <input
-                                            className='passwordInput'
+                                            className='loginPasswordInput'
                                             type="text"
                                             onChange={getPassword}
                                         ></input>
@@ -93,13 +93,9 @@ const Login = () => {
                                             onChange={getPassword}
                                         ></input>
                                     </p>
-                                    <div className ='buttons'>
-                                    <button type="submit">Register</button>
-                                    </div>                
                                         </div>    
                                         <div className="modal-footer">
-                                        
-                                        <button onClick={closeModel} className="btn-close">Close</button>
+                                        <button onClick={closeModel} className="registerButton">Register</button>
                                         </div>
                                         </Zoom>
                                     </Modal>
