@@ -47,6 +47,16 @@ function NavBar(){
               </Link>
             </li>
             <li className='nav-item'>
+              
+                <Link
+                to='/orderhistory'
+                className='nav-links'
+                onClick={closeMobileMenu}> 
+                customer Orders
+                
+              </Link>
+              </li>
+            <li className='nav-item'>
 
                 <Link
                 to='/user'
@@ -58,16 +68,7 @@ function NavBar(){
                 
               </Link>
               </li>
-              <li className='nav-item'>
               
-                <Link
-                to='/orderhistory'
-                className='nav-links'
-                onClick={closeMobileMenu}> 
-                customer Orders
-                
-              </Link>
-              </li>
               </ul>
               <div className = 'nav-cart'>
                 <span>{initialshoppingcartitemcount}</span>

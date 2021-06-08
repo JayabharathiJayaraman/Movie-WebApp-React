@@ -142,7 +142,7 @@ const CheckoutIcon = () => {
         .then(function() {
             console.log("Document successfully written!");
             console.log('THIS IS THE reducer data', currentloginuser);
-            getUserShoppingHistoryfromDB()
+            
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
@@ -153,17 +153,7 @@ const CheckoutIcon = () => {
         setNameOrderDetails('');
         setAddressOrderDetails('');
     }
-    const getUserShoppingHistoryfromDB=async()=>{
-        const response=db.collection('checkout');
-        const data=await response.get();
-        data.docs.forEach(item=>{
-         //setBlogs([...blogs,item.data()])
-         console.log('this is my returned data from db', item.data())
-         if(item.data().uid===currentloginuser.uid){
-            dispatch(actionsshoppinghistory.addtousershoppinghistory(item.data().orders))
-         }
-        })
-    }
+    
     //const totalPrice = 
     const handleSubmit = (e) => {
         e.preventDefault();
