@@ -123,6 +123,13 @@
     margin-left: 15%;
 }
 }
+
+@media all and (max-width: 768px) {
+  .box   {
+    margin-left: 15%;
+}
+}
+
 @media all and (max-width: 414px) {
   .box   {
       margin-left: 5%;
@@ -132,6 +139,8 @@
   }
   .poster{
     margin-top: 15%;
+    width: 10em;
+    height: 15em;
   }
   .four-columns{
     display: grid;
