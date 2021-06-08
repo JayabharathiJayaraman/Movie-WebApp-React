@@ -144,7 +144,9 @@ const CheckoutIcon = () => {
         data.docs.forEach(item=>{
          //setBlogs([...blogs,item.data()])
          console.log('this is my returned data from db', item.data())
-         dispatch(actionsshoppinghistory.addtousershoppinghistory(item.data().orders))
+         if(item.data().uid===currentloginuser.uid){
+            dispatch(actionsshoppinghistory.addtousershoppinghistory(item.data().orders))
+         }
         })
     }
     //const totalPrice = 
