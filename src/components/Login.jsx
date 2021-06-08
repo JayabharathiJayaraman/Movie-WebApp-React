@@ -76,7 +76,7 @@ const Login = () => {
     function getPassword(val) {
         console.warn(val.target.value);
         setPassword(val.target.value);
-        
+    }   
         function closeModel(){
             setModalIsOpen(false)
             
@@ -84,7 +84,7 @@ const Login = () => {
         
         
         return(
-    }
+    
         <>
         <div className= 'loginPage'>
         <div className ='login'>
