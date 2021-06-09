@@ -145,6 +145,7 @@ const Login = () => {
                                             type="text"
                                             onChange={handleChange}
                                         ></input>
+                                        {errors.email && <p className='emailError'>{errors.email}</p>}
                                          
                                     </p>
                                     <p>
@@ -154,11 +155,12 @@ const Login = () => {
                                             type="password"
                                             onChange={handleChange}
                                         ></input>
-                                         
+                                         {errors.password && <p className='passwordError'>{errors.password}</p>}
                                     </p>                                       
                                         </div>    
                                         <div className="modal-footer">
                                         <button onClick={() => {
+                                            showError()
                                           RegisterUser(values)
                                           console.log('values', values);
                                     
