@@ -1,7 +1,7 @@
 .emailInput, .passwordInput {
     width: 150%;
     padding: 2%;
-    margin-left: 35%;
+    margin-left: 30%;
   }
   .loginEmailInput, .loginPasswordInput {
     width: 150%;
@@ -14,7 +14,7 @@
   }
   .email, .password{
     font-size: 1.3rem;
-    margin-left: 35%;
+    margin-left: 30%;
   }
 .loginPage{
     min-height: 450px; 
@@ -28,7 +28,7 @@
     padding: 20px;
     width: 400px;
     height: 200px;
-    padding: 3%;
+    padding: 5%;
     border: 1px solid black;
     background-image: linear-gradient(315deg,  rgb(181, 215, 226), rgb(5, 51, 66));
     box-shadow: 0.1rem 0.2rem rgb(70, 69, 69);
@@ -65,8 +65,8 @@
 }
 .reg-modal-wrapper{
     color: black;
-    width: 40%;
-    height: 50%;
+    width: 44%;
+    height: 67%;
     transform: translate(1%, 20%);
     background: #fff;
     border: 1px solid black;
@@ -86,7 +86,15 @@
     cursor: pointer;
     margin-right: 50%;
   }
-
+.emailError, .passwordError{
+    color: red;
+    margin-left: 5%;
+}
+.registerEmailError, .registerPasswordError{
+    color: red;
+    margin-left: 30%;
+    margin-top: 1%;
+}
   @media all and (max-width: 414px) {
   .email, .name, .address{
     font-size: 1.5rem;

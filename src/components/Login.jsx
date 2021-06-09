@@ -4,17 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from 'react-modal';
 import Zoom from "react-reveal/Zoom";
 import { actionsLogin } from "../features/login";
-
 import { auth } from '../features/firebase';
+import Validation from './Validation'
 
 
 
 const Login = () => {
     const dispatch = useDispatch();
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [values, setValues] = useState({
+        email:"",
+        password:"",
+    });
+    
     const [disabled, setDisabled] = useState(true);
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [error, setError] = useState({});
+
     const currentloginuser = useSelector(state => state.login.currentuser);
 
     const handleSubmit = (e) => {
@@ -24,12 +31,21 @@ const Login = () => {
 
     function getEmail(val) {
         console.warn(val.target.value);
-        setEmail(val.target.value);
+        setValues({
+            ...values,
+            [val.target.name] : val.target.value,
+        });
+
         if(val.target.value.length != null){
             setDisabled(false);
         } else{
             setDisabled(true);
         }
+    }
+    function showEmailError(){
+        setEmailError(Validation(values.email));
+        setPasswordError(Validation(values.password));
+        
     }
 
     async function RegisterUser(email, password) {
@@ -75,7 +91,11 @@ const Login = () => {
 
     function getPassword(val) {
         console.warn(val.target.value);
-        setPassword(val.target.value);
+        setValues({
+            ...values,
+            [val.target.name] : val.target.value,
+        });
+        
     }   
         function closeModel(){
             setModalIsOpen(false)
@@ -95,23 +115,27 @@ const Login = () => {
                                         <input
                                             className='loginEmailInput'
                                             type="text"
+                                            name="email"
                                             onChange={getEmail}
                                         ></input>
+                                        {emailError.email && <p className='emailError'>{emailError.email}</p>}
                                     </div>
                                     <div>
                                         <label className='loginPassword'>Password</label>
                                         <input
                                             className='loginPasswordInput'
-                                            type="text"
+                                            type="password"
+                                            name="password"
                                             onChange={getPassword}
                                         ></input>
+                                        {passwordError.password && <p className='passwordError'>{passwordError.password}</p>}
                                     </div>
                                     <div className ='buttons'>
                                     <div>
                                     <button type="submit" onClick={() => {
-                                            LoginUser(email,password)
-                                            setModalIsOpen(true)
-                                            
+                                            LoginUser(values.email,values.password)
+                                            showEmailError()
+                                          
                                         }}>LogIn</button>
                                     </div>
                                     <div>
@@ -136,18 +160,23 @@ const Login = () => {
                                             type="text"
                                             onChange={getEmail}
                                         ></input>
+                                         
                                     </p>
                                     <p>
                                         <label className='password'>Password</label>
                                         <input
                                             className='passwordInput'
-                                            type="text"
+                                            type="password"
                                             onChange={getPassword}
                                         ></input>
+                                         
                                     </p>                                       
                                         </div>    
                                         <div className="modal-footer">
-                                        <button onClick={closeModel} className="registerButton">Register</button>
+                                        <button onClick={() => {
+                                         
+                                        }}
+                                            className="registerButton">Register</button>
                                         </div>
                                         </Zoom>
                                     </Modal>
