@@ -37,15 +37,18 @@ const GetComments = () =>  {
     return (
         <div>
         {comments.map((comment)=>(
-            <div>
-            <div className='levelRating'><StarsRating  count={5}   size={25} 
-                value= {4} edit={false} 
-                color2={'#ffcc33'} color1={'#F8F3F1'}/></div>
+            <div className='comment'>
+            Comment:
+                <div className='commentRating'> 
+                    <StarsRating  count={5}   size={25} 
+                        value= {4} edit={false} 
+                        color2={'#ffcc33'} color1={'#F8F3F1'}/>
+                </div>
             <h3 >{comment.usercomment}</h3>
-            {comment.movierating}
+           Rating: {comment.movierating}
             </div>
         ))}
-        <h4>{comments.length}</h4>
+       
         </div>
     )
 
