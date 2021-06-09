@@ -131,6 +131,14 @@ position: absolute;
 }
 
 @media all and (max-width: 414px) {
+
+  .moviePageTitle{
+    color: tomato;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-style: italic;
+    display: flex;
+  }
 .box   {
     margin-left: 5%;
 }
