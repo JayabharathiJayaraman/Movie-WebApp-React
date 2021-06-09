@@ -89,7 +89,8 @@ const Movie = () => {
             console.log('open this movie : ', movie);
             //setContent(<HighlightedMovie imdbID={imdbID}/>)
             
-            setOpenlightboxsection(<HighlightedMovie/>)
+            setOpenlightboxsection(<HighlightedMovie goBack = {() => 
+            setOpenlightboxsection(null)}/>)
             
         } catch {
             dispatch(actionsh.failure());

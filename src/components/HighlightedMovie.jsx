@@ -7,7 +7,7 @@ import GetComments from './GetComments';
 
 
 
-const HighlightedMovie = () => {
+const HighlightedMovie = ({goBack}) => {
 
     const selectedmovie = useSelector(state => state.highlightmovie.selectedmovie);
     const ratingChanged = (newRating) => {
@@ -15,6 +15,7 @@ const HighlightedMovie = () => {
       }
     
     function closelightbox(){
+        goBack()
         var elm = document.querySelector('#overlay #closebutton');
         if (elm) {
             elm.addEventListener('click', () => {
