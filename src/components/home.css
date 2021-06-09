@@ -17,5 +17,7 @@
     }
 }
 @media all and (max-width: 960px) {
-   
+   .movieParagarph{
+    min-height: 390px;
+   }
   }

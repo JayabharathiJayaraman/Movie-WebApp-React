@@ -31,7 +31,7 @@ function App() {
           <Route exact path = '/user'>
           {currentloginuser ? <CheckoutIcon/> : <Login/>}
           </Route>
-          <Route exact path = '/orderhistory'>
+          <Route exact path = '/customerorders'>
           {currentloginuser ? <User/> : <Login/>}
           </Route>
       </Switch>

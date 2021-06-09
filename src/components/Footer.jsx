@@ -13,6 +13,9 @@ function Footer() {
             <div class='footer-link-items'>
               <Link to='/movie'>Movie</Link>
             </div>
+            <div class='footer-link-items'>
+              <Link to='/customerorders'>CustomerOrders</Link>
+            </div>
           </div>
         </div>
         <section class='social-media'>

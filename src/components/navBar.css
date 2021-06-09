@@ -125,7 +125,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      transform: translate(-100%, 60%);
+      transform: translate(-100%, 80%);
       font-size: 1.8rem;
       cursor: pointer;
     }
@@ -156,10 +156,10 @@
       transition: 250ms;
     }
     nav .nav-cart span{
-      transform: translate(2200%, 60%);
+      transform: translate(2150%, 80%);
     }
     .nav-links-cart{
-      transform: translate(525%, 60%);
+      transform: translate(510%, 50%);
       margin-bottom: 20%;
     }
   }
