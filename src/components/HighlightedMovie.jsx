@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import './HighlightedMovie.css'
 import StarsRating from 'stars-rating';
-
+import GetComments from './GetComments';
 
 
 
@@ -163,7 +163,7 @@ function Comment({ comment }) {
                     </div>
                     <div className="bottomContainer clear">
                         <div className="bottomContTitle"><h2>Comments</h2></div>
-                        <div className="commentsBody"><DisplayThisList/></div>
+                        <div className="commentsBody"><GetComments imdb={selectedmovie.imdbID}/></div>
                         <div className="clear"></div>
                     </div>
                </div>
