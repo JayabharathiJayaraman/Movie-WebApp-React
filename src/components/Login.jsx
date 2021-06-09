@@ -10,6 +10,7 @@ import Validation from './Validation'
 
 
 const Login = () => {
+
     const dispatch = useDispatch();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [values, setValues] = useState({
@@ -18,34 +19,25 @@ const Login = () => {
     });
     
     const [disabled, setDisabled] = useState(true);
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
-    const [error, setError] = useState({});
+    const [errors, setErrors] = useState({});
 
     const currentloginuser = useSelector(state => state.login.currentuser);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
     }
     
-
-    function getEmail(val) {
-        console.warn(val.target.value);
+    const handleChange = (event) => {
         setValues({
             ...values,
-            [val.target.name] : val.target.value,
+            [event.target.name] : event.target.value,
+            
         });
-
-        if(val.target.value.length != null){
-            setDisabled(false);
-        } else{
-            setDisabled(true);
-        }
-    }
-    function showEmailError(){
-        setEmailError(Validation(values.email));
-        setPasswordError(Validation(values.password));
-        
+    };
+    
+    function showError(){
+        setErrors(Validation(values));
     }
 
     async function RegisterUser(email, password) {
@@ -89,17 +81,9 @@ const Login = () => {
         }
     }
 
-    function getPassword(val) {
-        console.warn(val.target.value);
-        setValues({
-            ...values,
-            [val.target.name] : val.target.value,
-        });
-        
-    }   
+    
         function closeModel(){
-            setModalIsOpen(false)
-            
+            setModalIsOpen(false)        
         }
         
         
@@ -116,9 +100,10 @@ const Login = () => {
                                             className='loginEmailInput'
                                             type="text"
                                             name="email"
-                                            onChange={getEmail}
+                                            value={values.email}
+                                            onChange={handleChange}
                                         ></input>
-                                        {emailError.email && <p className='emailError'>{emailError.email}</p>}
+                                        {errors.email && <p className='emailError'>{errors.email}</p>}
                                     </div>
                                     <div>
                                         <label className='loginPassword'>Password</label>
@@ -126,16 +111,16 @@ const Login = () => {
                                             className='loginPasswordInput'
                                             type="password"
                                             name="password"
-                                            onChange={getPassword}
+                                            value={values.password}
+                                            onChange={handleChange}
                                         ></input>
-                                        {passwordError.password && <p className='passwordError'>{passwordError.password}</p>}
+                                        {errors.password && <p className='passwordError'>{errors.password}</p>}
                                     </div>
                                     <div className ='buttons'>
                                     <div>
                                     <button type="submit" onClick={() => {
                                             LoginUser(values.email,values.password)
-                                            showEmailError()
-                                          
+                                            showError()
                                         }}>LogIn</button>
                                     </div>
                                     <div>
@@ -158,7 +143,7 @@ const Login = () => {
                                         <input
                                             className='emailInput'
                                             type="text"
-                                            onChange={getEmail}
+                                            onChange={handleChange}
                                         ></input>
                                          
                                     </p>
@@ -167,14 +152,16 @@ const Login = () => {
                                         <input
                                             className='passwordInput'
                                             type="password"
-                                            onChange={getPassword}
+                                            onChange={handleChange}
                                         ></input>
                                          
                                     </p>                                       
                                         </div>    
                                         <div className="modal-footer">
                                         <button onClick={() => {
-                                         
+                                          RegisterUser(values)
+                                          console.log('values', values);
+                                    
                                         }}
                                             className="registerButton">Register</button>
                                         </div>

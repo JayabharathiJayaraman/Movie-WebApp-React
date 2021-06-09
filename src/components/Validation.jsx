@@ -1,10 +1,10 @@
-const Validation = (email, password) => {
+const Validation = (values) => {
 
     let errors = {};
-    if(!email){
+    if(!values.email){
         errors.email="Email is required."
     }
-    if(!password){
+    if(!values.password){
         errors.password="Password is required."
     }
     return errors;
