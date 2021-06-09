@@ -16,3 +16,8 @@
         font-size: 1.6rem;
     }
 }
+@media all and (max-width: 960px) {
+   .movieParagarph{
+    min-height: 390px;
+   }
+  }

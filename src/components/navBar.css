@@ -125,10 +125,9 @@
       position: absolute;
       top: 0;
       right: 0;
-      transform: translate(-100%, 60%);
+      transform: translate(-100%, 80%);
       font-size: 1.8rem;
       cursor: pointer;
-      margin-top: 3%;
     }
   
     .fa-times {
@@ -155,6 +154,13 @@
       background: #fff;
       color: #242424;
       transition: 250ms;
+    }
+    nav .nav-cart span{
+      transform: translate(2150%, 80%);
+    }
+    .nav-links-cart{
+      transform: translate(510%, 50%);
+      margin-bottom: 20%;
     }
   }
   @media all and (max-width: 414px) {

@@ -11,25 +11,22 @@
     margin: 3%;
 }
 .cartItemPrice{
-    margin-top: -20%;
-    color: rgb(80, 97, 100);
+    color: rgb(5, 51, 66);
     text-shadow: 1px 1px honeydew;
-    margin-left: -50%;
+    margin-left: -25%;
     margin-bottom: 60%;
 }
 .cartItemTitle {
     font-size: x-large;
-    margin-top: -20%;
-    margin-bottom: 20%;
-    color: rgb(80, 97, 100);
+    color: rgb(5, 51, 66);
     text-shadow: 1px 1px honeydew;
-    margin-left: -50%;
+    margin-left: -25%;
 }
 .cartItemCount{
     margin-top: -60%;
-    color: rgb(80, 97, 100);
+    color: rgb(5, 51, 66);
     text-shadow: 1px 1px honeydew;
-    margin-left: -50%;
+    margin-left: -25%;
     
 }
 
@@ -50,8 +47,8 @@
     margin-top: 10%;
     display: flex;
     flex-direction: row;
-    margin-left: -55%;   
-    margin-bottom: 30%;
+    margin-left: -30%;   
+    margin-bottom: 10%;
 }
 .posterCartItem {
     height: 100%;

@@ -76,32 +76,32 @@ const Login = () => {
     function getPassword(val) {
         console.warn(val.target.value);
         setPassword(val.target.value);
-    }
-
-    function closeModel(){
-        setModalIsOpen(false)
+    }   
+        function closeModel(){
+            setModalIsOpen(false)
+            
+        }
         
-    }
-
+        
+        return(
     
-    return(
         <>
         <div className= 'loginPage'>
         <div className ='login'>
             <form className='login-form' onSubmit = {(e) => handleSubmit(e)}>
                                 <ul>
                                     <div>
-                                        <label className = 'email'>Email</label>
+                                        <label className = 'loginEmail'>Email</label>
                                         <input
-                                            className='emailInput'
+                                            className='loginEmailInput'
                                             type="text"
                                             onChange={getEmail}
                                         ></input>
                                     </div>
                                     <div>
-                                        <label className='password'>Password</label>
+                                        <label className='loginPassword'>Password</label>
                                         <input
-                                            className='passwordInput'
+                                            className='loginPasswordInput'
                                             type="text"
                                             onChange={getPassword}
                                         ></input>
@@ -144,17 +144,10 @@ const Login = () => {
                                             type="text"
                                             onChange={getPassword}
                                         ></input>
-                                    </p>
-                                    <div className ='buttons'>
-                                    <button type="submit" onClick={() => {
-                                            RegisterUser(email,password)
-                                            setModalIsOpen(true)
-                                        }}>Register</button>
-                                    </div>                
+                                    </p>                                       
                                         </div>    
                                         <div className="modal-footer">
-                                        
-                                        <button onClick={closeModel} className="btn-close">Close</button>
+                                        <button onClick={closeModel} className="registerButton">Register</button>
                                         </div>
                                         </Zoom>
                                     </Modal>

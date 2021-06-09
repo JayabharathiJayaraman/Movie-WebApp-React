@@ -49,10 +49,10 @@ function NavBar(){
             <li className='nav-item'>
               
                 <Link
-                to='/orderhistory'
+                to='/customerorders'
                 className='nav-links'
                 onClick={closeMobileMenu}> 
-                customer Orders
+                Customer Orders
                 
               </Link>
               </li>
