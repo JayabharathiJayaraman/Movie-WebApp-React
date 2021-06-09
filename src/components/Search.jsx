@@ -23,17 +23,19 @@ const Search = ({ placeholder}) => {
     return (
         <>
         <Fade right cascade>
-        <div className='ui search'>
-            <div className='box'>
-                <i class="fas fa-search"></i>
-                <input type='search'
-                    className='search'
-                    placeholder={placeholder}
-                    onChange={handleChange}
-                    onKeyDown={handleKeyDown}
-                />
-                <button onClick={() => 
-                fetchMovies(dispatch, searchMovie)}>Search</button>
+        <div className='ui search searchParent'>
+            <div className='addResp'>
+                <div className='box responsiveStyling'>
+                    <i class="fas fa-search"></i>
+                    <input type='search'
+                        className='search'
+                        placeholder={placeholder}
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}
+                    />
+                    <button className='buttonResp' onClick={() =>
+                    fetchMovies(dispatch, searchMovie)}>Search</button>
+                </div>
             </div>
         </div>
         </Fade>

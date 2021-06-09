@@ -1,15 +1,18 @@
-.box{
-    width: 700px;
-    height: 5px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    margin-left: 25%;
+@media screen and (min-width: 1281px){
+    .box{
+        width: 700px;
+        height: 5px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        margin-left: 25%;
     }
-    .box > i{
+}
+
+.box > i{
         font-size: 20px;
         color: #777;
     }
@@ -35,3 +38,63 @@
             margin-left: 35%;    
         }
        }
+
+
+
+/*Responsive*/
+
+@media screen and (min-width: 401px) and (max-width: 720px) {
+    .responsiveStyling{
+        overflow: hidden;
+    }
+
+    .buttonResp{
+        /* uncomment if wishes to have
+        position: absolute;*/
+        display: none;
+        right: 0;
+        top: 0;
+        margin-right: 50px;
+    }
+
+    .box{
+        height: 5px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        margin-left: 25%;
+    }
+
+
+}
+
+
+@media screen and (min-width: 721px) and (max-width: 1280px) {
+
+    .responsiveStyling{
+        max-width: 100%;
+    }
+
+    .box{
+        max-width: 100% !important;
+        height: 5px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .searchParent{
+        width: 70%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+
+
+}

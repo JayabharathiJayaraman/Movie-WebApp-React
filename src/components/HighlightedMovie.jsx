@@ -132,7 +132,7 @@ function Comment({ comment }) {
              <section id="overlay">
                 <div className="figure">
                     <button id='closebutton' className="styleClose" onClick={()=>{
-                            closelightbox();}}>X
+                            closelightbox();}}><a>X</a>
                     </button>
 
                     <div className="topContainer">
