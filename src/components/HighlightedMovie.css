@@ -213,3 +213,27 @@
     line-height: 0px;
     padding: 20px 15px;
 }
+@media all and (max-width: 414px) {
+    .figure {
+        width: 80%;
+    }
+ 
+    .highlightedPoster{
+        width: 150%;
+        height: 150%;
+    }
+    .sideContainer {
+        float: left;
+        width: 60%;
+        margin-left: -5%;
+    }
+    .styleH1txt{
+        margin-left: 30%;
+        margin-top: -50%;
+    }
+    .styleH3txt{
+        margin-left: 30%;
+    }
+    
+    
+}
