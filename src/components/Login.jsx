@@ -94,7 +94,7 @@ const Login = () => {
                                         <label className = 'loginEmail'>Email</label>
                                         <input
                                             className='loginEmailInput'
-                                            type="text"
+                                            type="email"
                                             onChange={getEmail}
                                         ></input>
                                     </div>
@@ -102,7 +102,7 @@ const Login = () => {
                                         <label className='loginPassword'>Password</label>
                                         <input
                                             className='loginPasswordInput'
-                                            type="text"
+                                            type="password"
                                             onChange={getPassword}
                                         ></input>
                                     </div>
@@ -133,7 +133,7 @@ const Login = () => {
                                         <label className = 'email'>Email</label>
                                         <input
                                             className='emailInput'
-                                            type="text"
+                                            type="email"
                                             onChange={getEmail}
                                         ></input>
                                     </p>
@@ -141,7 +141,7 @@ const Login = () => {
                                         <label className='password'>Password</label>
                                         <input
                                             className='passwordInput'
-                                            type="text"
+                                            type="password"
                                             onChange={getPassword}
                                         ></input>
                                     </p>                                       

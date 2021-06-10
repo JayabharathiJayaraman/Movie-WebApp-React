@@ -5,7 +5,7 @@ import Home from './components/Home';
 import Movie from './components/Movie';
 import CheckoutIcon from './components/CheckoutIcon'
 import Footer from './components/Footer';
-import User from './components/User';
+import CustomerOrders from './components/CustomerOrders';
 import Login from './components/Login'
 import { useSelector } from "react-redux";
 
@@ -28,11 +28,11 @@ function App() {
           <Route exact path = '/checkoutIcon'>
           <CheckoutIcon></CheckoutIcon>
           </Route>
-          <Route exact path = '/user'>
+          <Route exact path = '/userLogIn'>
           {currentloginuser ? <CheckoutIcon/> : <Login/>}
           </Route>
           <Route exact path = '/customerorders'>
-          {currentloginuser ? <User/> : <Login/>}
+          {currentloginuser ? <CustomerOrders/> : <Login/>}
           </Route>
       </Switch>
       <Footer></Footer>

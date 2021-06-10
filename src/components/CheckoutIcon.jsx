@@ -43,7 +43,7 @@ const CheckoutIcon = () => {
                        
                         setModalIsOpen(true)
                     }
-                    
+                    getEmail()
                 }}
 
                     className='checkoutButton' type="submit">Checkout</button>
@@ -52,14 +52,9 @@ const CheckoutIcon = () => {
         }
     }, []);
 
-    function getEmail(val) {
-        console.warn(val.target.value);
-        setEmailOrderDetails(val.target.value);
-        if(val.target.value.length != null){
-            setDisabled(false);
-        } else{
-            setDisabled(true);
-        }
+    function getEmail() {
+        setEmailOrderDetails(currentloginuser.email);
+        console.log('getemail', emailOrderDetails);
     }
 
     
@@ -149,9 +144,6 @@ const CheckoutIcon = () => {
         });
         dispatch(actionsshopcart.clearCart())
         setModalIsOpen(false)
-        setEmailOrderDetails('');
-        setNameOrderDetails('');
-        setAddressOrderDetails('');
     }
     
     //const totalPrice = 
@@ -193,10 +185,8 @@ const CheckoutIcon = () => {
                                             </div>
                                         <div className='orderDetails'>
                                             <h3>Your order has been placed</h3>
-                                            <p>Ordernumber: {ORDERNUMBER}</p>
-                                            <p>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{emailOrderDetails}</p>
-                                            <p>Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{nameOrderDetails}</p>
-                                            <p>Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {addressOrderDetails}</p>
+                                            <p className = 'ordernum'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ordernumber:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ORDERNUMBER}</p>
+                                            <p className = 'orderemail'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{emailOrderDetails}</p>
                                         </div>    
                                         <div className="modal-footer">
                                             <p>Thankyou for ordering!</p>
