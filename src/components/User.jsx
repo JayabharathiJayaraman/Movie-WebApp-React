@@ -79,6 +79,14 @@ const User = () => {
 
     console.log('currentusershppinghistory: ',currentusershppinghistory)
 }, []);
+
+useEffect(() => {
+    getUserShoppingHistoryfromDB()
+
+
+
+console.log('currentusershppinghistory: ',currentusershppinghistory)
+}, []);
     
 
     return (
@@ -99,7 +107,7 @@ const User = () => {
                 <input ref={setMoviecomment}  type="text" onChange={leaveacomment}/>
                 <button onClick={()=>{
                 shoot(order.movie.imdbID,movierating)
-                }} >Send Rating!</button>
+                }} >Send!</button>
             </div>
         ))
              }

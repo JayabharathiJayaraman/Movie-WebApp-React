@@ -3,6 +3,8 @@ import StarsRating from 'stars-rating';
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+<link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css"></link>
+
 const GetComments = () =>  {
 
 
@@ -11,6 +13,10 @@ const GetComments = () =>  {
     const [loading, setLoading] = useState(false)
     
     const ref = db.collection("ratings")
+    const ratingChanged = (newRating) => {
+        console.log(newRating)
+        
+      }
     
     function getComments() {
         setLoading(true)
@@ -36,16 +42,13 @@ const GetComments = () =>  {
     }
     return (
         <div>
+            
         {comments.map((comment)=>(
             <div className='comment'>
-            Comment:
-                <div className='commentRating'> 
-                    <StarsRating  count={5}   size={25} 
-                        value= {4} edit={false} 
-                        color2={'#ffcc33'} color1={'#F8F3F1'}/>
-                </div>
+            <div className='stars'>
+            <StarsRating  count={5} onChange={ratingChanged}   size={26}  value={comment.movierating}  edit={false}  color2={'#51E706'} color1={'#F8F3F1'} />
+            </div>
             <h3 >{comment.usercomment}</h3>
-           Rating: {comment.movierating}
             </div>
         ))}
        
