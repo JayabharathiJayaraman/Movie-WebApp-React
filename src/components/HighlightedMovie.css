@@ -14,6 +14,7 @@ Body{
 
 #overlay.show {
     display: flex;
+    overflow: scroll;
 }
 
 #overlay {
@@ -26,6 +27,7 @@ Body{
     justify-content: center;
     align-items: center;
     z-index:999;
+    overflow: scroll;
 }
 
 
@@ -307,6 +309,7 @@ Body{
         width: 60%;
         height: auto;
         background-color: rgb(255, 166, 0);
+        margin: auto;
     /*    overflow: hidden;*/
     }
 
@@ -530,6 +533,7 @@ Body{
         width: 60%;
         height: auto;
         background-color: rgb(255, 166, 0);
+        margin: auto;
     /*    overflow: hidden;*/
     }
 
@@ -753,6 +757,7 @@ Body{
         width: 60%;
         height: auto;
         background-color: rgb(255, 166, 0);
+        margin: auto;
     /*    overflow: hidden;*/
     }
 
@@ -974,6 +979,7 @@ Body{
         width: 60%;
         height: auto;
         background-color: rgb(255, 166, 0);
+        margin: auto;
     /*    overflow: hidden;*/
     }
 
@@ -1197,6 +1203,7 @@ Body{
         width: 60%;
         height: auto;
         background-color: rgb(255, 166, 0);
+        margin: auto;
     /*    overflow: hidden;*/
     }
 
@@ -1351,6 +1358,7 @@ Body{
 
     #overlay.show {
         display: flex;
+        overflow: scroll;
     }
 
     #overlay {
@@ -1363,6 +1371,7 @@ Body{
         justify-content: center;
         align-items: center;
         z-index:999;
+        overflow: scroll;
     }
 
 
@@ -1420,6 +1429,7 @@ Body{
         width: 60%;
         height: auto;
         background-color: rgb(255, 166, 0);
+        margin: auto;
     /*    overflow: hidden;*/
     }
 
