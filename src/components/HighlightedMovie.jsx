@@ -55,7 +55,7 @@ const HighlightedMovie = ({goBack}) => {
                                 <h3 className='styleH3txt'>&nbsp;|&nbsp;{selectedmovie.Language}</h3><br/>
                                 <div className='alignRatings'>
                                     <div>
-                                        <h3 className='styleH3txtRate'>{selectedmovie.imdbRating}</h3>
+                                        <h3 className='styleH3txtRate'>{selectedmovie.imdbRating/2}</h3>
                                     </div>
                                     <div className='levelRating'>
                                         <StarsRating  count={5}  onChange={ratingChanged}  size={25}

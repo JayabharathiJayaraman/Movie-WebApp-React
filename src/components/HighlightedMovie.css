@@ -32,7 +32,9 @@
     clear:both;
     line-height:0;
 }
-
+.clear .stars{
+    line-height:1;
+}
 .topContainer{
     display: block;
     width: 100%;
