@@ -1,26 +1,63 @@
 .rating{
     margin-right: 8%;
-    margin-left: 10%;
+    margin-left: 6%;
     
 }
 .comment{
     margin-right: 8%;
-    margin-left: 7%;
     
+    margin-top: -7%;  
 }
 .commentInput{
-    width: 80%;
+    width: 50%;
     height: 40%;
     margin-left: -2%;
-    margin-top: 7%;
+    margin-top: 1%;
     
 }
 .sendRating{
-    width: 150%;
-    margin-left: 25%;   
+    width: 30%;
+    margin-left: -25%;   
     padding: 0%;
+    margin-top: -5%;
+}
+.starsRating{
+    margin-top: 1%;  
 }
 .column{
     display: flex;
     flex-direction: column;
+}
+@media all and (max-width: 414px) {
+    .rating{
+ 
+        margin-left: 3%;
+        
+    }
+    .comment{
+        margin-left: -4%;
+        margin-top: -4%;
+        
+    }
+    .commentInput{
+        width: 80%;
+        height: 40%;
+        margin-left: 5%;
+        margin-top: -10%;
+        margin-bottom: 5%;  
+    }
+    .sendRating{
+        width: 52%;
+        margin-left: 1%;   
+        padding: 0%;
+        margin-top: -10%;  
+    }
+    .starsRating{
+        margin-left: 3%; 
+        margin-top: -4%;  
+    }
+    .customerOrders{
+        margin-left: -10%;    
+        
+    }
 }

@@ -53,11 +53,11 @@ const Movie = () => {
                 <div>
                     <MovieCard movie={movie}  />
                     <div className='moviecardbuttons'>
-                        <button className='styleButtonMov' variant="outline-secondary" onClick={() => {
+                        <button className='infoButton' variant="outline-secondary" onClick={() => {
                             //setShowmoreinfoforthismovie(movie)
                             fetchSpecificMovie(movie.imdbID);
                         }}>Info</button>
-                        <button className = 'styleButtonMov' variant="outline-secondary" onClick={()=>
+                        <button className = 'buyButton' variant="outline-secondary" onClick={()=>
                         
                         { console.log('test info')
 

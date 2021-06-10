@@ -18,7 +18,8 @@
   .bottom-right {
     position: absolute;
     bottom: 1em;
-    right: 2em;
+    font-size: x-large;
+    right: 1.5em;
   }
 
   

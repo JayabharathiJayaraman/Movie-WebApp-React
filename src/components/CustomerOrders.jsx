@@ -86,8 +86,7 @@ const CustomerOrders = () => {
           <div className='four-columns'>          
                 {   
                 currentusershppinghistory.map(orders=>orders.map(order=>
-            <div>
-                
+                <div className = 'customerOrders'>
                 <MovieCard movie={order.movie} />
                 <div className = 'row'>
                 <p className = 'rating'>Rating:  </p>
@@ -96,13 +95,14 @@ const CustomerOrders = () => {
                 <div className = 'row'>
                 <div className = 'column'>
                 <p className = 'comment'>Comment:</p>
+                </div>
+                <input className = 'commentInput' ref={setMoviecomment}  type="text" onChange={leaveacomment}/>
+                </div>
                 <button className = 'sendRating' onClick={()=>{
                 shoot(order.movie.imdbID,movierating)
                 }} >Send Rating!</button>
                 
-                </div>
-                <input className = 'commentInput' ref={setMoviecomment}  type="text" onChange={leaveacomment}/>
-                </div>
+                
                 
             </div>
         ))

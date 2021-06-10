@@ -29,10 +29,15 @@
 }
 
 
-.styleButtonMov{
-  width: 30%;
+.infoButton{
+  width: 15%;
   height: 30px;
-  margin: 20px;
+  margin: 10px;
+  margin-left: -40%;
+}
+.buyButton{
+  width: 15%;
+  height: 30px;
 }
 
 .moviecardbuttons {
@@ -119,15 +124,15 @@ p{
   display: flex;
   flex-direction: row;
 }
-.buybutton{
-  width: 70px;
-  border-radius: 10%;
-  padding: 0%;
+.buyButton{
+  width: 25%;
+  height: 30px;
 }
-.moreinfobutton{
-  width: 70px;
-  border-radius: 10%;
-  padding: 0%;
+.infoButton{
+  width: 25%;
+  height: 30px;
+  margin: 10px;
+  margin-left: 10%;
 }
 #movierating{
   background-color: rgb(133, 196, 51);

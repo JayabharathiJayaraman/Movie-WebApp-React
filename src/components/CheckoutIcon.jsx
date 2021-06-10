@@ -28,7 +28,7 @@ const CheckoutIcon = () => {
         if(!currentloginuser){
                                                 
             setContent(
-                <Link className='loginCheckout' to="/user">Login and Checkout</Link>
+                <Link className='loginCheckout' to="/userLogIn">Login and Checkout</Link>
             )                                  
                                                 
         }else{
