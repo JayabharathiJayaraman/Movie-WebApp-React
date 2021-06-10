@@ -145,8 +145,11 @@
       flex-direction: row;
       margin-left: -10%;      
     }
+    .footer-links {
+      margin-left: 90%;
+    }
   }
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 414px) {
     .footer-links {
       margin-left: 50%;
     }
