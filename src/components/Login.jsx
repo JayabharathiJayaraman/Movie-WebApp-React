@@ -94,7 +94,7 @@ const Login = () => {
                                         <label className = 'loginEmail'>Email</label>
                                         <input
                                             className='loginEmailInput'
-                                            type="text"
+                                            type="email"
                                             onChange={getEmail}
                                         ></input>
                                     </div>
@@ -102,7 +102,7 @@ const Login = () => {
                                         <label className='loginPassword'>Password</label>
                                         <input
                                             className='loginPasswordInput'
-                                            type="text"
+                                            type="password"
                                             onChange={getPassword}
                                         ></input>
                                     </div>
@@ -110,7 +110,7 @@ const Login = () => {
                                     <div>
                                     <button type="submit" onClick={() => {
                                             LoginUser(email,password)
-                                            setModalIsOpen(true)
+                                        
                                             
                                         }}>LogIn</button>
                                     </div>
@@ -133,7 +133,7 @@ const Login = () => {
                                         <label className = 'email'>Email</label>
                                         <input
                                             className='emailInput'
-                                            type="text"
+                                            type="email"
                                             onChange={getEmail}
                                         ></input>
                                     </p>
@@ -141,13 +141,17 @@ const Login = () => {
                                         <label className='password'>Password</label>
                                         <input
                                             className='passwordInput'
-                                            type="text"
+                                            type="password"
                                             onChange={getPassword}
                                         ></input>
                                     </p>                                       
                                         </div>    
                                         <div className="modal-footer">
-                                        <button onClick={closeModel} className="registerButton">Register</button>
+                                        <button onClick = {() => {
+                                            RegisterUser(email,password)
+                                            closeModel()
+                                        }}
+                                            className="registerButton">Register</button>
                                         </div>
                                         </Zoom>
                                     </Modal>

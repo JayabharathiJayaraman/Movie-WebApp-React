@@ -1,9 +1,11 @@
 import './navBar.css';
 import React , {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { actionsLogin } from "../features/login";
+import { useDispatch, useSelector } from "react-redux";
 
 function NavBar(){
+  const currentloginuser = useSelector(state => state.login.currentuser);
   //const value = useSelector(state => state.shopc[1].count);
   let initialshoppingcartitemcount=0
   const value = useSelector(state => state.shopc.map(cartItem=>{
@@ -20,7 +22,12 @@ function NavBar(){
   
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+    const dispatch = useDispatch();
 
+    function logOut(){
+      console.log('logout');
+      dispatch(actionsLogin.logout());
+    }
     return(
         <>
         <nav className = "navbar">
@@ -59,10 +66,11 @@ function NavBar(){
             <li className='nav-item'>
 
                 <Link
-                to='/user'
+                to='/userLogIn'
                 className='nav-links'
                 onClick={closeMobileMenu}> 
-                <button>LogIn
+                <button onClick = {logOut}>
+                { currentloginuser ? 'LogOut' : 'LogIn'}
                 <i class="fas fa-user"></i>
                 </button>
                 

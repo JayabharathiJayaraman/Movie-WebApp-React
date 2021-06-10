@@ -14,9 +14,9 @@ const reducerlogin = createReducer(initialState, {
         currentuser: action.payload
     }),
 
-    [logout]: (state) => {
-        state.currentuser = null;
-    }
+    [logout]: (state,action) => ({
+        currentuser : null
+    })
 
 })
 
