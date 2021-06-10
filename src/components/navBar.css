@@ -162,15 +162,17 @@
   @media all and (max-width: 414px) {
   .navbarLogo {
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.160rem;
     margin-left: -10%;
-    margin-top: 3%;
+    margin-top: 8%;
+    
   }
   nav .nav-cart span{
     transform: translate(760%, 60%);
+    
   }
   .nav-links-cart{
-    transform: translate(180%, 60%);
+    transform: translate(-10%, -10%);
     margin-bottom: 30%;
     margin-right:20%;
     margin-left: 10%;

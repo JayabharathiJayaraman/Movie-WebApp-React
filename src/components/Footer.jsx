@@ -22,7 +22,7 @@ function Footer() {
           <div class='social-media-wrap'>
             <div class='footer-logo'>
               <Link to='/' className='social-logo'>
-              Movies WebbShop
+              Movie WebbShop
               </Link>
             </div>
             <small class='website-rights'>Movie © 2020</small>
