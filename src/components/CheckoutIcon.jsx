@@ -185,8 +185,8 @@ const CheckoutIcon = () => {
                                             </div>
                                         <div className='orderDetails'>
                                             <h3>Your order has been placed</h3>
-                                            <p className = 'ordernum'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ordernumber:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ORDERNUMBER}</p>
-                                            <p className = 'orderemail'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{emailOrderDetails}</p>
+                                            <p className = 'ordernum'><b>Ordernumber:</b> {ORDERNUMBER}</p>
+                                            <p className = 'orderemail'><b>Email:</b>{emailOrderDetails}</p>
                                         </div>    
                                         <div className="modal-footer">
                                             <p>Thankyou for ordering!</p>
