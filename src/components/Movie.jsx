@@ -56,7 +56,7 @@ const Movie = () => {
                         <button className='moreinfobutton styleButtonMov' variant="outline-secondary" onClick={() => {
                             //setShowmoreinfoforthismovie(movie)
                             fetchSpecificMovie(movie.imdbID);
-                        }}>More Info</button>
+                        }}>Info</button>
                         <button className = 'buybutton styleButtonMov' variant="outline-secondary" onClick={()=>
                         
                         { console.log('test info')
