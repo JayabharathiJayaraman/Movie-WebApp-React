@@ -221,6 +221,7 @@ Body{
 /*Responsive*/
 
 @media screen and (max-width: 320px) {
+
     Body{
      background-color: rgb(247, 189, 199);
     }
@@ -288,14 +289,14 @@ Body{
 
     .imgDisp {
         float: left;
-        width: 40%;
-        margin: 10px;
+        width: 100%;
+        margin: 0px;
         text-align: center;
     }
 
     .sideContainer {
         float: left;
-        width: 40%;
+        width: 100%;
     }
     .titlesDisp {
         text-align: center;
@@ -310,7 +311,7 @@ Body{
     }
 
     .figcaption{
-        margin-top: 100px;
+        margin-top: 0px;
     }
 
     .styleH1txt{
@@ -511,14 +512,14 @@ Body{
 
     .imgDisp {
         float: left;
-        width: 40%;
-        margin: 10px;
+        width: 100%;
+        margin: 0px;
         text-align: center;
     }
 
     .sideContainer {
         float: left;
-        width: 40%;
+        width: 100%;
     }
     .titlesDisp {
         text-align: center;
@@ -533,7 +534,7 @@ Body{
     }
 
     .figcaption{
-        margin-top: 100px;
+        margin-top: 0px;
     }
 
     .styleH1txt{
@@ -734,14 +735,14 @@ Body{
 
     .imgDisp {
         float: left;
-        width: 40%;
-        margin: 10px;
+        width: 100%;
+        margin: 0px;
         text-align: center;
     }
 
     .sideContainer {
         float: left;
-        width: 40%;
+        width: 100%;
     }
     .titlesDisp {
         text-align: center;
@@ -756,7 +757,7 @@ Body{
     }
 
     .figcaption{
-        margin-top: 100px;
+        margin-top: 0px;
     }
 
     .styleH1txt{
@@ -955,15 +956,14 @@ Body{
     }
 
     .imgDisp {
-        float: left;
-        width: 40%;
-        margin: 10px;
+        width: 100%;
+        margin: 0px;
         text-align: center;
     }
 
     .sideContainer {
         float: left;
-        width: 40%;
+        width: 100%;
     }
     .titlesDisp {
         text-align: center;
@@ -978,7 +978,7 @@ Body{
     }
 
     .figcaption{
-        margin-top: 100px;
+        margin-top: 0px;
     }
 
     .styleH1txt{

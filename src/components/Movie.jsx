@@ -9,6 +9,8 @@ import Fade from "react-reveal/Fade";
 import Search from './Search';
 import MovieCard from './MovieCard';
 import Button from 'react-bootstrap/Button'
+import { AiOutlineShopping } from "react-icons/ai";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 import HighlightedMovie from './HighlightedMovie';
 
@@ -52,16 +54,16 @@ const Movie = () => {
             setContent(movies.map(movie =>
                 <div>
                     <MovieCard movie={movie} />
-                    <div className='moviecardbuttons'>
+                    <div className='moviecardbuttons rowTwoButtons'>
                         <button className='moreinfobutton styleButtonMov' variant="outline-secondary" onClick={() => {
                             //setShowmoreinfoforthismovie(movie)
                             fetchSpecificMovie(movie.imdbID);
-                        }}>More Info</button>
+                        }}><a className='responsiveTagInfoNone'>More Info</a><a className='responsiveTagInfo'><AiOutlineInfoCircle/></a></button>
                         <button className = 'buybutton styleButtonMov' variant="outline-secondary" onClick={()=>
                         
                         { console.log('test info')
 
-                            buy(movie) }}>Buy<span class="priceTag"><a href="">{movie.Price}</a></span></button>
+                            buy(movie) }}><a className='responsiveTagBuyNone'>Buy</a><a className='responsiveTagBuy'><AiOutlineShopping/></a><span class="priceTag"><a href="" style={{textDecoration:'none'}}>{movie.Price}</a></span></button>
                     </div>
                 </div>
             ))

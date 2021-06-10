@@ -137,7 +137,8 @@ function Comment({ comment }) {
 
                     <div className="topContainer">
                         <div className="imgDisp">
-                            <img src={selectedmovie.Poster} alt={selectedmovie.Title}/>
+                            {/* <img src={selectedmovie.Poster} alt={selectedmovie.Title}/> */}
+                            <img className="poster" srcset={selectedmovie.Poster} alt={selectedmovie.Title}/>
                         </div>
                         <div className="sideContainer">
                             <div className="titlesDisp">

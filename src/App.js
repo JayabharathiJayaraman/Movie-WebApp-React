@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       </header>
-      <main>
+      <main className= "hiddenSidebar">
         <Router>
       <NavBar></NavBar> 
       <Switch>
