@@ -110,7 +110,7 @@ const Login = () => {
                                     <div>
                                     <button type="submit" onClick={() => {
                                             LoginUser(email,password)
-                                            setModalIsOpen(true)
+                                        
                                             
                                         }}>LogIn</button>
                                     </div>
@@ -147,7 +147,11 @@ const Login = () => {
                                     </p>                                       
                                         </div>    
                                         <div className="modal-footer">
-                                        <button onClick={closeModel} className="registerButton">Register</button>
+                                        <button onClick = {() => {
+                                            RegisterUser(email,password)
+                                            closeModel()
+                                        }}
+                                            className="registerButton">Register</button>
                                         </div>
                                         </Zoom>
                                     </Modal>

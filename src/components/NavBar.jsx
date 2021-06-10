@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function NavBar(){
+  const currentloginuser = useSelector(state => state.login.currentuser);
   //const value = useSelector(state => state.shopc[1].count);
   let initialshoppingcartitemcount=0
   const value = useSelector(state => state.shopc.map(cartItem=>{
@@ -62,7 +63,8 @@ function NavBar(){
                 to='/user'
                 className='nav-links'
                 onClick={closeMobileMenu}> 
-                <button>LogIn
+                <button>
+                { currentloginuser ? 'LogOut' : 'LogIn'}
                 <i class="fas fa-user"></i>
                 </button>
                 
