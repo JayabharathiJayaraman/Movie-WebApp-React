@@ -56,7 +56,6 @@ Body{
 }
 
 .bottomContTitle{
-    position: fixed;
     background: rgb(255, 166, 0);
     width: 50%;
 }
@@ -83,8 +82,9 @@ Body{
 .figure {
     border: 2px solid white;
     width: 60%;
-    height: auto;
     background-color: rgb(255, 166, 0);
+    height: 50%;
+    overflow: scroll;
 /*    overflow: hidden;*/
 }
 
@@ -218,6 +218,8 @@ Body{
     padding: 0;
     height: 50px;
     max-width: 50px;
+    position: absolute;
+    right: 20%
 }
 
 /*Responsive*/
@@ -280,7 +282,6 @@ Body{
     }
 
     .bottomContTitle{
-        position: fixed;
         background: rgb(255, 166, 0);
         width: 50%;
     }
@@ -307,9 +308,10 @@ Body{
     .figure {
         border: 2px solid white;
         width: 60%;
-        height: auto;
         background-color: rgb(255, 166, 0);
         margin: auto;
+        height: 50%;
+        overflow: scroll;
     /*    overflow: hidden;*/
     }
 
@@ -504,7 +506,6 @@ Body{
     }
 
     .bottomContTitle{
-        position: fixed;
         background: rgb(255, 166, 0);
         width: 50%;
     }
@@ -531,9 +532,10 @@ Body{
     .figure {
         border: 2px solid white;
         width: 60%;
-        height: auto;
         background-color: rgb(255, 166, 0);
         margin: auto;
+        height: 50%;
+        overflow: scroll;
     /*    overflow: hidden;*/
     }
 
@@ -728,7 +730,6 @@ Body{
     }
 
     .bottomContTitle{
-        position: fixed;
         background: rgb(255, 166, 0);
         width: 50%;
     }
@@ -755,9 +756,10 @@ Body{
     .figure {
         border: 2px solid white;
         width: 60%;
-        height: auto;
         background-color: rgb(255, 166, 0);
         margin: auto;
+        height: 50%;
+        overflow: scroll;
     /*    overflow: hidden;*/
     }
 
@@ -951,7 +953,6 @@ Body{
     }
 
     .bottomContTitle{
-        position: fixed;
         background: rgb(255, 166, 0);
         width: 50%;
     }
@@ -977,9 +978,10 @@ Body{
     .figure {
         border: 2px solid white;
         width: 60%;
-        height: auto;
         background-color: rgb(255, 166, 0);
         margin: auto;
+        height: 50%;
+        overflow: scroll;
     /*    overflow: hidden;*/
     }
 
@@ -1174,7 +1176,6 @@ Body{
     }
 
     .bottomContTitle{
-        position: fixed;
         background: rgb(255, 166, 0);
         width: 50%;
     }
@@ -1201,9 +1202,10 @@ Body{
     .figure {
         border: 2px solid white;
         width: 60%;
-        height: auto;
         background-color: rgb(255, 166, 0);
         margin: auto;
+        height: 50%;
+        overflow: scroll;
     /*    overflow: hidden;*/
     }
 
@@ -1400,7 +1402,6 @@ Body{
     }
 
     .bottomContTitle{
-        position: fixed;
         background: rgb(255, 166, 0);
         width: 50%;
     }
@@ -1427,9 +1428,10 @@ Body{
     .figure {
         border: 2px solid white;
         width: 60%;
-        height: auto;
         background-color: rgb(255, 166, 0);
         margin: auto;
+        height: 50%;
+        overflow: scroll;
     /*    overflow: hidden;*/
     }
 
@@ -1624,7 +1626,6 @@ Body{
     }
 
     .bottomContTitle{
-        position: fixed;
         background: rgb(255, 166, 0);
         width: 50%;
     }
@@ -1651,8 +1652,9 @@ Body{
     .figure {
         border: 2px solid white;
         width: 60%;
-        height: auto;
         background-color: rgb(255, 166, 0);
+        height: 50%;
+        overflow: scroll;
     /*    overflow: hidden;*/
     }
 
