@@ -1,7 +1,8 @@
 import './navBar.css';
 import React , {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { actionsLogin } from "../features/login";
+import { useDispatch, useSelector } from "react-redux";
 
 function NavBar(){
   const currentloginuser = useSelector(state => state.login.currentuser);
@@ -21,7 +22,12 @@ function NavBar(){
   
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+    const dispatch = useDispatch();
 
+    function logOut(){
+      console.log('logout');
+      dispatch(actionsLogin.logout());
+    }
     return(
         <>
         <nav className = "navbar">
@@ -63,7 +69,7 @@ function NavBar(){
                 to='/user'
                 className='nav-links'
                 onClick={closeMobileMenu}> 
-                <button>
+                <button onClick = {logOut}>
                 { currentloginuser ? 'LogOut' : 'LogIn'}
                 <i class="fas fa-user"></i>
                 </button>
