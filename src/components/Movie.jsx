@@ -51,17 +51,17 @@ const Movie = () => {
 
             setContent(movies.map(movie =>
                 <div>
-                    <MovieCard movie={movie} />
+                    <MovieCard movie={movie}  />
                     <div className='moviecardbuttons'>
-                        <button className='moreinfobutton styleButtonMov' variant="outline-secondary" onClick={() => {
+                        <button className='styleButtonMov' variant="outline-secondary" onClick={() => {
                             //setShowmoreinfoforthismovie(movie)
                             fetchSpecificMovie(movie.imdbID);
                         }}>Info</button>
-                        <button className = 'buybutton styleButtonMov' variant="outline-secondary" onClick={()=>
+                        <button className = 'styleButtonMov' variant="outline-secondary" onClick={()=>
                         
                         { console.log('test info')
 
-                            buy(movie) }}>Buy<span class="priceTag">&nbsp;{movie.Price}kr</span></button>
+                            buy(movie) }}>Buy<span class="priceTag">&nbsp;</span></button>
                     </div>
                 </div>
             ))

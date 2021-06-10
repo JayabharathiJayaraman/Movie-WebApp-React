@@ -1,0 +1,47 @@
+.img{  
+  object-fit: fill;
+  width: 15em;
+  height: 20em;
+}
+
+.poster {
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 15em;
+    height: 20em;
+    position: relative;
+    text-align: center;
+    color: white;
+    
+}
+
+  .bottom-right {
+    position: absolute;
+    bottom: 1em;
+    right: 2em;
+  }
+
+  
+
+  @media all and (max-width: 414px) {
+    .img{  
+        object-fit: fill;
+        width: 10em;
+        height: 15em;
+      }
+    
+    .poster{
+        position: relative;
+        text-align: center;
+        color: white;
+        margin-top: 5%;
+        width: 10em;
+        height: 15em;
+      }
+
+      .bottom-right {
+        position: absolute;
+        bottom: 0.4em;
+        right: 0.8em;
+      }
+  }
