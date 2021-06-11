@@ -29,7 +29,7 @@ const HighlightedMovie = ({goBack}) => {
 
     useEffect(() => {
         document.querySelector('#overlay').classList.add('show');
-        document.body.style.overflow = 'hidden';
+       // document.body.style.overflow = 'hidden';
         console.log(selectedmovie.Title)
     }, [selectedmovie]);
    
