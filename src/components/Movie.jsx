@@ -78,7 +78,7 @@ const Movie = () => {
     async function fetchSpecificMovie(imdbID) {
         //setContent(<HighlightedMovie imdbID={imdbID}/>)
         dispatch(actionsh.isFetching());
-        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&i=' + imdbID
+        const url = 'https://www.omdbapi.com/?apikey=72d7fe9&i=' + imdbID
         try {
             let response = await fetch(url);
             let json = await response.json();
@@ -137,7 +137,7 @@ const Movie = () => {
 
     async function fetchMovies() {
         dispatch(actions.isFetching());
-        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=1'
+        const url = 'https://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=1'
         try {
             let response = await fetch(url);
             let json = await response.json();
@@ -166,7 +166,7 @@ const Movie = () => {
 
     async function fetchMoreMovies(i) {
         dispatch(actions.isFetching());
-        const url = 'http://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=' + i
+        const url = 'https://www.omdbapi.com/?apikey=72d7fe9&s=taken&page=' + i
         try {
             let response = await fetch(url);
             let json = await response.json();
