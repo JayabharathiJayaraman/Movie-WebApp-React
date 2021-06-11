@@ -71,7 +71,7 @@ function addPrice(film) {
 async function fetchMovies(dispatch, searchWord) {
     dispatch(actions.isFetching());
     console.log('Got search word: ', searchWord);
-    const url = 'http://www.omdbapi.com/?apikey=' +
+    const url = 'https://www.omdbapi.com/?apikey=' +
      APIKEY +'&s=' + searchWord
     try {
         let response = await fetch(url);
@@ -103,7 +103,7 @@ async function fetchMovies(dispatch, searchWord) {
 
 async function fetchRestOfMovies(dispatch, searchWord, page){
     console.log('fetching page', page)
-    const url = 'http://omdbapi.com/?apikey=' +
+    const url = 'https://omdbapi.com/?apikey=' +
      APIKEY + '&s=' + searchWord + '&page=' + page
     try {
         let response = await fetch(url)
