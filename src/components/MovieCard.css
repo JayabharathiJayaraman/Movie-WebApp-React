@@ -18,7 +18,8 @@
   .bottom-right {
     position: absolute;
     bottom: 1em;
-    right: 2em;
+    right: 1em;
+    font-size: 1.4rem;
   }
 
   
@@ -43,5 +44,6 @@
         position: absolute;
         bottom: 0.4em;
         right: 0.8em;
+        font-size: 1.2rem;
       }
   }
